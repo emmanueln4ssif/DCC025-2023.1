@@ -1,8 +1,9 @@
-public class Ingresso {
+public abstract class Ingresso {
     private Filme filme;
     private Assento assento;
     private double preco;
-
+    private String tipo;
+    
     public Ingresso(Filme filme, Assento assento, double preco) {
         this.filme = filme;
         this.assento = assento;
@@ -33,12 +34,24 @@ public class Ingresso {
         this.preco = preco;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public abstract double calculaPreco();
+
+
     @Override
     public String toString() {
         return "Ingresso{" +
                 "filme=" + filme +
                 ", assento=" + assento +
                 ", preco=" + preco +
+                ", tipo='" + tipo + '\'' +
                 '}';
     }
 }
