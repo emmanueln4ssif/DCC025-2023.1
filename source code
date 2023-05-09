@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Criação dos objetos necessários para a venda de ingressos
+        Cinema cinema = new Cinema("Cinemark");
+        Filme filme = new Filme("Matrix", "Ação", 2.5);
+        List<Assento> assentos = new ArrayList<>();
+        assentos.add(new Assento(1, 1));
+        assentos.add(new Assento(1, 2));
+        assentos.add(new Assento(2, 1));
+        Cliente cliente = new Cliente("João da Silva", "joao.silva@gmail.com");
+
+        // Venda de ingressos
+        Vendas vendas = new Vendas(cliente);
+        for (Assento assento : assentos) {
+            double preco = cinema.calcularPreco(filme, assento);
+            Ingresso ingresso = new Ingresso(filme, assento, preco);
+            vendas.addIngresso(ingresso);
+        }
+
+        // Pagamento
+        Pagamento pagamento = new PagamentoCartao(vendas.getTotalVenda(), "1234 5678 9012 3456", "João da Silva", "12/24", "123");
+        boolean pagamentoEfetuado = pagamento.efetuarPagamento();
+
+        // Exibição dos resultados
+        System.out.println("Venda de ingressos para o filme " + filme.getTitulo() + ":");
+        for (Ingresso ingresso : vendas.getIngressos()) {
+            System.out.println("Assento " + ingresso.getAssento().getNumeroAssento() + " da fileira " + ingresso.getAssento().getNumeroFileira() + " - R$" + ingresso.getPreco());
+        }
+        System.out.println("Valor total da venda: R$" + vendas.getTotalVenda());
+        if (pagamentoEfetuado) {
+            System.out.println("Pagamento efetuado com sucesso.");
+        } else {
+            System.out.println("Erro ao efetuar o pagamento.");
+        }
+    }
+}
+
