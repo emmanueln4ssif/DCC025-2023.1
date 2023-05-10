@@ -1,0 +1,36 @@
+2023.05.09 22:34:58 INFO  Started: Metals version 0.11.12 in workspace 'C:\Users\emman\Desktop\OO\DCC025-2023.1' for client Visual Studio Code 1.77.3.
+mai. 09, 2023 10:34:58 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.16.3 by Redgate
+mai. 09, 2023 10:34:58 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+mai. 09, 2023 10:34:58 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+mai. 09, 2023 10:34:59 PM org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+INFO: Database: jdbc:h2:file:C:\Users\emman\Desktop\OO\DCC025-2023.1\.metals\metals (H2 2.1)
+mai. 09, 2023 10:34:59 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+mai. 09, 2023 10:34:59 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.029s)
+mai. 09, 2023 10:34:59 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+mai. 09, 2023 10:35:00 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": << Empty Schema >>
+mai. 09, 2023 10:35:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "1 - Create tables"
+mai. 09, 2023 10:35:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "2 - Server discovery"
+mai. 09, 2023 10:35:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "3 - Jar symbols"
+mai. 09, 2023 10:35:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "4 - Fingerprints"
+mai. 09, 2023 10:35:00 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.138s)
+2023.05.09 22:35:00 INFO  time: initialize in 2.28s
+2023.05.09 22:35:06 WARN  Build server is not auto-connectable.
+mai. 09, 2023 10:35:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+mai. 09, 2023 10:35:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+2023.05.09 22:35:06 WARN  no build tool detected in workspace 'C:\Users\emman\Desktop\OO\DCC025-2023.1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2023.05.09 23:16:52 INFO  Shutting down server
+2023.05.09 23:16:52 INFO  shutting down Metals
