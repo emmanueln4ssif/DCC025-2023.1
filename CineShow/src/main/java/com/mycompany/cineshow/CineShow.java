@@ -26,6 +26,9 @@ public class CineShow {
         boolean pagamentoEfetuado = pagamento.efetuarPagamento();
 
         // Exibição dos resultados
+        System.out.println(" ");
+        System.out.println("**************Bem vindo ao CineShow!***************");
+        System.out.println(" ");
         System.out.println("Venda de ingressos para o filme " + filme.getTitulo() + ":");
         for (Ingresso ingresso : vendas.getIngressos()) {
             System.out.println("Assento " + ingresso.getAssento().getNumero() + " da fileira " + ingresso.getAssento().getNumero() + " - R$" + ingresso.calculaPreco());
