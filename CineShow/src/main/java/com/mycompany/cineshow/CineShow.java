@@ -53,11 +53,14 @@ public class CineShow {
         while (decisao != 3) {
             switch (decisao) {
                 case 1 -> {
+                    teclado.nextLine();
                     System.out.println("Digite o título: ");
-                    String titulo = teclado.next();
+                    String titulo = teclado.nextLine();
+                    
                     System.out.println("Digite a sinopse: ");
-                    String sinopse = teclado.next();
+                    String sinopse = teclado.nextLine();
                     System.out.println("Digite a classificacao indicativa: ");
+                    
                     int idade = teclado.nextInt();
                     Filme novo = new Filme(titulo, sinopse, idade);
                     filmes.add(novo);
@@ -66,16 +69,18 @@ public class CineShow {
                     System.out.println();
                 }
                 case 2 -> {
-                    int indice = 0;
-                    indice++; 
+                    int indice = 0; 
                     System.out.println();
                     System.out.println("## FILMES CADASTRADOS:");
                     for (Filme cadastrado : filmes) {
+                        indice++;
                         System.out.println("FILME [" + indice + "] -> " + "Nome do filme: " + cadastrado.getTitulo() + "; Sinopse: "
                                 + cadastrado.getSinopse() + "; Classificação indicativa: "
                                 + cadastrado.getClassificacaoIndicativa() + " anos.");
+                                
 
                     }
+
                 }
                 default -> System.out.println("COMANDO INVALIDO!");
             }
@@ -88,6 +93,7 @@ public class CineShow {
 
         System.out.println();
         System.out.println("## SESSÃO FINALIZADA ##");
+    
 
     }
 }
