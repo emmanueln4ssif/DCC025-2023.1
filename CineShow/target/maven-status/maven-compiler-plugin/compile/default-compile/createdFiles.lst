@@ -1,0 +1,17 @@
+com\mycompany\cineshow\CineShow.class
+com\mycompany\cineshow\PagamentoCartao.class
+com\mycompany\cineshow\Sessao.class
+com\mycompany\cineshow\IngressoInteiro.class
+com\mycompany\cineshow\Filme.class
+com\mycompany\cineshow\Admin.class
+com\mycompany\cineshow\Funcionario.class
+com\mycompany\cineshow\Pessoa.class
+com\mycompany\cineshow\Assento.class
+com\mycompany\cineshow\Cinema.class
+com\mycompany\cineshow\Cliente.class
+com\mycompany\cineshow\Ingresso.class
+com\mycompany\cineshow\Pagamento.class
+com\mycompany\cineshow\Sala.class
+com\mycompany\cineshow\PagamentoBoleto.class
+com\mycompany\cineshow\IngressoMeiaEntrada.class
+com\mycompany\cineshow\Venda.class
