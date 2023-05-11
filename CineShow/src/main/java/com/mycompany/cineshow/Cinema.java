@@ -35,7 +35,7 @@ public class Cinema {
     }
 
     public int calculaPreco(Filme filme, Assento assento){
-        return null;
+        return 0;
     }
 
     @Override

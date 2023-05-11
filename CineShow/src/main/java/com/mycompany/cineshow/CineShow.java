@@ -2,7 +2,7 @@ package com.mycompany.cineshow;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class CineShow {
     public static void main(String[] args) {
         // Criação dos objetos necessários para a venda de ingressos
         Cinema cinema = new Cinema("Cinemark", "Juiz de fora", 400);
