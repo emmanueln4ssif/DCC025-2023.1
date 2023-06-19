@@ -1,15 +1,26 @@
 
 package com.mycompany.cineshow;
+
 public abstract class Ingresso {
+
     private Filme filme;
     private Assento assento;
     private double preco;
     private String tipo;
+    private Cliente cliente;
     
     public Ingresso(Filme filme, Assento assento, double preco) {
         this.filme = filme;
         this.assento = assento;
         this.preco = preco;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Filme getFilme() {

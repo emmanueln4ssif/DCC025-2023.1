@@ -1,49 +1,119 @@
 package com.mycompany.cineshow;
+
+import java.util.*;
+
 public class Cinema {
-    private String nome;
-    private String endereco;
-    private int capacidadeAssentos;
 
-    public Cinema(String nome, String endereco, int capacidadeAssentos) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.capacidadeAssentos = capacidadeAssentos;
-    }
+  private String nome;
+  private String endereco;
+  private int capacidadeAssentos;
+  private Admin admin;
+  private List<Funcionario> funcionarios;
+  private List<Filme> filmes;
+  private List<Cliente> clientes;
+  private List<Sessao> sessoes;
 
-    public String getNome() {
-        return nome;
-    }
+  public Cinema(
+    String nome,
+    String endereco,
+    int capacidadeAssentos,
+    Admin admin,
+    List<Funcionario> funcionarios,
+    List<Filme> filmes,
+    List<Cliente> clientes,
+    List<Sessao> sessoes
+  ) {
+    this.nome = nome;
+    this.endereco = endereco;
+    this.capacidadeAssentos = capacidadeAssentos;
+    this.admin = admin;
+    this.funcionarios = funcionarios;
+    this.filmes = filmes;
+    this.clientes = clientes;
+    this.sessoes = sessoes;
+  }
 
-    public String getEndereco() {
-        return endereco;
-    }
+  public Admin getAdmin() {
+    return admin;
+  }
 
-    public int getCapacidadeAssentos() {
-        return capacidadeAssentos;
-    }
+  public void setAdmin(Admin admin) {
+    this.admin = admin;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public List<Funcionario> getFuncionarios() {
+    return funcionarios;
+  }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+  public void setFuncionarios(List<Funcionario> funcionarios) {
+    this.funcionarios = funcionarios;
+  }
 
-    public void setCapacidadeAssentos(int capacidadeAssentos) {
-        this.capacidadeAssentos = capacidadeAssentos;
-    }
+  public List<Filme> getFilmes() {
+    return filmes;
+  }
 
-    public int calculaPreco(Filme filme, Assento assento){
-        return 0;
-    }
+  public void setFilmes(List<Filme> filmes) {
+    this.filmes = filmes;
+  }
 
-    @Override
-    public String toString() {
-        return "Cinema{" +
-                "nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' +
-                ", capacidadeAssentos=" + capacidadeAssentos +
-                '}';
-    }
+  public List<Cliente> getClientes() {
+    return clientes;
+  }
+
+  public void setClientes(List<Cliente> clientes) {
+    this.clientes = clientes;
+  }
+
+  public List<Sessao> getSessoes() {
+    return sessoes;
+  }
+
+  public void setSessoes(List<Sessao> sessoes) {
+    this.sessoes = sessoes;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public String getEndereco() {
+    return endereco;
+  }
+
+  public int getCapacidadeAssentos() {
+    return capacidadeAssentos;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
+
+  public void setCapacidadeAssentos(int capacidadeAssentos) {
+    this.capacidadeAssentos = capacidadeAssentos;
+  }
+
+  public int calculaPreco(Filme filme, Assento assento) {
+    return 0;
+  }
+
+  @Override
+  public String toString() {
+    return (
+      "Cinema{" +
+      "nome='" +
+      nome +
+      '\'' +
+      ", endereco='" +
+      endereco +
+      '\'' +
+      ", capacidadeAssentos=" +
+      capacidadeAssentos +
+      '}'
+    );
+  }
 }
