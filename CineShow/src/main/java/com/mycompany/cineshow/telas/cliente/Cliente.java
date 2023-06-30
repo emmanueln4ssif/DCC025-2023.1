@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.telavisualizacaocliente;
+package com.mycompany.cineshow.telas.cliente;
 
 /**
  *
@@ -80,6 +80,11 @@ public class Cliente extends javax.swing.JFrame {
 
         button1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button1.setLabel("Editar");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         button2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button2.setLabel("Voltar");
@@ -190,6 +195,10 @@ public class Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,9 +229,13 @@ public class Cliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cliente().setVisible(true);
+                Cliente cliente = new Cliente();
+                cliente.setExtendedState(MAXIMIZED_BOTH);
+                cliente.setVisible(true);
             }
         });
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

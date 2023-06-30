@@ -1,5 +1,7 @@
 package com.mycompany.cineshow;
 
+import com.mycompany.cineshow.telas.login.TelaLogin;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
@@ -13,6 +15,10 @@ public class CineShow {
     
 
     public static void main(String[] args) {
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
+        telaLogin.setVisible(true);
+
         // Criação dos objetos necessários para a venda de ingressos
         Scanner teclado = new Scanner(System.in);
         

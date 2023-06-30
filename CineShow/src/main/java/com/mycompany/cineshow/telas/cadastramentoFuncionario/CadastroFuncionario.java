@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.telacadastrofilme;
+package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
 /**
  *
  * @author walac
  */
-public class cadastroFilme extends javax.swing.JFrame {
+public class CadastroFuncionario extends javax.swing.JFrame {
 
     /**
-     * Creates new form cadastroFilme
+     * Creates new form CadastroFuncionario
      */
-    public cadastroFilme() {
+    public CadastroFuncionario() {
         initComponents();
     }
 
@@ -30,36 +30,48 @@ public class cadastroFilme extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         button1 = new java.awt.Button();
         button2 = new java.awt.Button();
-        jTextField8 = new javax.swing.JTextField();
-        button3 = new java.awt.Button();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Nome do Filme:");
+        jLabel1.setText("Nome do Funcionário:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 70, 140, 20);
 
-        jLabel2.setText("Classificação Indicativa:");
+        jLabel2.setText("Função:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 130, 160, 20);
 
-        jLabel3.setText("Cartaz:");
+        jLabel3.setText("Email:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 440, 100, 20);
+        jLabel3.setBounds(10, 380, 100, 20);
 
-        jLabel4.setText("Sinopse:");
+        jLabel4.setText("Endereço:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 310, 100, 20);
+        jLabel4.setBounds(10, 250, 100, 20);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(10, 90, 790, 30);
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(10, 150, 790, 30);
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(10, 210, 790, 30);
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,36 +79,29 @@ public class cadastroFilme extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(10, 90, 790, 30);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(10, 150, 790, 30);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(10, 210, 790, 30);
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(10, 270, 790, 30);
+        jTextField4.setBounds(10, 270, 790, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Formulário de Cadastramento de Filme");
+        jLabel5.setText("Formulário de Cadastramento de Funcionário");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 820, 40);
 
-        jLabel6.setText("Gênero:");
+        jLabel6.setText("Salário:");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(10, 190, 50, 20);
 
-        jLabel7.setText("Duração:");
+        jLabel7.setText("Telefone:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 250, 60, 20);
+        jLabel7.setBounds(10, 310, 60, 20);
 
         button1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button1.setLabel("Cadastrar");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(button1);
         button1.setBounds(380, 500, 80, 30);
 
@@ -104,33 +109,25 @@ public class cadastroFilme extends javax.swing.JFrame {
         button2.setLabel("Voltar");
         getContentPane().add(button2);
         button2.setBounds(280, 500, 80, 30);
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(10, 330, 790, 90);
-
-        button3.setBackground(new java.awt.Color(255, 255, 255));
-        button3.setLabel("Adicionar Arquivo");
-        button3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(button3);
-        button3.setBounds(10, 460, 130, 30);
+        getContentPane().add(jTextField5);
+        jTextField5.setBounds(10, 330, 790, 30);
+        getContentPane().add(jTextField6);
+        jTextField6.setBounds(10, 400, 790, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button3ActionPerformed
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,20 +146,20 @@ public class cadastroFilme extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cadastroFilme().setVisible(true);
+                new CadastroFuncionario().setVisible(true);
             }
         });
     }
@@ -170,7 +167,6 @@ public class cadastroFilme extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
     private java.awt.Button button2;
-    private java.awt.Button button3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -184,7 +180,5 @@ public class cadastroFilme extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
