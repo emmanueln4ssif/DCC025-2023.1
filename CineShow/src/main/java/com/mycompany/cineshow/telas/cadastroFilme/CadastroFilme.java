@@ -8,13 +8,21 @@ package com.mycompany.cineshow.telas.cadastroFilme;
  *
  * @author walac
  */
+
+import com.mycompany.cineshow.Filme;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import java.awt.Toolkit;
+import java.util.*;
+import javax.swing.JOptionPane;
+
 public class CadastroFilme extends javax.swing.JFrame {
 
-    /**
-     * Creates new form cadastroFilme
-     */
+    ControlaCadastroFilme cf = new ControlaCadastroFilme();
+    private ArrayList<Filme> filmes;
+    
     public CadastroFilme() {
         initComponents();
+        filmes = new ArrayList<>();
     }
 
     /**
@@ -26,21 +34,32 @@ public class CadastroFilme extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        tfdTitulo = new javax.swing.JTextField();
+        tfdClassificacao = new javax.swing.JTextField();
+        tfdGenero = new javax.swing.JTextField();
+        tfdDuracao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
-        jTextField8 = new javax.swing.JTextField();
-        button3 = new java.awt.Button();
+        btnVoltar = new java.awt.Button();
+        btnAdicionarCartaz = new java.awt.Button();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tfdSinopse = new javax.swing.JTextArea();
+        btnVerFilmes = new java.awt.Button();
+        btnCadastrar = new java.awt.Button();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -61,25 +80,25 @@ public class CadastroFilme extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(10, 310, 100, 20);
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        tfdTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                tfdTituloActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(10, 90, 790, 30);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(10, 150, 790, 30);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(10, 210, 790, 30);
+        getContentPane().add(tfdTitulo);
+        tfdTitulo.setBounds(10, 90, 790, 30);
+        getContentPane().add(tfdClassificacao);
+        tfdClassificacao.setBounds(10, 150, 790, 30);
+        getContentPane().add(tfdGenero);
+        tfdGenero.setBounds(10, 210, 790, 30);
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        tfdDuracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                tfdDuracaoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(10, 270, 790, 30);
+        getContentPane().add(tfdDuracao);
+        tfdDuracao.setBounds(10, 270, 790, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,42 +114,112 @@ public class CadastroFilme extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(10, 250, 60, 20);
 
-        button1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        button1.setLabel("Cadastrar");
-        getContentPane().add(button1);
-        button1.setBounds(380, 500, 80, 30);
-
-        button2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        button2.setLabel("Voltar");
-        getContentPane().add(button2);
-        button2.setBounds(280, 500, 80, 30);
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(10, 330, 790, 90);
-
-        button3.setBackground(new java.awt.Color(255, 255, 255));
-        button3.setLabel("Adicionar Arquivo");
-        button3.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnVoltar.setLabel("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button3ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(button3);
-        button3.setBounds(10, 460, 130, 30);
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(280, 500, 80, 30);
+
+        btnAdicionarCartaz.setBackground(new java.awt.Color(255, 255, 255));
+        btnAdicionarCartaz.setLabel("Adicionar Arquivo");
+        btnAdicionarCartaz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarCartazActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdicionarCartaz);
+        btnAdicionarCartaz.setBounds(10, 460, 130, 30);
+
+        tfdSinopse.setColumns(20);
+        tfdSinopse.setLineWrap(true);
+        tfdSinopse.setRows(5);
+        jScrollPane2.setViewportView(tfdSinopse);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 330, 790, 90);
+
+        btnVerFilmes.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnVerFilmes.setLabel("Ver Filmes");
+        btnVerFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerFilmesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVerFilmes);
+        btnVerFilmes.setBounds(480, 500, 80, 30);
+
+        btnCadastrar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnCadastrar.setLabel("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCadastrar);
+        btnCadastrar.setBounds(380, 500, 80, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void tfdTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_tfdTituloActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void tfdDuracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdDuracaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_tfdDuracaoActionPerformed
 
-    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+    private void btnAdicionarCartazActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCartazActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button3ActionPerformed
+    }//GEN-LAST:event_btnAdicionarCartazActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        TelaDashBoard telaDashBoard = new TelaDashBoard();
+        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+        this.dispose();
+        telaDashBoard.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnVerFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFilmesActionPerformed
+        dlgMostraFilmes dlg = new dlgMostraFilmes(null,true,cf);
+        dlg.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.dispose();
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnVerFilmesActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // TODO add your handling code here:
+        String titulo = tfdTitulo.getText();
+        String sinopse = tfdSinopse.getText();
+        String classificacaoText = tfdClassificacao.getText();
+        String genero = tfdGenero.getText();
+        String duracao = tfdDuracao.getText();
+        int classificacao;
+        if (titulo.isEmpty() || sinopse.isEmpty() || classificacaoText.isEmpty() || genero.isEmpty() || duracao.isEmpty()) 
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        else{
+            classificacao = Integer.parseInt(classificacaoText);
+            Filme filme = new Filme(titulo,sinopse,classificacao,genero, duracao);
+            
+            if(cf.salvar(filme)){
+                this.filmes.add(filme);
+                JOptionPane.showMessageDialog(null,"Filme cadastrado com sucesso");
+                tfdTitulo.setText("");
+                tfdSinopse.setText("");
+                tfdClassificacao.setText("");
+                tfdGenero.setText("");
+                tfdDuracao.setText("");
+                tfdTitulo.requestFocus();             
+            }
+            else
+                JOptionPane.showMessageDialog(null,"Erro ao cadastrar o filme");
+        }    
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,9 +257,10 @@ public class CadastroFilme extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private java.awt.Button button2;
-    private java.awt.Button button3;
+    private java.awt.Button btnAdicionarCartaz;
+    private java.awt.Button btnCadastrar;
+    private java.awt.Button btnVerFilmes;
+    private java.awt.Button btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -178,13 +268,13 @@ public class CadastroFilme extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField tfdClassificacao;
+    private javax.swing.JTextField tfdDuracao;
+    private javax.swing.JTextField tfdGenero;
+    private javax.swing.JTextArea tfdSinopse;
+    private javax.swing.JTextField tfdTitulo;
     // End of variables declaration//GEN-END:variables
 }

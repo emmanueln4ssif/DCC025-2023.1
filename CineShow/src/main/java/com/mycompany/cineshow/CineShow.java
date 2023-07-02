@@ -23,7 +23,7 @@ public class CineShow {
         Scanner teclado = new Scanner(System.in);
         
         List<Filme> filmes = new ArrayList<>();
-        Filme filme = new Filme("Matrix", "O filme se passa num futuro distopico...", 16);
+        Filme filme = new Filme("Matrix", "O filme se passa num futuro distopico...", 16 , "Ficção científica", "2h 16m");
         filmes.add(filme);
 
         List<Assento> assentos = new ArrayList<>();
@@ -72,10 +72,17 @@ public class CineShow {
                     
                     System.out.println("Digite a sinopse: ");
                     String sinopse = teclado.nextLine();
-                    System.out.println("Digite a classificacao indicativa: ");
                     
+                    System.out.println("Digite o gênero: ");
+                    String genero = teclado.nextLine();
+                    
+                    System.out.println("Digite a duração: ");
+                    String duracao = teclado.nextLine();
+                    
+                    System.out.println("Digite a classificacao indicativa: ");
                     int idade = teclado.nextInt();
-                    Filme novo = new Filme(titulo, sinopse, idade);
+                    
+                    Filme novo = new Filme(titulo, sinopse, idade, genero, duracao);
                     filmes.add(novo);
                     System.out.println();
                     System.out.println("## FILME CADASTRADO COM SUCESSO! ##");

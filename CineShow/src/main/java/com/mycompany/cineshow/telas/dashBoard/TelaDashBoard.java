@@ -4,6 +4,8 @@
  */
 package com.mycompany.cineshow.telas.dashBoard;
 
+import com.mycompany.cineshow.Filme;
+import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
 import com.mycompany.cineshow.telas.cliente.Cliente;
 
 import java.awt.*;
@@ -96,6 +98,11 @@ public class TelaDashBoard extends javax.swing.JFrame {
         butCadFilme.setLabel("Cadastrar novo filme");
         getContentPane().add(butCadFilme);
         butCadFilme.setBounds(200, 420, 170, 50);
+        butCadFilme.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                butCadFilmeActionPerformed(evt);
+            }
+        });
 
         butFilmeDia.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butFilmeDia.setLabel("Filme do Dia");
@@ -125,6 +132,12 @@ public class TelaDashBoard extends javax.swing.JFrame {
         cliente.setVisible(true);
     }
 
+  private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
+        CadastroFilme cadastroFilme = new CadastroFilme();
+        cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+        this.dispose();
+        cadastroFilme.setVisible(true);
+    } 
 
 
 
