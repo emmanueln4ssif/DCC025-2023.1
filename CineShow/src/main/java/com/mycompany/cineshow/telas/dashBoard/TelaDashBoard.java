@@ -7,6 +7,7 @@ package com.mycompany.cineshow.telas.dashBoard;
 import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
 import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
+import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
 import com.mycompany.cineshow.telas.filmeIndividual.telainicialfilme;
 
 import java.awt.*;
@@ -40,7 +41,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
         butCadCliente = new Button();
         butCadFilme = new Button();
         butFilmeDia = new Button();
-        butListClientes = new Button();
+        butSessoes = new Button();
         butIngressos = new Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,10 +116,15 @@ public class TelaDashBoard extends javax.swing.JFrame {
             }
         });
 
-        butListClientes.setFont(new Font("Dialog", 1, 12)); // NOI18N
-        butListClientes.setLabel("Clientes");
-        getContentPane().add(butListClientes);
-        butListClientes.setBounds(550, 420, 160, 50);
+        butSessoes.setFont(new Font("Dialog", 1, 12)); // NOI18N
+        butSessoes.setLabel("Sessões");
+        getContentPane().add(butSessoes);
+        butSessoes.setBounds(550, 420, 160, 50);
+        butSessoes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                butSessoesPerformed(evt);
+            }
+        });
 
         butIngressos.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butIngressos.setLabel("Ingresso");
@@ -140,6 +146,13 @@ public class TelaDashBoard extends javax.swing.JFrame {
 
   private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
         CadastroFilme cadastroFilme = new CadastroFilme();
+        cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+        this.dispose();
+        cadastroFilme.setVisible(true);
+    }
+
+      private void butSessoesPerformed (java.awt.event.ActionEvent evt) {
+        TelaSessoes cadastroFilme = new TelaSessoes();
         cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
         cadastroFilme.setVisible(true);
@@ -196,7 +209,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
     private Button butCadCliente;
     private Button butCadFilme;
     private Button butFilmeDia;
-    private Button butListClientes;
+    private Button butSessoes;
     private Button butIngressos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
