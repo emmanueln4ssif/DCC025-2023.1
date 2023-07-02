@@ -6,7 +6,8 @@ package com.mycompany.cineshow.telas.dashBoard;
 
 import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
-import com.mycompany.cineshow.telas.cliente.Cliente;
+import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
+import com.mycompany.cineshow.telas.filmeIndividual.telainicialfilme;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -108,6 +109,11 @@ public class TelaDashBoard extends javax.swing.JFrame {
         butFilmeDia.setLabel("Filme do Dia");
         getContentPane().add(butFilmeDia);
         butFilmeDia.setBounds(390, 420, 140, 50);
+        butFilmeDia.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                butFilmeDiaActionPerformed(evt);
+            }
+        });
 
         butListClientes.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butListClientes.setLabel("Clientes");
@@ -126,10 +132,10 @@ public class TelaDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6FocusGained
 
   private void butCadClienteActionPerformed (java.awt.event.ActionEvent evt) {
-        Cliente cliente = new Cliente();
-        cliente.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+        TelaCadCliente telaCadCliente = new TelaCadCliente();
+        telaCadCliente.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
-        cliente.setVisible(true);
+        telaCadCliente.setVisible(true);
     }
 
   private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
@@ -137,7 +143,15 @@ public class TelaDashBoard extends javax.swing.JFrame {
         cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
         cadastroFilme.setVisible(true);
-    } 
+    }
+
+    private void butFilmeDiaActionPerformed (java.awt.event.ActionEvent evt) {
+        telainicialfilme telaFilme = new telainicialfilme();
+        telaFilme.setExtendedState(telainicialfilme.MAXIMIZED_BOTH);
+        this.dispose();
+        telaFilme.setVisible(true);
+    }
+
 
 
 

@@ -6,8 +6,7 @@ package com.mycompany.cineshow.telas.cadastroFilme;
 
 import com.mycompany.cineshow.Filme;
 import java.util.*;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -20,23 +19,23 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
     /**
      * Creates new form dlgMostraFilmes
      */
-    
+
     ControlaCadastroFilme cf = new ControlaCadastroFilme();
-    
+
     public dlgMostraFilmes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
+
     public dlgMostraFilmes(java.awt.Frame parent, boolean modal, ControlaCadastroFilme cf) {
         super(parent, modal);
         this.cf = cf;
         initComponents();
         exibeInformacoes();
         exibeLista();
-        
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,34 +174,34 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        
                         .addComponent(tfdTitulo))
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(tfdGenero))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
+                    .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(jScrollPane2))
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(tfdDuracao))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                         .addGap(0, 258, Short.MAX_VALUE)
                         .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
                                 .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(tfdClassificacao)))
                 .addContainerGap())
         );
@@ -246,9 +245,9 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                
                 .addComponent(panelDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -296,8 +295,8 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
             filme.setSinopse(tfdSinopse.getText());
             exibeInformacoes();
             JOptionPane.showMessageDialog(null, "Filme editado com sucesso");
-        } 
-        else 
+        }
+        else
             JOptionPane.showMessageDialog(null, "Não foi possível editar o filme");
         */
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -310,27 +309,27 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void tfdClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdClassificacaoActionPerformed
-        
+
     }//GEN-LAST:event_tfdClassificacaoActionPerformed
 
     private void tfdTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdTituloActionPerformed
-        
+
     }//GEN-LAST:event_tfdTituloActionPerformed
 
-    
+
 
     /**
      * @param args the command line arguments
      */
-    
-    
-    
-    
+
+
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -363,9 +362,9 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-    }     
-    
-    
+    }
+
+
     private void exibeLista(){
         ArrayList<Filme> filmes = cf.retornarTodos();
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -376,20 +375,20 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
 
         jListFilmes.setModel(model);
     }
-    
+
     private void exibeInformacoes() {
         int index = jListFilmes.getSelectedIndex();
-    
-        if (index != -1) { 
+
+        if (index != -1) {
             String tituloSelecionado = jListFilmes.getSelectedValue();
             Filme filme = cf.retornaFilmePorTitulo(tituloSelecionado);
-            
+
             tfdTitulo.setText(filme.getTitulo());
             tfdSinopse.setText(filme.getSinopse());
             tfdClassificacao.setText(String.valueOf(filme.getClassificacaoIndicativa()));
             tfdGenero.setText(filme.getGenero());
             tfdDuracao.setText(filme.getDuracao());
-        } 
+        }
         else{
             tfdTitulo.setText("");
             tfdSinopse.setText("");
@@ -397,10 +396,10 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
             tfdGenero.setText("");
             tfdDuracao.setText("");
         }
-             
-    }           
-    
-    
+
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnEditar;
