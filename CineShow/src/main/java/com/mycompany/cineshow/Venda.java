@@ -13,7 +13,6 @@ public class Venda {
     this.cliente = cliente;
   }
 
-
   public Cliente getCliente() {
     return cliente;
   }

@@ -145,13 +145,16 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = this.jTextField1.getName();
-        String senha = this.jPasswordField1.getName();
+        String nome = this.jTextField1.getText();
+        String senha = new String (this.jPasswordField1.getPassword());
+        System.out.println(senha);
 
-        this.dispose();
-        TelaDashBoard telaDashBoard = new TelaDashBoard();
-        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
-        telaDashBoard.setVisible(true);
+        if(nome.equals("Admin") && senha.equals("1234")){
+            this.dispose();
+            TelaDashBoard telaDashBoard = new TelaDashBoard();
+            telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+            telaDashBoard.setVisible(true);
+        }
     }
 
     private void jTextField1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
