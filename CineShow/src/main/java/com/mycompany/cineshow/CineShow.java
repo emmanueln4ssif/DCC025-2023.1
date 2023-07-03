@@ -16,7 +16,8 @@ public class CineShow {
 
     public static void main(String[] args) {
         TelaLogin telaLogin = new TelaLogin();
-        telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
+        telaLogin.setResizable(false);
+        //telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
         telaLogin.setVisible(true);
 
         // Criação dos objetos necessários para a venda de ingressos

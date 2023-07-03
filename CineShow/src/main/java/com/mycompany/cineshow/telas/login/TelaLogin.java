@@ -44,7 +44,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel7 = new JLabel();
         jLabel4 = new JLabel();
 
-        //jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/interfacelogin/drawing-ticket-film-sketch-circus-ticket.jpg"))); // NOI18N
+
+        //jLabel3.setIcon(new javax.swing.ImageIcon(("CineShow\\src\\main\\java\\com\\mycompany\\cineshow\\telas\\login\\imgLogin.png"))); // NOI18N
         //jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

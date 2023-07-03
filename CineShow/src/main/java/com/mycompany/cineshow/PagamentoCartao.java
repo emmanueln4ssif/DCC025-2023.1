@@ -1,29 +1,46 @@
 package com.mycompany.cineshow;
 
+import java.util.*;
+
 public class PagamentoCartao extends Pagamento {
 
-  private String numeroCartao;
-  private String nomeTitular;
-  private String dataValidade;
-  private String codigoSeguranca;
+  private CartaoPagamento cartao; 
 
-  public PagamentoCartao(
-    double valor,
-    String numeroCartao,
-    String nomeTitular,
-    String dataValidade,
-    String codigoSeguranca
-  ) {
+  public PagamentoCartao(double valor, CartaoPagamento cartao) {
     super(valor);
-    this.numeroCartao = numeroCartao;
-    this.nomeTitular = nomeTitular;
-    this.dataValidade = dataValidade;
-    this.codigoSeguranca = codigoSeguranca;
+    this.cartao = cartao;
   }
 
-  @Override
-  public boolean efetuarPagamento() {
-    // implementação específica do pagamento com cartão
-    return true;
-  }
+    public static CartaoPagamento SalvarNovoCartao(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Informe o número do cartão: ");
+        String numeroCartao = scanner.nextLine();
+
+        System.out.println("Informe o nome do titular: ");
+        String nomeTitular = scanner.nextLine();
+
+        System.out.println("Informe a data de validade no formato DD/MM/AAAA: ");
+        String dataValidade = scanner.nextLine();
+
+        System.out.println("Informe o código de segurança: ");
+        String codigoSeguranca = scanner.nextLine();
+
+        CartaoPagamento cartao = new CartaoPagamento(numeroCartao, nomeTitular, dataValidade, Integer.parseInt(codigoSeguranca));
+        cartao.salvarCartaoEmArquivo("cartao.txt");
+        cartao.recuperarDadosCartao("cartao.txt");
+
+        scanner.close();
+        return cartao;
+    }
+    
+
+    @Override
+    public boolean efetuarPagamento() {
+        System.out.println("Pagamento feito com sucesso, Aqui estao as info do seu Pagamento");
+        System.out.println("Nome do Cliente: " + cartao.getNomeTitular());
+        System.out.println("Numero do cartao: " + cartao.getNumeroCartao());
+        System.out.println("Valor Pago: " + getValor());
+        return true;
+    }
 }

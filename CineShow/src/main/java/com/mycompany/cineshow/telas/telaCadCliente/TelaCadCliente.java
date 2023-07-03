@@ -182,7 +182,7 @@ public class TelaCadCliente extends JFrame {
                                                 .addComponent(jLabel6)
                                                 .addComponent(tfdEndereco))
                                         .addGroup(GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
-                                                .addGap(0, 258, Short.MAX_VALUE)
+                                                .addGap(0, 258, 258)
                                                 .addGroup(panelDescricaoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                                                                 .addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)

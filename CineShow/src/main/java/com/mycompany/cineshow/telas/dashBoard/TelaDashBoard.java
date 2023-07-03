@@ -87,9 +87,9 @@ public class TelaDashBoard extends javax.swing.JFrame {
         jPanel1.setBounds(0, 0, 900, 230);
 
         butCadCliente.setFont(new Font("Dialog", 1, 12)); // NOI18N
-        butCadCliente.setLabel("Cadastrar novo cliente");
+        butCadCliente.setLabel("Clientes");
         getContentPane().add(butCadCliente);
-        butCadCliente.setBounds(10, 420, 170, 50);
+        butCadCliente.setBounds(20, 420, 160, 50);
         butCadCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butCadClienteActionPerformed(evt);
@@ -97,9 +97,9 @@ public class TelaDashBoard extends javax.swing.JFrame {
         });
 
         butCadFilme.setFont(new Font("Dialog", 1, 12)); // NOI18N
-        butCadFilme.setLabel("Cadastrar novo filme");
+        butCadFilme.setLabel("Filmes");
         getContentPane().add(butCadFilme);
-        butCadFilme.setBounds(200, 420, 170, 50);
+        butCadFilme.setBounds(190, 420, 160, 50);
         butCadFilme.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butCadFilmeActionPerformed(evt);
@@ -107,9 +107,9 @@ public class TelaDashBoard extends javax.swing.JFrame {
         });
 
         butFilmeDia.setFont(new Font("Dialog", 1, 12)); // NOI18N
-        butFilmeDia.setLabel("Filme do Dia");
+        butFilmeDia.setLabel("Funcionários");
         getContentPane().add(butFilmeDia);
-        butFilmeDia.setBounds(390, 420, 140, 50);
+        butFilmeDia.setBounds(360, 420, 160, 50);
         butFilmeDia.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butFilmeDiaActionPerformed(evt);
@@ -119,7 +119,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
         butSessoes.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butSessoes.setLabel("Sessões");
         getContentPane().add(butSessoes);
-        butSessoes.setBounds(550, 420, 160, 50);
+        butSessoes.setBounds(530, 420, 160, 50);
         butSessoes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butSessoesPerformed(evt);
@@ -129,7 +129,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
         butIngressos.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butIngressos.setLabel("Ingresso");
         getContentPane().add(butIngressos);
-        butIngressos.setBounds(730, 420, 160, 50);
+        butIngressos.setBounds(700, 420, 160, 50);
 
         pack();
     }

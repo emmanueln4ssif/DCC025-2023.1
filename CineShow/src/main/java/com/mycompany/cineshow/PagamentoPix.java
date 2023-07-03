@@ -1,11 +1,11 @@
 package com.mycompany.cineshow;
 
-public class PagamentoBoleto extends Pagamento {
+public class PagamentoPix extends Pagamento {
 
     private Cliente cliente;
     private Cinema cinema;
 
-    public PagamentoBoleto(double valor, Cliente cliente, Cinema cinema) {
+    public PagamentoPix(double valor, Cliente cliente, Cinema cinema) {
         super(valor);
         this.cliente = cliente;
         this.cinema = cinema;
@@ -13,9 +13,9 @@ public class PagamentoBoleto extends Pagamento {
 
     @Override
     public boolean efetuarPagamento() {
-        String codigoBarras = "26090.20819 96123.397737 55900.000005 3 94220000010000 " + this.cliente.getCpf() + this.cinema.getNome() + getValor();
-        System.out.println("Aqui esta o codigo do seu boleto para pagamento" + codigoBarras);
-        System.out.println("Copie e cole no aplicativo do seu banco ");
+        String ChavePix = "00020126330014br.gov.bcb-" + this.cliente.getCpf() + this.cinema.getNome() + getValor();
+        System.out.println("Aqui esta o codigo pix para pagamento do seu engresso" + ChavePix);
+        System.out.println("Copie e cola no aplicatio do seu banco para efectuar o pagamento");
         
         
         // new Timer().schedule(new TimerTask() {
@@ -24,6 +24,7 @@ public class PagamentoBoleto extends Pagamento {
         //         System.out.println("pagamento efectuado com sucesso");
         //     }
         // }, 3000L);
+        
         
         return true;
     }

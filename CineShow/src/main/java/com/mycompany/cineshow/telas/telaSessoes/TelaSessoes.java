@@ -159,11 +159,11 @@ public class TelaSessoes extends JFrame {
         btnVoltar.setFont(new Font("Dialog", 1, 12)); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        /*btnVoltar.addActionListener(new ActionListener() {
+        btnVoltar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
-        });*/
+        });
 
         btnEditar.setBackground(new Color(240, 240, 240));
         btnEditar.setFont(new Font("Dialog", 1, 12)); // NOI18N
