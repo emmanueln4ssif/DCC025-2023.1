@@ -174,35 +174,35 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfdTitulo))
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfdGenero))
-                    .addGroup(panelDescricaoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        
-                        .addComponent(jScrollPane2))
-                    .addGroup(panelDescricaoLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        
-                        .addComponent(tfdDuracao))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                         .addGap(0, 258, Short.MAX_VALUE)
                         .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        
-                        .addComponent(tfdClassificacao)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfdClassificacao))
+                    .addGroup(panelDescricaoLayout.createSequentialGroup()
+                        .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(tfdDuracao))))
                 .addContainerGap())
         );
         panelDescricaoLayout.setVerticalGroup(
@@ -245,9 +245,9 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -284,21 +284,24 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        /*
-        if (jListFilmes.getSelectedIndex() != -1) {
-            int index = jListFilmes.getSelectedIndex();
-            Filme filme = cf.retornarTodos().get(index);
+        int indice = jListFilmes.getSelectedIndex();
+
+        if(indice != -1){
+            String tituloSelecionado = jListFilmes.getSelectedValue();
+            Filme filme = cf.retornaFilmePorTitulo(tituloSelecionado);
+         
             filme.setTitulo(tfdTitulo.getText());
-            filme.setClassificacaoIndicativa(Integer.parseInt(tfdClassificacao.getText()));
             filme.setGenero(tfdGenero.getText());
             filme.setDuracao(tfdDuracao.getText());
+            filme.setClassificacaoIndicativa(Integer.parseInt(tfdClassificacao.getText()));
             filme.setSinopse(tfdSinopse.getText());
+            
+            DefaultListModel<String> model = (DefaultListModel<String>) jListFilmes.getModel();
+            model.setElementAt(filme.getTitulo(), indice);
+            
             exibeInformacoes();
-            JOptionPane.showMessageDialog(null, "Filme editado com sucesso");
+          
         }
-        else
-            JOptionPane.showMessageDialog(null, "Não foi possível editar o filme");
-        */
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

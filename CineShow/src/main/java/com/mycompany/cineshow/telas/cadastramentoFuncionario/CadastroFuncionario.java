@@ -4,6 +4,8 @@
  */
 package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+
 /**
  *
  * @author walac
@@ -30,17 +32,17 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        tfdNome = new javax.swing.JTextField();
+        tfdFuncao = new javax.swing.JTextField();
+        tfdSalario = new javax.swing.JTextField();
+        tfdEndereco = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        btnCadastrar = new java.awt.Button();
+        btnVoltar = new java.awt.Button();
+        tfdTelefone = new javax.swing.JTextField();
+        tfdEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -61,25 +63,25 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(10, 250, 100, 20);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfdNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfdNomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(10, 90, 790, 30);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(10, 150, 790, 30);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(10, 210, 790, 30);
+        getContentPane().add(tfdNome);
+        tfdNome.setBounds(10, 90, 790, 30);
+        getContentPane().add(tfdFuncao);
+        tfdFuncao.setBounds(10, 150, 790, 30);
+        getContentPane().add(tfdSalario);
+        tfdSalario.setBounds(10, 210, 790, 30);
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        tfdEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                tfdEnderecoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(10, 270, 790, 30);
+        getContentPane().add(tfdEndereco);
+        tfdEndereco.setBounds(10, 270, 790, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,39 +97,51 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(10, 310, 60, 20);
 
-        button1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        button1.setLabel("Cadastrar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnCadastrar.setLabel("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(button1);
-        button1.setBounds(380, 500, 80, 30);
+        getContentPane().add(btnCadastrar);
+        btnCadastrar.setBounds(380, 500, 80, 30);
 
-        button2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        button2.setLabel("Voltar");
-        getContentPane().add(button2);
-        button2.setBounds(280, 500, 80, 30);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(10, 330, 790, 30);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(10, 400, 790, 30);
+        btnVoltar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnVoltar.setLabel("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(280, 500, 80, 30);
+        getContentPane().add(tfdTelefone);
+        tfdTelefone.setBounds(10, 330, 790, 30);
+        getContentPane().add(tfdEmail);
+        tfdEmail.setBounds(10, 400, 790, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfdNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfdNomeActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void tfdEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdEnderecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_tfdEnderecoActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaDashBoard telaDashBoard = new TelaDashBoard();
+        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+        this.dispose();
+        telaDashBoard.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,8 +179,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private java.awt.Button button2;
+    private java.awt.Button btnCadastrar;
+    private java.awt.Button btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -174,11 +188,11 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField tfdEmail;
+    private javax.swing.JTextField tfdEndereco;
+    private javax.swing.JTextField tfdFuncao;
+    private javax.swing.JTextField tfdNome;
+    private javax.swing.JTextField tfdSalario;
+    private javax.swing.JTextField tfdTelefone;
     // End of variables declaration//GEN-END:variables
 }

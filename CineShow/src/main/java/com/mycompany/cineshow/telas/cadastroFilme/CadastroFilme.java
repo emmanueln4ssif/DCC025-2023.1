@@ -180,8 +180,7 @@ public class CadastroFilme extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
         TelaDashBoard telaDashBoard = new TelaDashBoard();
-        //telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
-        telaDashBoard.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
         telaDashBoard.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
