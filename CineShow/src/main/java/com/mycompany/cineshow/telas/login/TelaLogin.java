@@ -59,7 +59,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        pfSenha.setText("pfSenha");
         pfSenha.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 pfSenhaActionPerformed(evt);

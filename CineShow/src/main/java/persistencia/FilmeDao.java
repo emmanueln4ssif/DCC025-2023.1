@@ -2,12 +2,6 @@ package persistencia;
 
 import com.mycompany.cineshow.Filme;
 import java.util.ArrayList;
-import java.util.List;
-
-/**
- *
- * author solan
- */
 public class FilmeDao {
 
     public ArrayList<Filme> ler() {
@@ -29,10 +23,8 @@ public class FilmeDao {
                 Filme filme = new Filme(titulo, sinopse, classificacao, genero, duracao);
                 filmes.add(filme);
             }
-
             arq.fecharArquivo();
         }
-
         return filmes;
 } 
 
@@ -45,12 +37,9 @@ public class FilmeDao {
             arq.escreverLinha(filme.getDuracao() + "");
             arq.escreverLinha(filme.getSinopse() + "");
             arq.escreverLinha(Integer.toString(filme.getClassificacaoIndicativa()) + "");
-
             arq.fecharArquivo();
-
             return true;
         }
-
         return false;
     }
 }

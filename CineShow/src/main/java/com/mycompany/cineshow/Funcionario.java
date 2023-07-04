@@ -3,7 +3,7 @@ package com.mycompany.cineshow;
 public class Funcionario extends Pessoa {
 
   private double salario;
-  private String cargo;
+  private String cpf;
 
   public Funcionario(
     String nome,
@@ -11,11 +11,26 @@ public class Funcionario extends Pessoa {
     String email,
     String telefone,
     double salario,
-    String cargo
+    String cpf
   ) {
     super(nome, endereco, email, telefone);
     this.salario = salario;
-    this.cargo = cargo;
+    this.cpf = cpf;
   }
 
+  public double getSalario() {
+    return salario;
+  }
+
+  public void setSalario(double salario) {
+    this.salario = salario;
+  }
+
+  public String getCpf() {
+    return cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
 }

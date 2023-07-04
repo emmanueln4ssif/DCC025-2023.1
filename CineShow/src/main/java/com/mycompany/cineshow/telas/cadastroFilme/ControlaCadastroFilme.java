@@ -6,12 +6,11 @@ package com.mycompany.cineshow.telas.cadastroFilme;
 
 import java.util.*;
 import com.mycompany.cineshow.Filme;
-import java.io.BufferedReader;
 import persistencia.FilmeDao;
 
 /**
  *
- * @author solan
+ * @author dayane
  */
 public class ControlaCadastroFilme {
     private ArrayList<Filme> filmes;

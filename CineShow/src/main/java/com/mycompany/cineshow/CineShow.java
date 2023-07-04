@@ -9,7 +9,7 @@ import java.util.*;
 public class CineShow {
 
     private static Admin administrador = new Admin("Administrador", null, "admin@cineshow.br", null, "admin", "admin123");
-    private static Funcionario funcionario = new Funcionario("Cinemildo", "Av.dasEstrelas, Centro, 100 - Jardim Los Angeles - CA", "cinemildo@funcionarios.cineshow.br", "3212345678", 13000, "Gerente");
+    private static Funcionario funcionario = new Funcionario("Cinemildo", "Av.dasEstrelas, Centro, 100 - Jardim Los Angeles - CA", "cinemildo@funcionarios.cineshow.br", "3212345678", 13000, "123456789-10");
     private static List<Filme> filmes = new ArrayList<>();
     private static Cinema cinema = new Cinema("CineShow", "Juiz de fora", 400, administrador, null, filmes, null, null);
     // PagamentoCartao pagarComCartao = new PagamentoCartao(200, cartao);

@@ -25,11 +25,6 @@ public class dlgMostraFilmes extends JFrame {
 
     public dlgMostraFilmes() {
         initComponents();
-    }
-
-    public dlgMostraFilmes(ControlaCadastroFilme cf) {
-        this.cf = cf;
-        initComponents();
         exibeInformacoes();
         exibeLista();
     }
@@ -67,14 +62,6 @@ public class dlgMostraFilmes extends JFrame {
         setTitle("Filmes Cadastrados");
         setResizable(false);
         setSize(new java.awt.Dimension(600, 0));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jListFilmes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filmes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jListFilmes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -181,31 +168,31 @@ public class dlgMostraFilmes extends JFrame {
                 .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(tfdTitulo))
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(tfdGenero))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                         .addGap(0, 258, Short.MAX_VALUE)
                         .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                
                                 .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDescricaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addComponent(tfdClassificacao))
                     .addGroup(panelDescricaoLayout.createSequentialGroup()
                         .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        
                         .addGroup(panelDescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
                             .addComponent(tfdDuracao))))
@@ -251,9 +238,9 @@ public class dlgMostraFilmes extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                
                 .addComponent(panelDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -353,14 +340,9 @@ public class dlgMostraFilmes extends JFrame {
         cadFilmes.setVisible(true);
     }
 
-
-
     /**
      * @param args the command line arguments
      */
-
-
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -434,11 +416,7 @@ public class dlgMostraFilmes extends JFrame {
             tfdGenero.setText("");
             tfdDuracao.setText("");
         }
-        
-      
-
     }
-
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnAdicionar;

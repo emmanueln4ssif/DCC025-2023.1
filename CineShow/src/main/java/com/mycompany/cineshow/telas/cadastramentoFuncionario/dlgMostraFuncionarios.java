@@ -5,10 +5,12 @@
 package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
 
+import com.mycompany.cineshow.Funcionario;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
-
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,9 +21,11 @@ public class dlgMostraFuncionarios extends JFrame {
     /**
      * Creates new form dlgMostraFuncionarios
      */
-
+    ControlaFuncionario cf = new ControlaFuncionario();
     public dlgMostraFuncionarios(){
         initComponents();
+        exibeInformacoes();
+        exibeLista();
     }
 
     /**
@@ -34,7 +38,7 @@ public class dlgMostraFuncionarios extends JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListFunc = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -43,7 +47,7 @@ public class dlgMostraFuncionarios extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         tfdNome = new javax.swing.JTextField();
-        tfdFuncao = new javax.swing.JTextField();
+        tfCpf = new javax.swing.JTextField();
         tfdSalario = new javax.swing.JTextField();
         tfdEndereco = new javax.swing.JTextField();
         tfdTelefone = new javax.swing.JTextField();
@@ -58,8 +62,15 @@ public class dlgMostraFuncionarios extends JFrame {
         setPreferredSize(new java.awt.Dimension(918, 479));
         setResizable(false);
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+
+        jListFunc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jListFunc.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                exibeInformacoes();
+            }
+        });
+
+        jScrollPane1.setViewportView(jListFunc);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14)))); // NOI18N
 
@@ -67,7 +78,7 @@ public class dlgMostraFuncionarios extends JFrame {
         jLabel1.setText("Nome");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Função");
+        jLabel2.setText("CPF");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Salário");
@@ -88,7 +99,7 @@ public class dlgMostraFuncionarios extends JFrame {
             }
         });
 
-        tfdFuncao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tfCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         tfdSalario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -107,8 +118,6 @@ public class dlgMostraFuncionarios extends JFrame {
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnEditar.setText("Editar ");
         btnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEditar.setMaximumSize(new java.awt.Dimension(57, 20));
-        btnEditar.setMinimumSize(new java.awt.Dimension(57, 20));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -129,6 +138,11 @@ public class dlgMostraFuncionarios extends JFrame {
         btnAdicionar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnAdicionar.setText("Adicionar");
         btnAdicionar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setBackground(new java.awt.Color(240, 240, 240));
         btnVoltar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -153,7 +167,7 @@ public class dlgMostraFuncionarios extends JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfdFuncao)
+                            .addComponent(tfCpf)
                             .addComponent(tfdSalario)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -193,7 +207,7 @@ public class dlgMostraFuncionarios extends JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tfdFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -258,11 +272,53 @@ public class dlgMostraFuncionarios extends JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        // TODO add your handling code here:
+        int indice = jListFunc.getSelectedIndex();
+
+        if(indice != -1){
+            DefaultListModel model = (DefaultListModel)jListFunc.getModel();
+            model.remove(indice);
+            cf.retornarTodos().remove(indice);
+        }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        int indice = jListFunc.getSelectedIndex();
+
+        if(indice != -1){
+            String nomeSelecionado = jListFunc.getSelectedValue();
+            Funcionario funcionario = cf.retornaFuncPorNome(nomeSelecionado);
+            DefaultListModel model = (DefaultListModel)jListFunc.getModel();
+
+            funcionario.setNome(tfdNome.getText());
+            funcionario.setEndereco(tfdEndereco.getText());
+            funcionario.setEmail(tfdEmail.getText());
+            funcionario.setSalario(Double.parseDouble(tfdSalario.getText()));
+            funcionario.setTelefone(tfdTelefone.getText());
+            funcionario.setCpf(tfCpf.getText());
+            model.setElementAt(funcionario.getNome(), indice);
+
+            exibeInformacoes();
+
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String nome = tfdNome.getText();
+        String cpf = tfCpf.getText();
+        double salario = Double.parseDouble(tfdSalario.getText());
+        String endereco = tfdEndereco.getText();
+        String telefone = tfdTelefone.getText();
+        String email = tfdEmail.getText();
+        
+        Funcionario funcionario = new Funcionario(nome, endereco, email, telefone, salario, cpf);
+        cf.salvar(funcionario);
+        exibeLista();
+        tfdNome.setText("");
+        tfCpf.setText("");
+        tfdSalario.setText("");
+        tfdEndereco.setText("");
+        tfdTelefone.setText("");
+        tfdEmail.setText("");
     }//GEN-LAST:event_btnEditarActionPerformed
 
     public static void desenha(){
@@ -322,6 +378,41 @@ public class dlgMostraFuncionarios extends JFrame {
         });
     }
 
+    private void exibeLista(){
+        ArrayList<Funcionario> funcionarios = cf.retornarTodos();
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (Funcionario funcionario : funcionarios) {
+            model.addElement(funcionario.getNome());
+        }
+
+        jListFunc.setModel(model);
+    }
+
+    private void exibeInformacoes() {
+        int index = jListFunc.getSelectedIndex();
+
+        if (index != -1) {
+            String funcSelecionado = jListFunc.getSelectedValue();
+            Funcionario funcionario = cf.retornaFuncPorNome(funcSelecionado);
+            tfdNome.setText(funcionario.getNome());
+            tfdEndereco.setText(funcionario.getEndereco());
+            tfdSalario.setText(String.valueOf(funcionario.getSalario()));
+            tfdEmail.setText(funcionario.getEmail());
+            tfdTelefone.setText(funcionario.getTelefone());
+            tfCpf.setText(funcionario.getCpf());
+        }
+        else{
+            tfdNome.setText("");
+            tfCpf.setText("");
+            tfdEndereco.setText("");
+            tfdSalario.setText("");
+            tfdEmail.setText("");
+            tfdTelefone.setText("");
+
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnEditar;
@@ -333,12 +424,12 @@ public class dlgMostraFuncionarios extends JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListFunc;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfdEmail;
     private javax.swing.JTextField tfdEndereco;
-    private javax.swing.JTextField tfdFuncao;
+    private javax.swing.JTextField tfCpf;
     private javax.swing.JTextField tfdNome;
     private javax.swing.JTextField tfdSalario;
     private javax.swing.JTextField tfdTelefone;
