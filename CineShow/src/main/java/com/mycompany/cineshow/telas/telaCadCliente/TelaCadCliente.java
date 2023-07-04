@@ -1,6 +1,5 @@
 package com.mycompany.cineshow.telas.telaCadCliente;
 
-import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 
 import javax.swing.event.ListSelectionEvent;
@@ -256,7 +255,7 @@ public class TelaCadCliente extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         TelaDashBoard telaDashBoard = new TelaDashBoard();
         telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();

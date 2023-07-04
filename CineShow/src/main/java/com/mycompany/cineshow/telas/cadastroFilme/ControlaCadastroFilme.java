@@ -6,6 +6,8 @@ package com.mycompany.cineshow.telas.cadastroFilme;
 
 import java.util.*;
 import com.mycompany.cineshow.Filme;
+import java.io.BufferedReader;
+import persistencia.FilmeDao;
 
 /**
  *
@@ -13,21 +15,35 @@ import com.mycompany.cineshow.Filme;
  */
 public class ControlaCadastroFilme {
     private ArrayList<Filme> filmes;
+    private FilmeDao filmeDao;
 
     public ControlaCadastroFilme() {
         this.filmes = new ArrayList<>();
+        this.filmeDao = new FilmeDao();
+        atualizaFilmes();
     }
 
     
     public boolean salvar(Filme filme){
-        if(filme != null){
-            this.filmes.add(filme);
+        boolean sucesso = this.filmeDao.salvar(filme); 
+        if (sucesso) {
+            atualizaFilmes();
             return true;
-        }
-        else
+        } 
+        else{
             return false;
+        }
     }
     
+    public void atualizaFilmes(){
+        this.filmes.clear(); 
+        ArrayList<Filme> lista = new ArrayList<>();
+        lista = this.filmeDao.ler();
+        this.filmes.addAll(lista);
+        
+    }
+    
+   
     public ArrayList<Filme> retornarTodos(){
         return this.filmes;
     }

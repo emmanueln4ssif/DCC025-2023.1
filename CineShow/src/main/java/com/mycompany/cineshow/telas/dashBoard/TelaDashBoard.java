@@ -5,7 +5,9 @@
 package com.mycompany.cineshow.telas.dashBoard;
 
 import com.mycompany.cineshow.Filme;
-import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
+import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
+import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
+import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
 import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
 import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
 import com.mycompany.cineshow.telas.filmeIndividual.telainicialfilme;
@@ -18,6 +20,8 @@ import javax.swing.*;
  * @author walac
  */
 public class TelaDashBoard extends javax.swing.JFrame {
+
+    ControlaCadastroFilme cf = new ControlaCadastroFilme();
 
     /**
      * Creates new form TelaDashBoard
@@ -145,10 +149,10 @@ public class TelaDashBoard extends javax.swing.JFrame {
     }
 
   private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
-        CadastroFilme cadastroFilme = new CadastroFilme();
-        cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+        cf.atualizaFilmes();
+        dlgMostraFilmes dlg = new dlgMostraFilmes(null,true,cf);
         this.dispose();
-        cadastroFilme.setVisible(true);
+        dlg.setVisible(true);
     }
 
       private void butSessoesPerformed (java.awt.event.ActionEvent evt) {
