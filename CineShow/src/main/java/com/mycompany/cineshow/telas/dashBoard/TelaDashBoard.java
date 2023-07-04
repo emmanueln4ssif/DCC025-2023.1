@@ -5,10 +5,11 @@
 package com.mycompany.cineshow.telas.dashBoard;
 
 import com.mycompany.cineshow.Filme;
-import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
-import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
-import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
+import com.mycompany.cineshow.telas.cadastramentoFuncionario.dlgMostraFuncionarios;
+import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
+import com.mycompany.cineshow.telas.login.TelaLogin;
 import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
+import com.mycompany.cineshow.telas.telaIngresso.TelaIngresso;
 import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
 import com.mycompany.cineshow.telas.filmeIndividual.telainicialfilme;
 
@@ -20,8 +21,6 @@ import javax.swing.*;
  * @author walac
  */
 public class TelaDashBoard extends javax.swing.JFrame {
-
-    ControlaCadastroFilme cf = new ControlaCadastroFilme();
 
     /**
      * Creates new form TelaDashBoard
@@ -44,7 +43,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
         jLabel6 = new JLabel();
         butCadCliente = new Button();
         butCadFilme = new Button();
-        butFilmeDia = new Button();
+        butCadFuncionario = new Button();
         butSessoes = new Button();
         butIngressos = new Button();
 
@@ -110,13 +109,13 @@ public class TelaDashBoard extends javax.swing.JFrame {
             }
         });
 
-        butFilmeDia.setFont(new Font("Dialog", 1, 12)); // NOI18N
-        butFilmeDia.setLabel("Funcionários");
-        getContentPane().add(butFilmeDia);
-        butFilmeDia.setBounds(360, 420, 160, 50);
-        butFilmeDia.addActionListener(new ActionListener() {
+        butCadFuncionario.setFont(new Font("Dialog", 1, 12)); // NOI18N
+        butCadFuncionario.setLabel("Funcionários");
+        getContentPane().add(butCadFuncionario);
+        butCadFuncionario.setBounds(360, 420, 160, 50);
+        butCadFuncionario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                butFilmeDiaActionPerformed(evt);
+                butCadFuncionarioActionPerformed(evt);
             }
         });
 
@@ -134,6 +133,11 @@ public class TelaDashBoard extends javax.swing.JFrame {
         butIngressos.setLabel("Ingresso");
         getContentPane().add(butIngressos);
         butIngressos.setBounds(700, 420, 160, 50);
+        butIngressos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                butIngressosActionPerformed(evt);
+            }
+        });
 
         pack();
     }
@@ -142,38 +146,41 @@ public class TelaDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6FocusGained
 
   private void butCadClienteActionPerformed (java.awt.event.ActionEvent evt) {
-        TelaCadCliente telaCadCliente = new TelaCadCliente();
-        telaCadCliente.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
-        telaCadCliente.setVisible(true);
+        TelaCadCliente.desenha();
     }
 
   private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
-        cf.atualizaFilmes();
-        dlgMostraFilmes dlg = new dlgMostraFilmes(null,true,cf);
-        this.dispose();
-        dlg.setVisible(true);
-    }
-
-      private void butSessoesPerformed (java.awt.event.ActionEvent evt) {
-        TelaSessoes cadastroFilme = new TelaSessoes();
+        CadastroFilme cadastroFilme = new CadastroFilme();
         cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
         cadastroFilme.setVisible(true);
     }
 
-    private void butFilmeDiaActionPerformed (java.awt.event.ActionEvent evt) {
-        telainicialfilme telaFilme = new telainicialfilme();
-        telaFilme.setExtendedState(telainicialfilme.MAXIMIZED_BOTH);
+      private void butSessoesPerformed (java.awt.event.ActionEvent evt) {
         this.dispose();
-        telaFilme.setVisible(true);
+        TelaSessoes.desenha();
     }
 
+    private void butCadFuncionarioActionPerformed (ActionEvent evt) {
+        this.dispose();
+        dlgMostraFuncionarios.desenha();
+    }
 
+    private void butIngressosActionPerformed (ActionEvent evt) {
+        this.dispose();
+        TelaIngresso.desenha();
+    }
 
-
-
-
+    public static void desenha(){
+        TelaDashBoard telaDashBoard = new TelaDashBoard();
+        int width = 900;
+        int height = 550;
+        telaDashBoard.setSize(width, height);
+        telaDashBoard.setLocationRelativeTo(null);
+        telaDashBoard.setResizable(false);
+        telaDashBoard.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -204,7 +211,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDashBoard().setVisible(true);
+                TelaDashBoard.desenha();
             }
         });
     }
@@ -212,7 +219,7 @@ public class TelaDashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Button butCadCliente;
     private Button butCadFilme;
-    private Button butFilmeDia;
+    private Button butCadFuncionario;
     private Button butSessoes;
     private Button butIngressos;
     private javax.swing.JLabel jLabel1;

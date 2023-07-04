@@ -1,5 +1,6 @@
 package com.mycompany.cineshow.telas.telaCadCliente;
 
+import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 
 import javax.swing.event.ListSelectionEvent;
@@ -255,11 +256,22 @@ public class TelaCadCliente extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        TelaDashBoard telaDashBoard = new TelaDashBoard();
-        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-        telaDashBoard.setVisible(true);
+        TelaDashBoard.desenha();
+    }
+
+    public static void desenha(){
+        TelaCadCliente telaCadCliente = new TelaCadCliente();
+
+        // Definir o tamanho da tela
+        int width = 920;
+        int height = 550;
+        telaCadCliente.setSize(width, height);
+        // Centralizar a tela na página
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        telaCadCliente.setLocationRelativeTo(null);
+        telaCadCliente.setVisible(true);
     }
 
     /**
@@ -285,7 +297,7 @@ public class TelaCadCliente extends JFrame {
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadCliente().setVisible(true);
+                TelaCadCliente.desenha();
             }
         });
     }

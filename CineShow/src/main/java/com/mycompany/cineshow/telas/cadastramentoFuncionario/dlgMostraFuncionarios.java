@@ -5,17 +5,22 @@
 package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
 
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author solan
  */
-public class dlgMostraFuncionarios extends javax.swing.JDialog {
+public class dlgMostraFuncionarios extends JFrame {
 
     /**
      * Creates new form dlgMostraFuncionarios
      */
-    public dlgMostraFuncionarios(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+
+    public dlgMostraFuncionarios(){
         initComponents();
     }
 
@@ -248,10 +253,8 @@ public class dlgMostraFuncionarios extends javax.swing.JDialog {
     }//GEN-LAST:event_tfdEmailActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
-        cadastroFuncionario.setExtendedState(CadastroFuncionario.MAXIMIZED_BOTH);
         this.dispose();
-        cadastroFuncionario.setVisible(true);
+        TelaDashBoard.desenha();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
@@ -261,6 +264,19 @@ public class dlgMostraFuncionarios extends javax.swing.JDialog {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    public static void desenha(){
+        dlgMostraFuncionarios cadFuncionarios = new dlgMostraFuncionarios();
+
+        // Definir o tamanho da tela
+        int width = 900;
+        int height = 550;
+        cadFuncionarios.setSize(width, height);
+
+        cadFuncionarios.setLocationRelativeTo(null);
+
+        cadFuncionarios.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -288,17 +304,19 @@ public class dlgMostraFuncionarios extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(dlgMostraFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        dlgMostraFuncionarios dialog = new dlgMostraFuncionarios();
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                dlgMostraFuncionarios dialog = new dlgMostraFuncionarios(new javax.swing.JFrame(), true);
+                //dlgMostraFuncionarios dialog = new dlgMostraFuncionarios(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
+
+                dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
             }
         });

@@ -269,10 +269,17 @@ public class TelaSessoes extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        TelaDashBoard telaDashBoard = new TelaDashBoard();
-        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
-        telaDashBoard.setVisible(true);
+        TelaDashBoard.desenha();
+    }
+
+    public static void desenha(){
+        TelaSessoes telaSessoes = new TelaSessoes();
+        int width = 920;
+        int height = 550;
+        telaSessoes.setSize(width, height);
+        telaSessoes.setLocationRelativeTo(null);
+        telaSessoes.setVisible(true);
     }
 
     /**
