@@ -1,17 +1,37 @@
 package com.mycompany.cineshow.telas.telaCadCliente;
 
-import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
-import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
-
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.JFrame;
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 
 /**
  *
@@ -22,8 +42,14 @@ public class TelaCadCliente extends JFrame {
     /**
      * Creates new form telaCadCliente
      */
+    ControlaCliente cf = new ControlaCliente();
+
     public TelaCadCliente() {
         initComponents();
+        exibeInformacoes();
+        exibeLista();
+        tfdId.setVisible(false);
+        jLabel5.setVisible(false);
     }
 
     /**
@@ -35,7 +61,7 @@ public class TelaCadCliente extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         jScrollPane1 = new JScrollPane();
-        jListFilmes = new JList<>();
+        jListClientes = new JList<>();
         jPanel1 = new JPanel();
         panelDescricao = new JPanel();
         jLabel1 = new JLabel();
@@ -54,19 +80,20 @@ public class TelaCadCliente extends JFrame {
         tfdEmail = new JTextField();
         tfdEndereco = new JTextField();
         tfdId = new JTextField();
-        tfCPF = new JTextField();
+        tfCpf = new JTextField();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Clientes Cadastrados");
         setResizable(false);
         setSize(new Dimension(600, 0));
 
-        jListFilmes.setBorder(BorderFactory.createTitledBorder(null, "Clientes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", 1, 14))); // NOI18N
-        jListFilmes.setFont(new Font("Dialog", 1, 14)); // NOI18N
-        jScrollPane1.setViewportView(jListFilmes);
-        jListFilmes.addListSelectionListener(new ListSelectionListener() {
+        jListClientes.setBorder(BorderFactory.createTitledBorder(null, "Clientes", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", 1, 14))); // NOI18N
+        jListClientes.setFont(new Font("Dialog", 1, 14)); // NOI18N
+        
+        jScrollPane1.setViewportView(jListClientes);
+        jListClientes.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
-
+                exibeInformacoes();
             }
         });
 
@@ -101,7 +128,7 @@ public class TelaCadCliente extends JFrame {
         btnAdicionar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnAdicionarActionPerformed(evt); TODO
+                btnAdicionarActionPerformed(evt);
             }
         });
 
@@ -125,7 +152,7 @@ public class TelaCadCliente extends JFrame {
         btnRemover.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnRemover.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnRemoverActionPerformed(evt); TODO
+               btnRemoverActionPerformed(evt);
             }
         });
 
@@ -145,7 +172,7 @@ public class TelaCadCliente extends JFrame {
         btnEditar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnEditarActionPerformed(evt); TODO
+                btnEditarActionPerformed(evt); 
             }
         });
 
@@ -154,8 +181,8 @@ public class TelaCadCliente extends JFrame {
         tfdId.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
         tfdId.setAlignmentY(7.0F);
 
-        //tfCPF.setColumns(20);
-        tfCPF.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
+        //tfCpf.setColumns(20);
+        tfCpf.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
 
         tfdEndereco.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -171,7 +198,7 @@ public class TelaCadCliente extends JFrame {
                                                 .addComponent(tfdNome))
                                         .addGroup(panelDescricaoLayout.createSequentialGroup()
                                                 .addComponent(jLabel2)
-                                                .addComponent(tfCPF))
+                                                .addComponent(tfCpf))
                                         .addGroup(panelDescricaoLayout.createSequentialGroup()
                                                 .addComponent(jLabel4)
                                                 .addComponent(tfdEmail))
@@ -219,7 +246,7 @@ public class TelaCadCliente extends JFrame {
                                         .addComponent(jLabel6))
                                 .addGap(26, 26, 26)
                                 .addGroup(panelDescricaoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfCpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel2))
                                 .addGap(43, 43, 43)
                                 .addGroup(panelDescricaoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -259,6 +286,89 @@ public class TelaCadCliente extends JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
         TelaDashBoard.desenha();
+    }
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        int indice = jListClientes.getSelectedIndex();
+
+        if(indice != -1){
+            DefaultListModel model = (DefaultListModel)jListClientes.getModel();
+            model.remove(indice);
+            cf.retornarTodos().remove(indice);
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
+        private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int indice = jListClientes.getSelectedIndex();
+
+        if(indice != -1){
+            String cpfSelecionado = jListClientes.getSelectedValue();
+            Cliente cliente = cf.retornaClienteCPF(cpfSelecionado);
+            DefaultListModel model = (DefaultListModel)jListClientes.getModel();
+
+            cliente.setNome(tfdNome.getText());
+            cliente.setEndereco(tfdEndereco.getText());
+            cliente.setEmail(tfdEmail.getText());
+            cliente.setTelefone(tfdTelefone.getText());
+            cliente.setCpf(tfCpf.getText());
+            model.setElementAt(cliente.getNome(), indice);
+
+            exibeInformacoes();
+
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+            String nome = tfdNome.getText();
+            String cpf = tfCpf.getText();
+            String endereco = tfdEndereco.getText();
+            String telefone = tfdTelefone.getText();
+            String email = tfdEmail.getText();
+            
+            Cliente cliente = new Cliente(nome, endereco, email, telefone, cpf);
+            
+            cf.salvar(cliente);
+            exibeLista();
+
+            tfdNome.setText("");
+            tfCpf.setText("");
+            tfdEndereco.setText("");
+            tfdTelefone.setText("");
+            tfdEmail.setText("");
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+
+    private void exibeLista(){
+        ArrayList<Cliente> clientes = cf.retornarTodos();
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (Cliente cliente : clientes) {
+            model.addElement(cliente.getCpf());
+        }
+
+        jListClientes.setModel(model);
+    }
+
+    private void exibeInformacoes() {
+        int index = jListClientes.getSelectedIndex();
+
+        if (index != -1) {
+            String funcSelecionado = jListClientes.getSelectedValue();
+            Cliente cliente = cf.retornaClienteCPF(funcSelecionado);
+            tfdNome.setText(cliente.getNome());
+            tfdEndereco.setText(cliente.getEndereco());
+            tfdEmail.setText(cliente.getEmail());
+            tfdTelefone.setText(cliente.getTelefone());
+            tfCpf.setText(cliente.getCpf());
+        }
+        else{
+            tfdNome.setText("");
+            tfCpf.setText("");
+            tfdEndereco.setText("");
+            tfdEmail.setText("");
+            tfdTelefone.setText("");
+
+        }
     }
 
     public static void desenha(){
@@ -313,14 +423,14 @@ public class TelaCadCliente extends JFrame {
     private JLabel jLabel4;
     private JLabel jLabel5;
     private JLabel jLabel6;
-    private JList<String> jListFilmes;
+    private JList<String> jListClientes;
     private JPanel jPanel1;
     private JScrollPane jScrollPane1;
     private JPanel panelDescricao;
     private JTextField tfdTelefone;
     private JTextField tfdId;
     private JTextField tfdEmail;
-    private JTextField tfCPF;
+    private JTextField tfCpf;
     private JTextField tfdNome;
     private JTextField tfdEndereco;
     // End of variables declaration//GEN-END:variables
