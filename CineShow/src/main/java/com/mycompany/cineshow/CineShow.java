@@ -12,9 +12,28 @@ public class CineShow {
     private static Funcionario funcionario = new Funcionario("Cinemildo", "Av.dasEstrelas, Centro, 100 - Jardim Los Angeles - CA", "cinemildo@funcionarios.cineshow.br", "3212345678", 13000, "Gerente");
     private static List<Filme> filmes = new ArrayList<>();
     private static Cinema cinema = new Cinema("CineShow", "Juiz de fora", 400, administrador, null, filmes, null, null);
+    // PagamentoCartao pagarComCartao = new PagamentoCartao(200, cartao);
+    private static List<CartaoPagamento> listaCartoes = new ArrayList<>();
     
 
     public static void main(String[] args) {
+
+        CartaoPagamento cartao = PagamentoCartao.SalvarNovoCartao();
+
+        // Carregar os cartões do arquivo para a lista
+        ListaCartoesPagamento.carregarCartoes(listaCartoes);
+
+        // Exibir os cartões
+        ListaCartoesPagamento.exibirCartoes(listaCartoes);
+
+        // Adicionar um novo cartão à lista
+        CartaoPagamento novoCartao = new CartaoPagamento("1234567812345678", "Titular 3", "12/25", 789);
+        listaCartoes.add(novoCartao);
+        listaCartoes.add(cartao);
+
+        // Salvar a lista de cartões no arquivo
+        ListaCartoesPagamento.salvarCartoes(listaCartoes);
+        
         TelaLogin telaLogin = new TelaLogin();
         telaLogin.setResizable(false);
         telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
