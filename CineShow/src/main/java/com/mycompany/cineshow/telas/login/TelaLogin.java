@@ -154,6 +154,16 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }
 
+    public static void desenha(){
+        TelaLogin tela = new TelaLogin();
+        int width = 900;
+        int height = 550;
+        tela.setSize(width, height);
+        tela.setLocationRelativeTo(null);
+        tela.setResizable(false);
+        tela.setVisible(true);
+    }
+
     private void tfUsuarioActionPerformed(ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfUsuarioActionPerformed

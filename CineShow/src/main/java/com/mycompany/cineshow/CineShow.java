@@ -18,10 +18,7 @@ public class CineShow {
 
     public static void main(String[] args) {
 
-        TelaLogin telaLogin = new TelaLogin();
-        telaLogin.setResizable(false);
-        telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
-        telaLogin.setVisible(true);
+        TelaLogin.desenha();
 
         //TESTE CARTÃO
         /*CartaoPagamento cartao = PagamentoCartao.SalvarNovoCartao();
