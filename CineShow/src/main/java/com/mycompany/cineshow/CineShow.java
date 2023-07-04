@@ -18,7 +18,13 @@ public class CineShow {
 
     public static void main(String[] args) {
 
-        CartaoPagamento cartao = PagamentoCartao.SalvarNovoCartao();
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setResizable(false);
+        telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
+        telaLogin.setVisible(true);
+
+        //TESTE CARTÃO
+        /*CartaoPagamento cartao = PagamentoCartao.SalvarNovoCartao();
 
         // Carregar os cartões do arquivo para a lista
         ListaCartoesPagamento.carregarCartoes(listaCartoes);
@@ -33,11 +39,8 @@ public class CineShow {
 
         // Salvar a lista de cartões no arquivo
         ListaCartoesPagamento.salvarCartoes(listaCartoes);
-        
-        TelaLogin telaLogin = new TelaLogin();
-        telaLogin.setResizable(false);
-        telaLogin.setExtendedState(TelaLogin.MAXIMIZED_BOTH);
-        telaLogin.setVisible(true);
+        */
+        //FIM DE TESTE CARTAO
 
         // Criação dos objetos necessários para a venda de ingressos
         Scanner teclado = new Scanner(System.in);
