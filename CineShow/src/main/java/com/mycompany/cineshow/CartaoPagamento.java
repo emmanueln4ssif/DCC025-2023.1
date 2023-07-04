@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 public class CartaoPagamento {
     private String numeroCartao;
     private String nomeTitular;
@@ -31,45 +32,31 @@ public class CartaoPagamento {
         return this.nomeTitular;
     }
     
-    
-    public void recuperarDadosCartao(String nomeArquivo){
-        File arquivo = new File(nomeArquivo);
-
-        try (Scanner scanner = new Scanner(arquivo)) {
-            System.out.println("Dados do cartao lido ***************");
-            while (scanner.hasNextLine()) {
-                String linha = scanner.nextLine();
-                System.out.println(linha);
-            }
-            System.out.println("Fim dos dados lidos*****************");
-        } catch (FileNotFoundException e) {
-            System.out.println("Arquivo não encontrado: " + arquivo.getName());
-        }
+    public String getDataValidade(){
+        return this.dataValidade;
     }
+    
+    public int getCodigoSeguranca(){
+        return this.codigoSeguranca;
+    }
+    
+    
 
-    public void salvarCartaoEmArquivo(String nomeArquivo) {
+    public void validarCartao() {
         Scanner teclado = new Scanner(System.in);
         if(validarNumeroCartao(this.numeroCartao) && this.codigoSeguranca < 999){
-            try (FileWriter writer = new FileWriter(nomeArquivo)) {
+            try {
                 Data.parser(this.dataValidade);
-                writer.write("Número do cartão: " + numeroCartao + "\n");
-                writer.write("Nome do titular: " + nomeTitular + "\n");
-                writer.write("Data de validade: " + dataValidade + "\n");
-                writer.write("Código de segurança: " + codigoSeguranca + "\n");
-    
-                System.out.println("Cartão salvo com sucesso no arquivo: " + nomeArquivo);
+               
             } catch(DataException err){
                 System.out.println(err.getMessage());
                 this.dataValidade = teclado.nextLine();
-                salvarCartaoEmArquivo(nomeArquivo);
-            } catch (IOException e) {
-                System.out.println("Ocorreu um erro ao salvar o cartão no arquivo: " + nomeArquivo);
-                e.printStackTrace();
+                validarCartao();
             } 
         }else{
             System.out.println("Numero de cartao invalida, informa um numero de Cartao valido");
             this.numeroCartao = teclado.nextLine();
-            salvarCartaoEmArquivo(nomeArquivo);
+            validarCartao();
         }
     }
     
@@ -108,4 +95,5 @@ public class CartaoPagamento {
     }
 
 }
+
 
