@@ -6,7 +6,6 @@ package com.mycompany.cineshow.telas.cadastroFilme;
 
 import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
-
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -16,7 +15,7 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author solan
  */
-public class dlgMostraFilmes extends javax.swing.JDialog {
+public class dlgMostraFilmes extends JFrame {
 
     /**
      * Creates new form dlgMostraFilmes
@@ -24,13 +23,11 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
 
     ControlaCadastroFilme cf = new ControlaCadastroFilme();
 
-    public dlgMostraFilmes(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public dlgMostraFilmes() {
         initComponents();
     }
 
-    public dlgMostraFilmes(java.awt.Frame parent, boolean modal, ControlaCadastroFilme cf) {
-        super(parent, modal);
+    public dlgMostraFilmes(ControlaCadastroFilme cf) {
         this.cf = cf;
         initComponents();
         exibeInformacoes();
@@ -326,11 +323,9 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
         }
     }                                         
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        TelaDashBoard telaDashBoard = new TelaDashBoard();
-        telaDashBoard.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        telaDashBoard.setVisible(true);
+        TelaDashBoard.desenha();
     }                                         
 
     private void tfdClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {                                                 
@@ -347,7 +342,16 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
         // TODO add your handling code here:
-    }                                 
+    }
+
+    public static void desenha(){
+        dlgMostraFilmes cadFilmes = new dlgMostraFilmes();
+        int width = 940;
+        int height = 550;
+        cadFilmes.setSize(width, height);
+        cadFilmes.setLocationRelativeTo(null);
+        cadFilmes.setVisible(true);
+    }
 
 
 
@@ -385,14 +389,14 @@ public class dlgMostraFilmes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                dlgMostraFilmes dialog = new dlgMostraFilmes(new javax.swing.JFrame(), true);
+                dlgMostraFilmes dialog = new dlgMostraFilmes();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                dlgMostraFilmes.desenha();
             }
         });
     }

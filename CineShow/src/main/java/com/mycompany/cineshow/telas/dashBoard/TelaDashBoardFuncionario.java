@@ -1,6 +1,6 @@
 package com.mycompany.cineshow.telas.dashBoard;
 
-import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
+import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
 import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
 import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
 
@@ -123,10 +123,8 @@ public class TelaDashBoardFuncionario extends JFrame {
     }
 
     private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
-        CadastroFilme cadastroFilme = new CadastroFilme();
-        cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
         this.dispose();
-        cadastroFilme.setVisible(true);
+        dlgMostraFilmes.desenha();
     }
 
     private void butSessoesPerformed (java.awt.event.ActionEvent evt) {
