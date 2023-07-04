@@ -6,9 +6,14 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -24,26 +29,10 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.Filme;
+import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
-
-/**
- *
- * @author emman
- */
-
-//package com.mycompany.cineshow.telas.telaCadCliente;
-//import com.mycompany.cineshow.telas.cadastroFilme.CadastroFilme;
-//import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
-
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.JFrame;
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
@@ -78,8 +67,18 @@ public class TelaSessoes extends JFrame {
         jLabel6 = new JLabel();
 
         btnAdicionar = new JButton();
-        tfdFilme = new JTextField();
+
+        jComboBox1 = new JComboBox<Filme>();
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>());
+        
+        for(int i = 0; i < TelaSessoes.criaListaFilmes().length; i++){
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(TelaSessoes.criaListaFilmes()));
+
+        }
+        
+
         tfdDuracao = new JTextField();
+        tfdDuracao.setEditable(false);
         btnRemover = new JButton();
         btnVoltar = new JButton();
         btnEditar = new JButton();
@@ -127,14 +126,14 @@ public class TelaSessoes extends JFrame {
         btnAdicionar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnAdicionarActionPerformed(evt); TODO
+                //btnAdicionarActionPerformed(evt);
             }
         });
-
-        tfdFilme.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
-        tfdFilme.addActionListener(new ActionListener() {
+        
+        jComboBox1.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBox1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //tfdNomeActionPerformed(evt); TODO
+                jComboBox1ActionPerformed(evt); 
             }
         });
 
@@ -194,7 +193,7 @@ public class TelaSessoes extends JFrame {
                                 .addGroup(panelDescricaoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(panelDescricaoLayout.createSequentialGroup()
                                                 .addComponent(jLabel1)
-                                                .addComponent(tfdFilme))
+                                                .addComponent(jComboBox1))
                                         .addGroup(panelDescricaoLayout.createSequentialGroup()
                                                 .addComponent(jLabel2)
                                                 .addComponent(tfdHorario))
@@ -220,7 +219,7 @@ public class TelaSessoes extends JFrame {
                                 .addGap(31, 31, 31)
                                 .addGroup(panelDescricaoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
-                                        .addComponent(tfdFilme, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(21, 21, 21)
                                 .addGroup(panelDescricaoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel4)
@@ -268,10 +267,20 @@ public class TelaSessoes extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        
+        Object filme = jComboBox1.getSelectedItem();
+
+        this.tfdDuracao.setText(((Filme) filme).getDuracao());;
+    }
+
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
         TelaDashBoard.desenha();
     }
+
+
+
 
     public static void desenha(){
         TelaSessoes telaSessoes = new TelaSessoes();
@@ -281,6 +290,26 @@ public class TelaSessoes extends JFrame {
         telaSessoes.setLocationRelativeTo(null);
         telaSessoes.setVisible(true);
     }
+
+    public static Filme [] criaListaFilmes(){
+
+        ControlaCadastroFilme ccf = new ControlaCadastroFilme();
+
+        List<Filme> filmesCadastrados = ccf.retornarTodos();
+        int tam = filmesCadastrados.size();
+
+        Filme [] filmesAB = new Filme[tam];
+
+        int i = 0; 
+
+            for(Filme filme : filmesCadastrados){
+                filmesAB[i] = filme;
+                i++;
+            }
+
+        return filmesAB;
+    }
+
 
     /**
      * @param args the command line arguments
@@ -308,6 +337,8 @@ public class TelaSessoes extends JFrame {
                 new TelaSessoes().setVisible(true);
             }
         });
+
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -329,8 +360,9 @@ public class TelaSessoes extends JFrame {
     private JTextField tfdId;
     private JTextField tfdSala;
     private JTextField tfdHorario;
-    private JTextField tfdFilme;
+    //private JTextField jComboBox1;
     private JTextField tfdEndereco;
+    private JComboBox jComboBox1;
     // End of variables declaration//GEN-END:variables
 }
 

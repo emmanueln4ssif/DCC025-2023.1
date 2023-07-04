@@ -4,7 +4,7 @@ import com.mycompany.cineshow.Filme;
 import java.util.ArrayList;
 public class FilmeDao {
 
-    public ArrayList<Filme> ler() {
+public ArrayList<Filme> ler() {
         ArrayList<Filme> filmes = new ArrayList<>();
         Arquivo arq = new Arquivo("filme.txt");
 

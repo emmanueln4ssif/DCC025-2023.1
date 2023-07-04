@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 public class Sessao {
 
   private Filme filme;
-  private LocalDateTime horario;
+  private String horario;
   private int duracao;
-  private Sala sala;
+  private int sala;
 
-  public Sessao(Filme filme, LocalDateTime horario, int duracao, Sala sala) {
+  public Sessao(Filme filme, String horario, int duracao, int sala) {
     this.filme = filme;
     this.horario = horario;
     this.duracao = duracao;
@@ -24,11 +24,11 @@ public class Sessao {
     this.filme = filme;
   }
 
-  public LocalDateTime getHorario() {
+  public String getHorario() {
     return horario;
   }
 
-  public void setHorario(LocalDateTime horario) {
+  public void setHorario(String horario) {
     this.horario = horario;
   }
 
@@ -40,11 +40,11 @@ public class Sessao {
     this.duracao = duracao;
   }
 
-  public Sala getSala() {
+  public int getSala() {
     return sala;
   }
 
-  public void setSala(Sala sala) {
+  public void setSala(int sala) {
     this.sala = sala;
   }
 }

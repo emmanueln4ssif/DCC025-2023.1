@@ -61,17 +61,10 @@ public String getGenero() {
 
   @Override
   public String toString() {
-    return (
-      "Filme{" +
-      "titulo='" +
-      titulo +
-      '\'' +
-      ", sinopse='" +
-      sinopse +
-      '\'' +
-      ", classificacaoIndicativa=" +
-      classificacaoIndicativa +
-      '}'
-    );
+    return titulo;
   }
+
+public Filme toString(String lerLinha) {
+    return null;
+}
 }
