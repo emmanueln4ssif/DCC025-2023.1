@@ -27,9 +27,7 @@ public class PagamentoCartao extends Pagamento {
         String codigoSeguranca = scanner.nextLine();
 
         CartaoPagamento cartao = new CartaoPagamento(numeroCartao, nomeTitular, dataValidade, Integer.parseInt(codigoSeguranca));
-        cartao.salvarCartaoEmArquivo("cartao.txt");
-        cartao.recuperarDadosCartao("cartao.txt");
-
+        cartao.validarCartao();
         scanner.close();
         return cartao;
     }
