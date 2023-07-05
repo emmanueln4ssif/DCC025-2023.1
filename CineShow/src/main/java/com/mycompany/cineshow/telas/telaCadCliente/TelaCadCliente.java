@@ -360,6 +360,12 @@ public class TelaCadCliente extends JFrame {
 
             model.setElementAt(cliente.getCpf(), indice);
 
+            tfdNome.setText("");
+            tfCpf.setText("");
+            tfdEndereco.setText("");
+            tfdEmail.setText("");
+            tfdTelefone.setText("");
+
             JOptionPane.showMessageDialog(
             null,
             "Cliente editado com sucesso!",
