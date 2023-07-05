@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -28,6 +29,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.exceptions.ClienteException;
 import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.Cliente;
@@ -128,7 +130,16 @@ public class TelaCadCliente extends JFrame {
         btnAdicionar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
+                try {
+                    btnAdicionarActionPerformed(evt);
+                } catch (ClienteException e) {
+                    JOptionPane.showMessageDialog(
+                null,
+                    e.getMessage(),
+                "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -152,7 +163,16 @@ public class TelaCadCliente extends JFrame {
         btnRemover.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnRemover.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-               btnRemoverActionPerformed(evt);
+               try {
+                btnRemoverActionPerformed(evt);
+             } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                null,
+                e.getMessage(),
+                "Erro",
+                JOptionPane.ERROR_MESSAGE
+                );
+            }
             }
         });
 
@@ -172,8 +192,19 @@ public class TelaCadCliente extends JFrame {
         btnEditar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnEditarActionPerformed(evt); 
-            }
+                
+               try {
+                btnEditarActionPerformed(evt);
+                }catch (ClienteException e) {
+                    JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            } 
+                 
         });
 
         tfdEmail.setFont(new Font("Segoe UI", 0, 14)); // NOI18N
@@ -288,17 +319,21 @@ public class TelaCadCliente extends JFrame {
         TelaDashBoard.desenha();
     }
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws ClienteException {//GEN-FIRST:event_btnRemoverActionPerformed
         int indice = jListClientes.getSelectedIndex();
 
         if(indice != -1){
             DefaultListModel model = (DefaultListModel)jListClientes.getModel();
+
             model.remove(indice);
             cf.retornarTodos().remove(indice);
+
+        } else {
+            throw new ClienteException("Selecione um cliente para remover");
         }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
-        private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) throws ClienteException{//GEN-FIRST:event_btnEditarActionPerformed
         int indice = jListClientes.getSelectedIndex();
 
         if(indice != -1){
@@ -311,19 +346,43 @@ public class TelaCadCliente extends JFrame {
             cliente.setEmail(tfdEmail.getText());
             cliente.setTelefone(tfdTelefone.getText());
             cliente.setCpf(tfCpf.getText());
-            model.setElementAt(cliente.getNome(), indice);
+            model.setElementAt(cliente.getCpf(), indice);
 
+            if(cliente.getNome().isEmpty() || cliente.getEndereco().isEmpty() || cliente.getCpf().isEmpty() || cliente.getEmail().isEmpty() || cliente.getTelefone().isEmpty()){
+                throw new ClienteException("Preencha todos os campos");
+            } else {
+                JOptionPane.showMessageDialog(
+            null,
+            "Cliente editado com sucesso!",
+            "Confirmação",
+            JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+            
             exibeInformacoes();
 
+        } else {
+            throw new ClienteException("Selecione um cliente para editar");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) throws ClienteException {//GEN-FIRST:event_btnEditarActionPerformed
             String nome = tfdNome.getText();
             String cpf = tfCpf.getText();
             String endereco = tfdEndereco.getText();
             String telefone = tfdTelefone.getText();
             String email = tfdEmail.getText();
+
+            if(nome.isEmpty() || endereco.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty()){
+                throw new ClienteException("Preencha todos os campos");
+            } else {
+                JOptionPane.showMessageDialog(
+            null,
+            "Cliente cadastrado com sucesso!",
+            "Confirmação",
+            JOptionPane.INFORMATION_MESSAGE
+                );
+            }
             
             Cliente cliente = new Cliente(nome, endereco, email, telefone, cpf);
             
