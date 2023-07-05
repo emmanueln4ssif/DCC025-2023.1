@@ -1,40 +1,5 @@
-walace
-123312
-email
-123456789-10
-12345
-amamamamamam
-asdsfsfs
-aansasknakcasss
-12131312
-assssssdddddddddddd
-aaa
-aa
-aa
-123456789-10
-aa
-NOME
-END
-EMAIL
-CPF
-TEL
-NOME
-END
-EMAIL
-TEL
-CPF
-NOME
-END
-EMAIL
-CPF
-TEL
-NOME
-END
-EMAIL
-CPF
-TEL
-NOME
-12
-EMAIL
-CPFF
-TELL
+José da Silva
+Rua Halfeld, 130 - Centro, Juiz de Fora
+josedasilva@gmail.com
+123456789-11
+(32) 9 1234-5678
