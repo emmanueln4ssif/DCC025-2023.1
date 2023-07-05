@@ -29,10 +29,13 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.Filme;
+import com.mycompany.cineshow.Sessao;
+import com.mycompany.cineshow.exceptions.FilmeException;
 import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,11 +43,14 @@ import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
  */
 public class TelaSessoes extends JFrame {
 
-    /**
-     * Creates new form telaCadCliente
-     */
+    ControlaSessao cs = new ControlaSessao();
+    ControlaCadastroFilme cf = new ControlaCadastroFilme();
+    
     public TelaSessoes() {
         initComponents();
+        exibeLista();
+        exibeInformacoes();
+        
     }
 
     /**
@@ -56,7 +62,7 @@ public class TelaSessoes extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         jScrollPane1 = new JScrollPane();
-        jListFilmes = new JList<>();
+        jListSessoes = new JList<>();
         jPanel1 = new JPanel();
         panelDescricao = new JPanel();
         jLabel1 = new JLabel();
@@ -75,6 +81,7 @@ public class TelaSessoes extends JFrame {
             jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(TelaSessoes.criaListaFilmes()));
 
         }
+        //jComboBox1.setEditable(true);
         
 
         tfdDuracao = new JTextField();
@@ -92,12 +99,12 @@ public class TelaSessoes extends JFrame {
         setResizable(false);
         setSize(new Dimension(600, 0));
 
-        jListFilmes.setBorder(BorderFactory.createTitledBorder(null, "Sessões Cadastradas", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", 1, 14))); // NOI18N
-        jListFilmes.setFont(new Font("Dialog", 1, 14)); // NOI18N
-        jScrollPane1.setViewportView(jListFilmes);
-        jListFilmes.addListSelectionListener(new ListSelectionListener() {
+        jListSessoes.setBorder(BorderFactory.createTitledBorder(null, "Sessões Cadastradas", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", 1, 14))); // NOI18N
+        jListSessoes.setFont(new Font("Dialog", 1, 14)); // NOI18N
+        jScrollPane1.setViewportView(jListSessoes);
+        jListSessoes.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
-
+                exibeInformacoes();
             }
         });
 
@@ -127,6 +134,7 @@ public class TelaSessoes extends JFrame {
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 //btnAdicionarActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
         
@@ -150,7 +158,7 @@ public class TelaSessoes extends JFrame {
         btnRemover.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnRemover.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnRemoverActionPerformed(evt); TODO
+                btnRemoverActionPerformed(evt);
             }
         });
 
@@ -170,7 +178,7 @@ public class TelaSessoes extends JFrame {
         btnEditar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnEditarActionPerformed(evt); TODO
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -268,10 +276,15 @@ public class TelaSessoes extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        
-        Object filme = jComboBox1.getSelectedItem();
-
-        this.tfdDuracao.setText(((Filme) filme).getDuracao());;
+        Object filmeObj = jComboBox1.getSelectedItem();
+        if (filmeObj instanceof Filme) {
+            Filme filme = (Filme) filmeObj;
+            String duracao = filme.getDuracao();
+            tfdDuracao.setText(duracao);
+        } 
+        else {
+            tfdDuracao.setText(""); // Define o campo de duração como vazio se não for um objeto Filme selecionado
+        }
     }
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -279,9 +292,75 @@ public class TelaSessoes extends JFrame {
         TelaDashBoard.desenha();
     }
 
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) { 
+        String titulo = jComboBox1.getSelectedItem().toString();
+        Filme filme = cf.retornaFilmePorTitulo(titulo);
+        Sessao sessao = new Sessao();
 
+        String duracaoText = tfdDuracao.getText();
+        String salaText = tfdSala.getText();
+        String horario = tfdHorario.getText();
+        int duracao, sala;
 
+        if(titulo.isEmpty() || duracaoText.isEmpty() || salaText.isEmpty() || horario.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Preencha todos os campos");
+        }
+        else{
+            try {
+            duracao = Integer.parseInt(duracaoText);
+            sala = Integer.parseInt(salaText);
+                sessao = new Sessao(filme, horario,duracao, sala);
+            }catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Digite valores numéricos válidos para a sala");
+                return;
+            }    
 
+            if(cs.salvar(sessao))
+                JOptionPane.showMessageDialog(this, "Sessão adicionada com sucesso!");
+
+        }
+
+        exibeLista();
+        tfdDuracao.setText("");
+        tfdSala.setText("");
+        tfdHorario.setText("");
+        jComboBox1.setSelectedIndex(-1);
+        
+    }       
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        int indice = jListSessoes.getSelectedIndex();
+
+        if(indice != -1){
+            DefaultListModel model = (DefaultListModel)jListSessoes.getModel();
+            model.remove(indice);
+            cs.retornarTodos().remove(indice);
+        }
+    }  
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        int indice = jListSessoes.getSelectedIndex();
+
+        if(indice != -1){
+            ArrayList<Sessao> sessoes = cs.retornarTodos();
+            if (indice < sessoes.size()) {
+                Sessao sessao = sessoes.get(indice);
+                String titulo = jComboBox1.getSelectedItem().toString();
+                sessao.setFilme(cf.retornaFilmePorTitulo(titulo));
+                sessao.setSala(Integer.parseInt(tfdSala.getText()));
+                sessao.setDuracao(Integer.parseInt(tfdDuracao.getText()));
+                sessao.setHorario(tfdHorario.getText());
+
+                DefaultListModel<String> model = (DefaultListModel<String>) jListSessoes.getModel();
+                model.setElementAt("Sessão " + (sessoes.indexOf(sessao)+ 1) + " - Sala " + sessao.getSala(), indice);
+
+                exibeInformacoes();
+        }
+          
+        }
+        
+    }      
+    
     public static void desenha(){
         TelaSessoes telaSessoes = new TelaSessoes();
         int width = 920;
@@ -337,9 +416,51 @@ public class TelaSessoes extends JFrame {
                 new TelaSessoes().setVisible(true);
             }
         });
-
         
     }
+    
+    private void exibeLista(){
+        ArrayList<Sessao> sessoes = cs.retornarTodos();
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (Sessao s : sessoes) {
+            model.addElement("Sessão " + (sessoes.indexOf(s)+ 1) + " - Sala: " + s.getSala());
+        }
+        jListSessoes.setModel(model);
+    }
+    
+    private int IndiceFilme(Filme filme) {
+        DefaultComboBoxModel<Filme> model = (DefaultComboBoxModel<Filme>) jComboBox1.getModel();
+        
+        for (int i = 0; i < model.getSize(); i++) {
+            Filme item = model.getElementAt(i);
+            if (item.getTitulo().equals(filme.getTitulo())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    
+    private void exibeInformacoes() {
+        int index = jListSessoes.getSelectedIndex();
+        if (index != -1) {
+            Sessao sessao = cs.retornarTodos().get(index);
+            jComboBox1.setSelectedIndex(IndiceFilme(sessao.getFilme()));
+            tfdDuracao.setText(String.valueOf(sessao.getFilme().getDuracao()));
+            tfdHorario.setText(sessao.getHorario());
+            tfdSala.setText(String.valueOf(sessao.getSala()));
+            
+        }
+        else{
+            tfdDuracao.setText("");
+            tfdHorario.setText("");
+            tfdSala.setText("");
+            jComboBox1.setSelectedIndex(-1);
+            
+        }
+    }
+        
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnAdicionar;
@@ -352,7 +473,7 @@ public class TelaSessoes extends JFrame {
     private JLabel jLabel4;
     private JLabel jLabel5;
     private JLabel jLabel6;
-    private JList<String> jListFilmes;
+    private JList<String> jListSessoes;
     private JPanel jPanel1;
     private JScrollPane jScrollPane1;
     private JPanel panelDescricao;

@@ -16,6 +16,10 @@ public class Sessao {
     this.sala = sala;
   }
 
+  public Sessao(){
+    
+  }
+
   public Filme getFilme() {
     return filme;
   }
