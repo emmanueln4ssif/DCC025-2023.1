@@ -5,8 +5,8 @@ import com.mycompany.cineshow.Sessao;
 import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
 import java.util.ArrayList;
 
-public class SessaoDao {
-    
+public class SessaoDao extends PersistenciaDao<Sessao>{
+    @Override
     public ArrayList<Sessao> ler() {
         ArrayList<Sessao> sessoes = new ArrayList<>();
         Arquivo arq = new Arquivo("sessao.txt");
@@ -31,8 +31,8 @@ public class SessaoDao {
             arq.fecharArquivo();
         }
         return sessoes;
-    }    
-
+    }
+    @Override
     public boolean salvar(Sessao sessao) {
         Arquivo arq = new Arquivo("sessao.txt");
 

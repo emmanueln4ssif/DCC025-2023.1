@@ -1,9 +1,10 @@
 package persistencia;
-
 import com.mycompany.cineshow.Funcionario;
 import java.util.ArrayList;
-        public class FuncionarioDao {
 
+        public class FuncionarioDao extends PersistenciaDao<Funcionario> {
+
+            @Override
             public ArrayList<Funcionario> ler() {
                 ArrayList<Funcionario> funcionarios = new ArrayList<>();
                 Arquivo arq = new Arquivo("funcionario.txt");
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 
                 return funcionarios;
             }
-
+            @Override
             public boolean salvar(Funcionario funcionario) {
                 Arquivo arq = new Arquivo("funcionario.txt");
 
@@ -46,4 +47,5 @@ import java.util.ArrayList;
                 }
                 return false;
             }
-        }
+
+                   }

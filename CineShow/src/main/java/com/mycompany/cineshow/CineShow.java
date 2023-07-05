@@ -130,10 +130,8 @@ public class CineShow {
             decisao = teclado.nextInt();
 
         }
-
         System.out.println();
         System.out.println("## SESSÃO FINALIZADA ##");
-    
 
     }
 }

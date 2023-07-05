@@ -3,8 +3,8 @@ package persistencia;
 import com.mycompany.cineshow.Cliente;
 import java.util.ArrayList;
 
-        public class ClienteDao {
-
+        public class ClienteDao extends PersistenciaDao<Cliente> {
+            @Override
             public ArrayList<Cliente> ler() {
                 ArrayList<Cliente> clientes = new ArrayList<>();
                 Arquivo arq = new Arquivo("cliente.txt");
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
                 return clientes;
             }
-
+            @Override
             public boolean salvar(Cliente cliente) {
                 Arquivo arq = new Arquivo("cliente.txt");
 

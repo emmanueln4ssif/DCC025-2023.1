@@ -2,9 +2,10 @@ package persistencia;
 
 import com.mycompany.cineshow.Filme;
 import java.util.ArrayList;
-public class FilmeDao {
+public class FilmeDao extends PersistenciaDao<Filme>{
 
-public ArrayList<Filme> ler() {
+    @Override
+    public ArrayList<Filme> ler() {
         ArrayList<Filme> filmes = new ArrayList<>();
         Arquivo arq = new Arquivo("filme.txt");
 
@@ -28,6 +29,7 @@ public ArrayList<Filme> ler() {
         return filmes;
 } 
 
+    @Override
     public boolean salvar(Filme filme) {
         Arquivo arq = new Arquivo("filme.txt");
 
