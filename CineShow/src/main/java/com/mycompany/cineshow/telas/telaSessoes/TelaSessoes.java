@@ -31,7 +31,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.Sessao;
-import com.mycompany.cineshow.exceptions.FilmeException;
+import com.mycompany.cineshow.exceptions.SessaoException;
 import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 import javax.swing.DefaultComboBoxModel;
@@ -133,8 +133,16 @@ public class TelaSessoes extends JFrame {
         btnAdicionar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //btnAdicionarActionPerformed(evt);
-                btnAdicionarActionPerformed(evt);
+                try {
+                    btnAdicionarActionPerformed(evt);
+                } catch (SessaoException e) {
+                    JOptionPane.showMessageDialog(
+                null,
+                    e.getMessage(),
+                "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
         
@@ -158,7 +166,11 @@ public class TelaSessoes extends JFrame {
         btnRemover.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnRemover.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
+                try {
+                    btnRemoverActionPerformed(evt);
+                } catch (SessaoException e) {
+                    JOptionPane.showMessageDialog(null,e.getMessage(),"Erro",JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -178,7 +190,11 @@ public class TelaSessoes extends JFrame {
         btnEditar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                try {
+                    btnEditarActionPerformed(evt);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,e.getMessage(),"Erro",JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -292,7 +308,12 @@ public class TelaSessoes extends JFrame {
         TelaDashBoard.desenha();
     }
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt)throws SessaoException { 
+        Object item = jComboBox1.getSelectedItem();
+        if (item == null) {
+            JOptionPane.showMessageDialog(null, "Selecione um filme.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String titulo = jComboBox1.getSelectedItem().toString();
         Filme filme = cf.retornaFilmePorTitulo(titulo);
         Sessao sessao = new Sessao();
@@ -303,22 +324,20 @@ public class TelaSessoes extends JFrame {
         int duracao, sala;
 
         if(titulo.isEmpty() || duracaoText.isEmpty() || salaText.isEmpty() || horario.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Preencha todos os campos");
+                throw new SessaoException("Preencha todos os campos");
         }
-        else{
-            try {
+       
+        try {
             duracao = Integer.parseInt(duracaoText);
             sala = Integer.parseInt(salaText);
-                sessao = new Sessao(filme, horario,duracao, sala);
-            }catch(NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Digite valores numéricos válidos para a sala");
-                return;
-            }    
+            sessao = new Sessao(filme, horario,duracao, sala);
+        }catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"Digite valores numéricos válidos para a sala","Erro",JOptionPane.ERROR_MESSAGE);
+            return;
+        }    
 
-            if(cs.salvar(sessao))
-                JOptionPane.showMessageDialog(this, "Sessão adicionada com sucesso!");
-
-        }
+        if(cs.salvar(sessao))
+            JOptionPane.showMessageDialog(null,"Sessão cadastrada com sucesso!","Confirmação",JOptionPane.INFORMATION_MESSAGE);
 
         exibeLista();
         tfdDuracao.setText("");
@@ -328,7 +347,7 @@ public class TelaSessoes extends JFrame {
         
     }       
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt)throws SessaoException {                                           
         int indice = jListSessoes.getSelectedIndex();
 
         if(indice != -1){
@@ -336,29 +355,50 @@ public class TelaSessoes extends JFrame {
             model.remove(indice);
             cs.retornarTodos().remove(indice);
         }
+        else {
+            throw new SessaoException("Selecione uma sessão para remover");
+        }
     }  
     
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt)throws SessaoException {                                          
         int indice = jListSessoes.getSelectedIndex();
 
         if(indice != -1){
             ArrayList<Sessao> sessoes = cs.retornarTodos();
             if (indice < sessoes.size()) {
-                Sessao sessao = sessoes.get(indice);
-                String titulo = jComboBox1.getSelectedItem().toString();
-                sessao.setFilme(cf.retornaFilmePorTitulo(titulo));
-                sessao.setSala(Integer.parseInt(tfdSala.getText()));
-                sessao.setDuracao(Integer.parseInt(tfdDuracao.getText()));
-                sessao.setHorario(tfdHorario.getText());
+                if(jComboBox1.getSelectedItem().toString().isEmpty() || tfdSala.getText().isEmpty() || tfdDuracao.getText().isEmpty() || tfdHorario.getText().isEmpty())
+                    throw new SessaoException("Preencha todos os campos");
 
-                DefaultListModel<String> model = (DefaultListModel<String>) jListSessoes.getModel();
-                model.setElementAt("Sessão " + (sessoes.indexOf(sessao)+ 1) + " - Sala " + sessao.getSala(), indice);
-
-                exibeInformacoes();
-        }
+                else{
+                    Sessao sessao = sessoes.get(indice);
+                    String titulo = jComboBox1.getSelectedItem().toString();
+                    String duracaoText = tfdDuracao.getText();
+                    String salaText = tfdSala.getText();
+                    String horario = tfdHorario.getText();
+                    int duracao, sala;
+                    Filme filme = cf.retornaFilmePorTitulo(titulo);
+                    try {
+                        duracao = Integer.parseInt(duracaoText);
+                        sala = Integer.parseInt(salaText);
+                        sessao.setFilme(filme);
+                        sessao.setSala(sala);
+                        sessao.setDuracao(duracao);
+                        sessao.setHorario(tfdHorario.getText());
+                        sessao = new Sessao(filme, horario,duracao, sala);
+                        DefaultListModel<String> model = (DefaultListModel<String>) jListSessoes.getModel();
+                        model.setElementAt("Sessão " + (sessoes.indexOf(sessao)+ 1) + " - Sala " + sessao.getSala(), indice);
+                    }catch(NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null,"Digite valores numéricos válidos para a sala","Erro",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }   
+                }    
+                JOptionPane.showMessageDialog(null,"Filme editado com sucesso!","Confirmação",JOptionPane.INFORMATION_MESSAGE);
+                //exibeInformacoes();
+            }
           
         }
-        
+        else
+            throw new SessaoException("Selecione uma sessão para Editar");     
     }      
     
     public static void desenha(){
