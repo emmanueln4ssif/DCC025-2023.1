@@ -328,6 +328,13 @@ public class TelaCadCliente extends JFrame {
             model.remove(indice);
             cf.retornarTodos().remove(indice);
 
+            JOptionPane.showMessageDialog(
+            null,
+            "Cliente removido com sucesso!",
+            "Confirmação",
+            JOptionPane.INFORMATION_MESSAGE
+                );
+
         } else {
             throw new ClienteException("Selecione um cliente para remover");
         }
@@ -346,7 +353,6 @@ public class TelaCadCliente extends JFrame {
             cliente.setEmail(tfdEmail.getText());
             cliente.setTelefone(tfdTelefone.getText());
             cliente.setCpf(tfCpf.getText());
-            model.setElementAt(cliente.getCpf(), indice);
 
             if(cliente.getNome().isEmpty() || cliente.getEndereco().isEmpty() || cliente.getCpf().isEmpty() || cliente.getEmail().isEmpty() || cliente.getTelefone().isEmpty()){
                 throw new ClienteException("Preencha todos os campos");
@@ -358,6 +364,8 @@ public class TelaCadCliente extends JFrame {
             JOptionPane.INFORMATION_MESSAGE
                 );
             }
+
+            model.setElementAt(cliente.getCpf(), indice);
             
             exibeInformacoes();
 
@@ -380,7 +388,7 @@ public class TelaCadCliente extends JFrame {
             null,
             "Cliente cadastrado com sucesso!",
             "Confirmação",
-            JOptionPane.INFORMATION_MESSAGE
+                JOptionPane.INFORMATION_MESSAGE
                 );
             }
             

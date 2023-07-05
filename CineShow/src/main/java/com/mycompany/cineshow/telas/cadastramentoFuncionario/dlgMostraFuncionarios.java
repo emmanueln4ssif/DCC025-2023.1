@@ -6,6 +6,8 @@ package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
 
 import com.mycompany.cineshow.Funcionario;
+import com.mycompany.cineshow.exceptions.ClienteException;
+import com.mycompany.cineshow.exceptions.FuncionarioException;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -120,7 +122,16 @@ public class dlgMostraFuncionarios extends JFrame {
         btnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                try {
+                    btnEditarActionPerformed(evt);
+                } catch (FuncionarioException e) {
+                    JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -130,7 +141,16 @@ public class dlgMostraFuncionarios extends JFrame {
         btnRemover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
+                try {
+                    btnRemoverActionPerformed(evt);
+                } catch (FuncionarioException e) {
+                    JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -140,7 +160,17 @@ public class dlgMostraFuncionarios extends JFrame {
         btnAdicionar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
+                try {
+                    btnAdicionarActionPerformed(evt);
+                } catch (FuncionarioException e) {
+                    // TODO Auto-generated catch block
+                    JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -271,17 +301,26 @@ public class dlgMostraFuncionarios extends JFrame {
         TelaDashBoard.desenha();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws FuncionarioException{//GEN-FIRST:event_btnRemoverActionPerformed
         int indice = jListFunc.getSelectedIndex();
 
         if(indice != -1){
             DefaultListModel model = (DefaultListModel)jListFunc.getModel();
             model.remove(indice);
             cf.retornarTodos().remove(indice);
+
+            JOptionPane.showMessageDialog(
+            null,
+            "Funcionário removido com sucesso!",
+            "Confirmação",
+            JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            throw new FuncionarioException("Selecione um funcionário para remover");
         }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) throws FuncionarioException{//GEN-FIRST:event_btnEditarActionPerformed
         int indice = jListFunc.getSelectedIndex();
 
         if(indice != -1){
@@ -295,23 +334,59 @@ public class dlgMostraFuncionarios extends JFrame {
             funcionario.setSalario(Double.parseDouble(tfdSalario.getText()));
             funcionario.setTelefone(tfdTelefone.getText());
             funcionario.setCpf(tfCpf.getText());
+
+            if(funcionario.getNome().isEmpty() || funcionario.getCpf().isEmpty() || funcionario.getEmail().isEmpty() || funcionario.getEndereco().isEmpty()){
+                throw new FuncionarioException("Preencha todos os campos");
+            }
+
+            if(funcionario.getSalario() < 0){
+                throw new FuncionarioException("Preencha um valor válido para o campo de salário");
+            }
+
             model.setElementAt(funcionario.getNome(), indice);
+
+            JOptionPane.showMessageDialog(
+            null,
+            "Funcionário editado com sucesso!",
+            "Confirmação",
+                JOptionPane.INFORMATION_MESSAGE
+            );
 
             exibeInformacoes();
 
+        } else {
+            throw new FuncionarioException("Selecione um funcionário para editar");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) throws FuncionarioException{//GEN-FIRST:event_btnEditarActionPerformed
+        
+        if(tfdNome.getText().isEmpty() || tfCpf.getText().isEmpty() || tfdEndereco.getText().isEmpty() || tfdEmail.getText().isEmpty() || tfdSalario.getText().isEmpty()){
+            throw new FuncionarioException("Preencha todos os campos");
+        }
+        
         String nome = tfdNome.getText();
         String cpf = tfCpf.getText();
         double salario = Double.parseDouble(tfdSalario.getText());
         String endereco = tfdEndereco.getText();
         String telefone = tfdTelefone.getText();
         String email = tfdEmail.getText();
+
+        if(salario < 0){
+            throw new FuncionarioException("Preencha um valor válido para o campo de salário");
+        }
         
         Funcionario funcionario = new Funcionario(nome, endereco, email, telefone, salario, cpf);
         cf.salvar(funcionario);
+
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Funcionário cadastrado com sucesso!",
+            "Confirmação",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+
         exibeLista();
         tfdNome.setText("");
         tfCpf.setText("");
