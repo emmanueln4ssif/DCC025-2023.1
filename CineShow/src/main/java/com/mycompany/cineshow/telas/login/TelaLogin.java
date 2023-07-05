@@ -181,6 +181,8 @@ public class TelaLogin extends javax.swing.JFrame {
       } else if (validaDadosDeLogin(nome, senha) == true) {
         this.dispose();
         TelaDashBoard.desenha();
+      } else if(nome.isEmpty() || senha.isEmpty()){
+        throw new LoginException("Preencha todos os campos");
       } else {
         throw new LoginException("Usuário ou senha incorretos");
       }
