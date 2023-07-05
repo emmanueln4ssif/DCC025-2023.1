@@ -5,6 +5,8 @@
 package com.mycompany.cineshow.telas.cadastroFilme;
 
 import com.mycompany.cineshow.Filme;
+import com.mycompany.cineshow.exceptions.ClienteException;
+import com.mycompany.cineshow.exceptions.FilmeException;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 import java.util.*;
 import javax.swing.*;
@@ -100,7 +102,16 @@ public class dlgMostraFilmes extends JFrame {
         btnAdicionar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
+                try {
+                    btnAdicionarActionPerformed(evt);
+                } catch (FilmeException e) {
+                    JOptionPane.showMessageDialog(
+                null,
+                    e.getMessage(),
+                "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -124,7 +135,16 @@ public class dlgMostraFilmes extends JFrame {
         btnRemover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
+                try {
+                    btnRemoverActionPerformed(evt);
+                } catch (FilmeException e) {
+                    JOptionPane.showMessageDialog(
+                null,
+                    e.getMessage(),
+                "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -144,7 +164,16 @@ public class dlgMostraFilmes extends JFrame {
         btnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                try {
+                    btnEditarActionPerformed(evt);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(
+                null,
+                    e.getMessage(),
+                "Erro",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
 
@@ -261,24 +290,42 @@ public class dlgMostraFilmes extends JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) throws FilmeException{                                             
         String titulo = tfdTitulo.getText();
         int classificacao = Integer.parseInt(tfdClassificacao.getText());
         String genero = tfdGenero.getText();
         String duracao = tfdDuracao.getText();
         String sinopse = tfdSinopse.getText();
+
+        if(titulo.isEmpty() || genero.isEmpty() || duracao.isEmpty() || sinopse.isEmpty()){
+                throw new FilmeException("Preencha todos os campos");
+        }
+
+        if(classificacao > 18 || classificacao < 10)
+                throw new FilmeException("Classificação Indicativa inválida");
+
         Filme filme = new Filme(titulo, sinopse, classificacao , genero, duracao);
+
         cf.salvar(filme);
+
         exibeLista();
+
         tfdTitulo.setText("");
         tfdSinopse.setText("");
         tfdClassificacao.setText("");
         tfdGenero.setText("");
         tfdDuracao.setText("");
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Filme cadastrado com sucesso!",
+            "Confirmação",
+                JOptionPane.INFORMATION_MESSAGE
+        );
         
     }                                            
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws FilmeException{                                           
         // TODO add your handling code here:
         int indice = jListFilmes.getSelectedIndex();
 
@@ -286,10 +333,20 @@ public class dlgMostraFilmes extends JFrame {
             DefaultListModel model = (DefaultListModel)jListFilmes.getModel();
             model.remove(indice);
             cf.retornarTodos().remove(indice);
+
+            JOptionPane.showMessageDialog(
+            null,
+            "Filme removido com sucesso!",
+            "Confirmação",
+            JOptionPane.INFORMATION_MESSAGE
+                );
+
+        } else {
+            throw new FilmeException("Selecione um filme para remover");
         }
     }                                          
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) throws FilmeException{                                          
         int indice = jListFilmes.getSelectedIndex();
 
         if(indice != -1){
@@ -301,11 +358,24 @@ public class dlgMostraFilmes extends JFrame {
             filme.setDuracao(tfdDuracao.getText());
             filme.setClassificacaoIndicativa(Integer.parseInt(tfdClassificacao.getText()));
             filme.setSinopse(tfdSinopse.getText());
+
+            if(filme.getTitulo().isEmpty() || filme.getGenero().isEmpty() || filme.getDuracao().isEmpty() || filme.getSinopse().isEmpty())
+                throw new FilmeException("Preencha todos os campos");
+
+            if(filme.getClassificacaoIndicativa() > 18 || filme.getClassificacaoIndicativa() < 10)
+                throw new FilmeException("Classificação Indicativa inválida");
             
             DefaultListModel<String> model = (DefaultListModel<String>) jListFilmes.getModel();
             model.setElementAt(filme.getTitulo(), indice);
             
             exibeInformacoes();
+
+            JOptionPane.showMessageDialog(
+            null,
+            "Filme editado com sucesso!",
+            "Confirmação",
+                JOptionPane.INFORMATION_MESSAGE
+        );
           
         }
     }                                         

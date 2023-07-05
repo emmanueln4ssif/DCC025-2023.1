@@ -356,17 +356,17 @@ public class TelaCadCliente extends JFrame {
 
             if(cliente.getNome().isEmpty() || cliente.getEndereco().isEmpty() || cliente.getCpf().isEmpty() || cliente.getEmail().isEmpty() || cliente.getTelefone().isEmpty()){
                 throw new ClienteException("Preencha todos os campos");
-            } else {
-                JOptionPane.showMessageDialog(
+            }
+
+            model.setElementAt(cliente.getCpf(), indice);
+
+            JOptionPane.showMessageDialog(
             null,
             "Cliente editado com sucesso!",
             "Confirmação",
             JOptionPane.INFORMATION_MESSAGE
-                );
-            }
-
-            model.setElementAt(cliente.getCpf(), indice);
-            
+            );
+    
             exibeInformacoes();
 
         } else {
@@ -383,18 +383,12 @@ public class TelaCadCliente extends JFrame {
 
             if(nome.isEmpty() || endereco.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty()){
                 throw new ClienteException("Preencha todos os campos");
-            } else {
-                JOptionPane.showMessageDialog(
-            null,
-            "Cliente cadastrado com sucesso!",
-            "Confirmação",
-                JOptionPane.INFORMATION_MESSAGE
-                );
             }
             
             Cliente cliente = new Cliente(nome, endereco, email, telefone, cpf);
             
             cf.salvar(cliente);
+
             exibeLista();
 
             tfdNome.setText("");
@@ -402,6 +396,14 @@ public class TelaCadCliente extends JFrame {
             tfdEndereco.setText("");
             tfdTelefone.setText("");
             tfdEmail.setText("");
+
+            JOptionPane.showMessageDialog(
+            null,
+            "Cliente cadastrado com sucesso!",
+            "Confirmação",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
 
