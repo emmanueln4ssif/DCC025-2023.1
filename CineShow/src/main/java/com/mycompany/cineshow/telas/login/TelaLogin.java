@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+*/
 package com.mycompany.cineshow.telas.login;
 
 import com.mycompany.cineshow.Funcionario;
@@ -81,9 +81,13 @@ public class TelaLogin extends javax.swing.JFrame {
       }
     );
 
-    //jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("CineShow/src/main/java/com/mycompany/cineshow/interfaceswing/login/imgLogin.png"))); // NOI18N
-    //jLabel5.setMaximumSize(new java.awt.Dimension(500, 400));
-    //jLabel5.setMinimumSize(new java.awt.Dimension(10, 5));
+    //jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("imgLogin.png"))); // NOI18N
+    //jLabel3.setText("jLabel3");
+
+    jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("imgLogin.png"))); // NOI18N
+    //jLabel5.setSize(200, 100);
+    jLabel5.setMaximumSize(new java.awt.Dimension(600, 400));
+    jLabel5.setMinimumSize(new java.awt.Dimension(10, 5));
 
     jLabel6.setBackground(new java.awt.Color(242, 242, 2));
     jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 36)); // NOI18N
@@ -98,115 +102,69 @@ public class TelaLogin extends javax.swing.JFrame {
 
     jLabel7.setText("A magia que salta das telas");
 
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
-      jPanel1
-    );
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout
-        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(
-          jPanel1Layout
-            .createSequentialGroup()
-            .addGap(56, 56, 56)
-            .addGroup(
-              jPanel1Layout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(
-                  jPanel1Layout
-                    .createParallelGroup(
-                      javax.swing.GroupLayout.Alignment.LEADING,
-                      false
-                    )
-                    .addComponent(tfUsuario)
-                    .addComponent(jLabel1)
-                    .addComponent(
-                      butLogin,
+ 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tfUsuario)
+                        .addComponent(jLabel1)
+                        .addComponent(butLogin,
                       javax.swing.GroupLayout.DEFAULT_SIZE,
                       javax.swing.GroupLayout.DEFAULT_SIZE,
-                      Short.MAX_VALUE
-                    )
-                    .addComponent(
-                      pfSenha,
+                      Short.MAX_VALUE)
+                        .addComponent(pfSenha,
                       javax.swing.GroupLayout.DEFAULT_SIZE,
                       306,
-                      Short.MAX_VALUE
-                    )
-                )
-                .addComponent(jLabel2)
+                      Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(00, 00, 96))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-            )
-            .addPreferredGap(
-              javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-              18,
-              Short.MAX_VALUE
-            )
-            .addComponent(
-              jLabel5,
-              javax.swing.GroupLayout.PREFERRED_SIZE,
-              461,
-              javax.swing.GroupLayout.PREFERRED_SIZE
-            )
-            .addGap(96, 96, 96)
-        )
-    );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout
-        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(
-          jPanel1Layout
-            .createSequentialGroup()
-            .addContainerGap(58, Short.MAX_VALUE)
-            .addComponent(jLabel6)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel7)
-            .addGap(36, 36, 36)
-            .addComponent(jLabel1)
-            .addPreferredGap(
-              javax.swing.LayoutStyle.ComponentPlacement.UNRELATED
-            )
-            .addComponent(
-              tfUsuario,
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent( tfUsuario,
               javax.swing.GroupLayout.PREFERRED_SIZE,
               javax.swing.GroupLayout.DEFAULT_SIZE,
-              javax.swing.GroupLayout.PREFERRED_SIZE
-            )
-            .addGap(33, 33, 33)
-            .addComponent(jLabel2)
-            .addPreferredGap(
-              javax.swing.LayoutStyle.ComponentPlacement.UNRELATED
-            )
-            .addComponent(
-              pfSenha,
+              javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pfSenha,
               javax.swing.GroupLayout.PREFERRED_SIZE,
               javax.swing.GroupLayout.DEFAULT_SIZE,
-              javax.swing.GroupLayout.PREFERRED_SIZE
-            )
-            .addGap(37, 37, 37)
-            .addComponent(butLogin)
-            .addGap(157, 157, 157)
-        )
-        .addGroup(
-          jPanel1Layout
-            .createSequentialGroup()
-            .addComponent(
-              jLabel5,
-              javax.swing.GroupLayout.PREFERRED_SIZE,
-              469,
-              javax.swing.GroupLayout.PREFERRED_SIZE
-            )
-            .addGap(0, 0, Short.MAX_VALUE)
-        )
-    );
+              javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(butLogin)
+                .addGap(157, 157, 157))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
 
+    // </editor-fold>    */
     getContentPane().add(jPanel1);
     jPanel1.setBounds(0, 10, 937, 508);
 
-    //jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\emman\\Desktop\\drawing-ticket-film-sketch-circus-ticket.jpg")); // NOI18N
-    //jLabel4.setText("jLabel4");
-    //getContentPane().add(jLabel4);
-    //jLabel4.setBounds(911, 1733, 415, 348);
+   jLabel4.setIcon(new javax.swing.ImageIcon("CineShow\\src\\main\\java\\com\\mycompany\\cineshow\\telas\\login\\imgLogin.png")); // NOI18N
+    jLabel4.setText("jLabel4");
+    getContentPane().add(jLabel4);
+    jLabel4.setBounds(911, 1733, 415, 348);
 
     pack();
   }
@@ -224,13 +182,13 @@ public class TelaLogin extends javax.swing.JFrame {
         this.dispose();
         TelaDashBoard.desenha();
       } else {
-        throw new LoginException("Dados incorretos!");
+        throw new LoginException("Usuário ou senha incorretos");
       }
     } catch (LoginException ex) {
       JOptionPane.showMessageDialog(
         null,
         ex.getMessage(),
-        "Erro!",
+        "Dados inválidos",
         JOptionPane.ERROR_MESSAGE
       );
     }
@@ -256,7 +214,7 @@ public class TelaLogin extends javax.swing.JFrame {
   public static void desenha() {
     TelaLogin tela = new TelaLogin();
     int width = 900;
-    int height = 550;
+    int height = 490;
     tela.setSize(width, height);
     tela.setLocationRelativeTo(null);
     tela.setResizable(false);
@@ -279,6 +237,7 @@ public class TelaLogin extends javax.swing.JFrame {
    * @param args the command line arguments
    */
   public static void main(String args[]) {
+       
     try {
       for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
         if ("Nimbus".equals(info.getName())) {
@@ -306,12 +265,14 @@ public class TelaLogin extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(
       new Runnable() {
         public void run() {
+          
           TelaLogin telaLogin = new TelaLogin();
           int width = 900;
           int height = 550;
           telaLogin.setSize(width, height);
           telaLogin.setLocationRelativeTo(null);
           telaLogin.setVisible(true);
+         
         }
       }
     );

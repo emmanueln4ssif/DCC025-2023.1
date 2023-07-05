@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -26,10 +25,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import com.mycompany.cineshow.Cliente;
-import com.mycompany.cineshow.Cliente;
-import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 
