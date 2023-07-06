@@ -315,7 +315,6 @@ public class dlgMostraFilmes extends JFrame {
     }                                            
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws FilmeException{                                           
-        // TODO add your handling code here:
         int indice = jListFilmes.getSelectedIndex();
 
         if(indice != -1){
@@ -354,8 +353,8 @@ public class dlgMostraFilmes extends JFrame {
             if(filme.getClassificacaoIndicativa() > 18 || filme.getClassificacaoIndicativa() < 10)
                 throw new FilmeException("Classificação Indicativa inválida");
             
-            DefaultListModel<String> model = (DefaultListModel<String>) jListFilmes.getModel();
-            model.setElementAt(filme.getTitulo(), indice);
+            cf.salvaFilmeComIndice(filme, indice); 
+            exibeLista();
             
             exibeInformacoes();
 
@@ -370,6 +369,11 @@ public class dlgMostraFilmes extends JFrame {
     }                                         
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
+        List<Filme> copiaFilmes = new ArrayList<>(cf.retornarTodos());
+        cf.getFilmeDao().apagaArquivo();
+        for (Filme f : copiaFilmes) {
+            cf.salvar(f);
+        }
         this.dispose();
         if(usuario.equals("admin"))
             TelaDashBoard.desenha(usuario);
@@ -430,7 +434,7 @@ public class dlgMostraFilmes extends JFrame {
     private void exibeLista(){
         ArrayList<Filme> filmes = cf.retornarTodos();
         DefaultListModel<String> model = new DefaultListModel<>();
-
+        model.clear();
         for (Filme filme : filmes) {
             model.addElement(filme.getTitulo());
         }
@@ -460,6 +464,27 @@ public class dlgMostraFilmes extends JFrame {
             tfdDuracao.setText("");
         }
     }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {   
+        List<Filme> lista = cf.getFilmeDao().ler();
+        for (Filme filme : lista) {
+            if (!cf.salvar(filme)) {
+                JOptionPane.showMessageDialog(null,"Erro ao salvar filme","Erro",JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+        exibeLista();
+        exibeInformacoes();
+        
+    }                                 
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {      
+        List<Filme> copiaFilmes = new ArrayList<>(cf.retornarTodos());
+        cf.getFilmeDao().apagaArquivo();
+        for (Filme f : copiaFilmes) {
+            cf.salvar(f);
+        }
+    }     
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnAdicionar;

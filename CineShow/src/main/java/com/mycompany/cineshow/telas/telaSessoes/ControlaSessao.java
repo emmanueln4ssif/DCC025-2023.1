@@ -22,24 +22,24 @@ public class ControlaSessao {
         this.sessaoDao = new SessaoDao();
         atualizaSessoes();
     }
+
+    public SessaoDao getSessaoDao(){
+        return this.sessaoDao;
+    }
     
     public boolean salvar(Sessao sessao){
-        this.sessoes.add(sessao);
         boolean sucesso = this.sessaoDao.salvar(sessao); 
         if (sucesso) {
-            atualizaSessoes();
+            this.sessoes.add(sessao);
             return true;
         } 
-        else{
+        else {
             return false;
         }
     }
     
     public void atualizaSessoes(){
-        this.sessoes.clear(); 
-        ArrayList<Sessao> lista = new ArrayList<>();
-        lista = this.sessaoDao.ler();
-        this.sessoes.addAll(lista);
+        this.sessoes = this.sessaoDao.ler();
     }
     
     public ArrayList<Sessao> retornarTodos(){
@@ -54,12 +54,13 @@ public class ControlaSessao {
         return listaFilmes;
     }
     
-    public boolean salvaSessaoComIndice(Sessao filme, int indice){
-        if(filme != null){
-            this.sessoes.add(indice, filme);
+    public boolean salvaSessaoComIndice(Sessao sessao, int indice){
+        if (sessao != null) {
+            this.sessoes.add(indice, sessao);
+            this.sessoes.remove(indice + 1);
             return true;
-        }
-        else
+        } 
+        else 
             return false;    
     }
 }

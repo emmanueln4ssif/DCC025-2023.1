@@ -5,6 +5,7 @@
 package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
 
+import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.Funcionario;
 import com.mycompany.cineshow.exceptions.FuncionarioException;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
@@ -12,6 +13,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -291,14 +293,19 @@ public class dlgMostraFuncionarios extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfdNomeActionPerformed
 
-    private void tfdEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdEmailActionPerformed
+    private void tfdEmailActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfdEmailActionPerformed
+    }
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
+        List<Funcionario> copiaFuncionarios = new ArrayList<>(cf.retornarTodos());
+        cf.getFuncionarioDao().apagaArquivo();
+        for (Funcionario f : copiaFuncionarios) {
+            cf.salvar(f);
+        }
         this.dispose();
         TelaDashBoard.desenha(usuario);
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws FuncionarioException{//GEN-FIRST:event_btnRemoverActionPerformed
         int indice = jListFunc.getSelectedIndex();
@@ -325,7 +332,6 @@ public class dlgMostraFuncionarios extends JFrame {
         if(indice != -1){
             String nomeSelecionado = jListFunc.getSelectedValue();
             Funcionario funcionario = cf.retornaFuncPorNome(nomeSelecionado);
-            DefaultListModel model = (DefaultListModel)jListFunc.getModel();
 
             funcionario.setNome(tfdNome.getText());
             funcionario.setEndereco(tfdEndereco.getText());
@@ -342,18 +348,13 @@ public class dlgMostraFuncionarios extends JFrame {
                 throw new FuncionarioException("Preencha um valor válido para o campo de salário");
             }
 
-            model.setElementAt(funcionario.getNome(), indice);
+            if(cf.salvaFilmeComIndice(funcionario, indice)){
+                exibeLista();
+                JOptionPane.showMessageDialog(null,"Funcionário editado com sucesso!","Confirmação",JOptionPane.INFORMATION_MESSAGE);
 
-            JOptionPane.showMessageDialog(
-            null,
-            "Funcionário editado com sucesso!",
-            "Confirmação",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-
-            exibeInformacoes();
-
-        } else {
+            } 
+        }    
+        else {
             throw new FuncionarioException("Selecione um funcionário para editar");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -404,6 +405,27 @@ public class dlgMostraFuncionarios extends JFrame {
         cadFuncionarios.setLocationRelativeTo(null);
         cadFuncionarios.setVisible(true);
     }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {   
+        List<Funcionario> lista = cf.getFuncionarioDao().ler();
+        for (Funcionario funcionario : lista) {
+            if (!cf.salvar(funcionario)) {
+                JOptionPane.showMessageDialog(null,"Erro ao salvar funcionário","Erro",JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+        exibeLista();
+        exibeInformacoes();
+        
+    }                                 
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {      
+        List<Funcionario> copiaFuncionarios = new ArrayList<>(cf.retornarTodos());
+        cf.getFuncionarioDao().apagaArquivo();
+        for (Funcionario f : copiaFuncionarios) {
+            cf.salvar(f);
+        }
+    }     
 
     /**
      * @param args the command line arguments

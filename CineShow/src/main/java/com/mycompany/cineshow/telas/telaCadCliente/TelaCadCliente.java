@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -42,7 +43,7 @@ public class TelaCadCliente extends JFrame {
     /**
      * Creates new form telaCadCliente
      */
-    ControlaCliente cf = new ControlaCliente();
+    ControlaCliente cc = new ControlaCliente();
 
     public TelaCadCliente() {
         initComponents();
@@ -313,6 +314,11 @@ public class TelaCadCliente extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        List<Cliente> copiaClientes = new ArrayList<>(cc.retornarTodos());
+        cc.getClienteDao().apagaArquivo();
+        for (Cliente c : copiaClientes) {
+            cc.salvar(c);
+        }
         this.dispose();
         if(usuario.equals("admin"))
             TelaDashBoard.desenha(usuario);
@@ -327,7 +333,7 @@ public class TelaCadCliente extends JFrame {
             DefaultListModel model = (DefaultListModel)jListClientes.getModel();
 
             model.remove(indice);
-            cf.retornarTodos().remove(indice);
+            cc.retornarTodos().remove(indice);
 
             JOptionPane.showMessageDialog(
             null,
@@ -339,15 +345,14 @@ public class TelaCadCliente extends JFrame {
         } else {
             throw new ClienteException("Selecione um cliente para remover");
         }
-    }//GEN-LAST:event_btnRemoverActionPerformed
+    }
 
         private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) throws ClienteException{//GEN-FIRST:event_btnEditarActionPerformed
         int indice = jListClientes.getSelectedIndex();
 
         if(indice != -1){
             String cpfSelecionado = jListClientes.getSelectedValue();
-            Cliente cliente = cf.retornaClienteCPF(cpfSelecionado);
-            DefaultListModel model = (DefaultListModel)jListClientes.getModel();
+            Cliente cliente = cc.retornaClienteCPF(cpfSelecionado);
 
             cliente.setNome(tfdNome.getText());
             cliente.setEndereco(tfdEndereco.getText());
@@ -359,7 +364,8 @@ public class TelaCadCliente extends JFrame {
                 throw new ClienteException("Preencha todos os campos");
             }
 
-            model.setElementAt(cliente.getCpf(), indice);
+            cc.salvaClienteIndice(cliente, indice); 
+            exibeLista();
 
             tfdNome.setText("");
             tfCpf.setText("");
@@ -394,7 +400,7 @@ public class TelaCadCliente extends JFrame {
             
             Cliente cliente = new Cliente(nome, endereco, email, telefone, cpf);
             
-            cf.salvar(cliente);
+            cc.salvar(cliente);
 
             exibeLista();
 
@@ -411,13 +417,13 @@ public class TelaCadCliente extends JFrame {
                 JOptionPane.INFORMATION_MESSAGE
             );
 
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }
 
 
     private void exibeLista(){
-        ArrayList<Cliente> clientes = cf.retornarTodos();
+        ArrayList<Cliente> clientes = cc.retornarTodos();
         DefaultListModel<String> model = new DefaultListModel<>();
-
+        model.clear();
         for (Cliente cliente : clientes) {
             model.addElement(cliente.getCpf());
         }
@@ -429,7 +435,7 @@ public class TelaCadCliente extends JFrame {
 
         if (index != -1) {
             String funcSelecionado = jListClientes.getSelectedValue();
-            Cliente cliente = cf.retornaClienteCPF(funcSelecionado);
+            Cliente cliente = cc.retornaClienteCPF(funcSelecionado);
             tfdNome.setText(cliente.getNome());
             tfdEndereco.setText(cliente.getEndereco());
             tfdEmail.setText(cliente.getEmail());
@@ -453,6 +459,26 @@ public class TelaCadCliente extends JFrame {
         telaCadCliente.setSize(width, height);
         telaCadCliente.setLocationRelativeTo(null);
         telaCadCliente.setVisible(true);
+    }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {   
+        ArrayList<Cliente> lista = cc.getClienteDao().ler();
+        for (Cliente cliente: lista){
+            if (!cc.salvar(cliente)) {
+                JOptionPane.showMessageDialog(null,"Erro ao salvar cliente","Erro",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        exibeLista();
+        exibeInformacoes();
+        
+    }                                 
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {      
+        List<Cliente> copiaClientes = new ArrayList<>(cc.retornarTodos());
+        cc.getClienteDao().apagaArquivo();
+        for (Cliente c : copiaClientes) {
+            cc.salvar(c);
+        }
     }
 
     /**

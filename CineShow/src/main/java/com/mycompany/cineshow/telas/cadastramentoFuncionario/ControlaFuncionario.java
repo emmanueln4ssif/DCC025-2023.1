@@ -7,6 +7,7 @@ package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 import java.util.*;
 import com.mycompany.cineshow.Funcionario;
 import persistencia.FuncionarioDao;
+import persistencia.SessaoDao;
 
 /**
  *
@@ -22,23 +23,23 @@ public class ControlaFuncionario {
         atualizaFuncionarios();
     }
 
+    public FuncionarioDao getFuncionarioDao(){
+        return this.funcionarioDao;
+    }
 
     public boolean salvar(Funcionario funcionario){
-        boolean sucesso = this.funcionarioDao.salvar(funcionario);
+        boolean sucesso = this.funcionarioDao.salvar(funcionario); 
         if (sucesso) {
-            atualizaFuncionarios();
+            this.funcionarios.add(funcionario);
             return true;
-        }
-        else{
+        } 
+        else {
             return false;
         }
     }
 
     public void atualizaFuncionarios(){
-        this.funcionarios.clear();
-        ArrayList<Funcionario> lista = new ArrayList<>();
-        lista = this.funcionarioDao.ler();
-        this.funcionarios.addAll(lista);
+        this.funcionarios = this.funcionarioDao.ler();
 
     }
 
@@ -57,11 +58,12 @@ public class ControlaFuncionario {
     }
 
     public boolean salvaFilmeComIndice(Funcionario funcionario, int indice){
-        if(funcionario != null){
+        if (funcionario != null) {
             this.funcionarios.add(indice, funcionario);
+            this.funcionarios.remove(indice + 1);
             return true;
-        }
-        else
+        } 
+        else 
             return false;
     }
 

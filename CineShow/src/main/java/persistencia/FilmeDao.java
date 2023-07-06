@@ -1,6 +1,8 @@
 package persistencia;
 
 import com.mycompany.cineshow.Filme;
+
+import java.io.File;
 import java.util.ArrayList;
 public class FilmeDao extends PersistenciaDao<Filme>{
 
@@ -44,4 +46,12 @@ public class FilmeDao extends PersistenciaDao<Filme>{
         }
         return false;
     }
+
+    public void apagaArquivo(){
+        File file = new File("filme.txt");
+        if (file.exists()) {
+            file.delete();
+        }    
+    }
+
 }

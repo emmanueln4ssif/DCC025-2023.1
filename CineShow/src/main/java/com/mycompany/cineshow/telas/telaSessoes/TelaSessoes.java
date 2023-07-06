@@ -305,6 +305,11 @@ public class TelaSessoes extends JFrame {
     }
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        List<Sessao> copiaSessao = new ArrayList<>(cs.retornarTodos());
+        cs.getSessaoDao().apagaArquivo();
+        for (Sessao s : copiaSessao) {
+            cs.salvar(s);
+        }
         this.dispose();
         if(usuario.equals("admin"))
             TelaDashBoard.desenha(usuario);
@@ -389,15 +394,14 @@ public class TelaSessoes extends JFrame {
                         sessao.setDuracao(duracao);
                         sessao.setHorario(tfdHorario.getText());
                         sessao = new Sessao(filme, horario,duracao, sala);
-                        DefaultListModel<String> model = (DefaultListModel<String>) jListSessoes.getModel();
-                        model.setElementAt("Sessão " + (sessoes.indexOf(sessao)+ 1) + " - Sala " + sessao.getSala(), indice);
+                        cs.salvaSessaoComIndice(sessao, indice); 
+                        exibeLista();
                     }catch(NumberFormatException e) {
                         JOptionPane.showMessageDialog(null,"Digite valores numéricos válidos para a sala","Erro",JOptionPane.ERROR_MESSAGE);
                         return;
                     }   
                 }    
                 JOptionPane.showMessageDialog(null,"Filme editado com sucesso!","Confirmação",JOptionPane.INFORMATION_MESSAGE);
-                //exibeInformacoes();
             }
           
         }
@@ -465,6 +469,7 @@ public class TelaSessoes extends JFrame {
     private void exibeLista(){
         ArrayList<Sessao> sessoes = cs.retornarTodos();
         DefaultListModel<String> model = new DefaultListModel<>();
+        model.clear();
         for (Sessao s : sessoes) {
             model.addElement("Sessão " + (sessoes.indexOf(s)+ 1) + " - Sala: " + s.getSala());
         }
@@ -473,7 +478,7 @@ public class TelaSessoes extends JFrame {
     
     private int IndiceFilme(Filme filme) {
         DefaultComboBoxModel<Filme> model = (DefaultComboBoxModel<Filme>) jComboBox1.getModel();
-        
+
         for (int i = 0; i < model.getSize(); i++) {
             Filme item = model.getElementAt(i);
             if (item.getTitulo().equals(filme.getTitulo())) {
@@ -522,6 +527,26 @@ public class TelaSessoes extends JFrame {
         return sessoesAB;
     }
         
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {   
+        List<Sessao> lista = cs.getSessaoDao().ler();
+        for (Sessao sessao : lista) {
+            if (!cs.salvar(sessao)) {
+                JOptionPane.showMessageDialog(null,"Erro ao salvar sessão","Erro",JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+        exibeLista();
+        exibeInformacoes();
+        
+    }                                 
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {      
+        List<Sessao> copiaSessao = new ArrayList<>(cs.retornarTodos());
+        cs.getSessaoDao().apagaArquivo();
+        for (Sessao s : copiaSessao) {
+            cs.salvar(s);
+        }
+    }     
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

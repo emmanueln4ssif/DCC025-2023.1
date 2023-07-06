@@ -1,5 +1,7 @@
 package persistencia;
 import com.mycompany.cineshow.Funcionario;
+
+import java.io.File;
 import java.util.ArrayList;
 
         public class FuncionarioDao extends PersistenciaDao<Funcionario> {
@@ -48,4 +50,11 @@ import java.util.ArrayList;
                 return false;
             }
 
-                   }
+            public void apagaArquivo(){
+                File file = new File("funcionario.txt");
+                if (file.exists()) {
+                    file.delete();
+                }    
+            }
+
+        }

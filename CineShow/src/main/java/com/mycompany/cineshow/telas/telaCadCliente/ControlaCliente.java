@@ -8,6 +8,7 @@ package com.mycompany.cineshow.telas.telaCadCliente;
 import java.util.*;
 import com.mycompany.cineshow.Cliente;
 import persistencia.ClienteDao;
+import persistencia.SessaoDao;
 
 /**
  *
@@ -24,23 +25,23 @@ public class ControlaCliente {
         atualizaClientes();
     }
 
+    public ClienteDao getClienteDao(){
+        return this.clienteDao;
+    }
 
     public boolean salvar(Cliente cliente){
-        boolean sucesso = this.clienteDao.salvar(cliente);
+        boolean sucesso = this.clienteDao.salvar(cliente); 
         if (sucesso) {
-            atualizaClientes();
+            this.clientes.add(cliente);
             return true;
-        }
-        else{
+        } 
+        else {
             return false;
         }
     }
 
     public void atualizaClientes(){
-        this.clientes.clear();
-        ArrayList<Cliente> lista = new ArrayList<>();
-        lista = this.clienteDao.ler();
-        this.clientes.addAll(lista);
+        this.clientes = this.clienteDao.ler();
 
     }
 
@@ -59,12 +60,13 @@ public class ControlaCliente {
     }
 
     public boolean salvaClienteIndice(Cliente cliente, int indice){
-        if(cliente != null){
+        if (cliente != null) {
             this.clientes.add(indice, cliente);
+            this.clientes.remove(indice + 1);
             return true;
-        }
-        else
-            return false;
+        } 
+        else 
+            return false; 
     }
 
 

@@ -3,6 +3,8 @@ package persistencia;
 import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.Sessao;
 import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class SessaoDao extends PersistenciaDao<Sessao>{
@@ -46,5 +48,12 @@ public class SessaoDao extends PersistenciaDao<Sessao>{
             return true;
         }
         return false;
+    }
+
+    public void apagaArquivo(){
+        File file = new File("sessao.txt");
+        if (file.exists()) {
+            file.delete();
+        }    
     }
 }

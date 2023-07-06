@@ -7,6 +7,7 @@ package com.mycompany.cineshow.telas.cadastroFilme;
 import java.util.*;
 import com.mycompany.cineshow.Filme;
 import persistencia.FilmeDao;
+import persistencia.SessaoDao;
 
 /**
  *
@@ -22,24 +23,23 @@ public class ControlaCadastroFilme {
         atualizaFilmes();
     }
 
-    
+    public FilmeDao getFilmeDao(){
+        return this.filmeDao;
+    }
+
     public boolean salvar(Filme filme){
         boolean sucesso = this.filmeDao.salvar(filme); 
         if (sucesso) {
-            atualizaFilmes();
+            this.filmes.add(filme);
             return true;
         } 
-        else{
+        else {
             return false;
         }
     }
     
     public void atualizaFilmes(){
-        this.filmes.clear(); 
-        ArrayList<Filme> lista = new ArrayList<>();
-        lista = this.filmeDao.ler();
-        this.filmes.addAll(lista);
-        
+        this.filmes = this.filmeDao.ler();
     }
     
    
@@ -48,21 +48,22 @@ public class ControlaCadastroFilme {
     }
     
     public Filme retornaFilmePorTitulo(String titulo){
-    for (Filme filme : filmes) {
-        if (filme.getTitulo().equals(titulo)) {
-            return filme;
+        for (Filme filme : filmes) {
+            if (filme.getTitulo().equals(titulo)) {
+                return filme;
+            }
         }
-    }
-    return null; 
+        return null; 
     }
     
     public boolean salvaFilmeComIndice(Filme filme, int indice){
-        if(filme != null){
+        if (filme != null) {
             this.filmes.add(indice, filme);
+            this.filmes.remove(indice + 1);
             return true;
-        }
-        else
-            return false;    
+        } 
+        else 
+            return false;   
     }
         
     

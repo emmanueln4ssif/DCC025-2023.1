@@ -1,6 +1,8 @@
 package persistencia;
 
 import com.mycompany.cineshow.Cliente;
+
+import java.io.File;
 import java.util.ArrayList;
 
         public class ClienteDao extends PersistenciaDao<Cliente> {
@@ -44,5 +46,12 @@ import java.util.ArrayList;
                     return true;
                 }
                 return false;
+            }
+
+            public void apagaArquivo(){
+                File file = new File("cliente.txt");
+                if (file.exists()) {
+                    file.delete();
+                }    
             }
         }
