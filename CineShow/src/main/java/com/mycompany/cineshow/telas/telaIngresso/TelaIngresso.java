@@ -239,5 +239,4 @@ public class TelaIngresso extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private static String usuario;
-    // End of variables declaration                   
 }

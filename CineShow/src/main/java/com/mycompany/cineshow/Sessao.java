@@ -51,4 +51,10 @@ public class Sessao {
   public void setSala(int sala) {
     this.sala = sala;
   }
+
+  @Override
+  public String toString() {
+    return filme + " - " + sala;
+
+  }
 }

@@ -268,7 +268,7 @@ public class TelaDePagamento extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.dispose();
-        TelaIngresso.desenha(usuario);
+        TelaDeIngresso.desenha(usuario);
     }                                         
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) throws CartaoException, DataException{                                             

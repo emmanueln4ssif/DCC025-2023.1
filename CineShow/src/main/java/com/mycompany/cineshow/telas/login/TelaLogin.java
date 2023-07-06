@@ -57,22 +57,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
     jLabel1.setText("Usuário");
 
-    tfUsuario.addActionListener(
-      new ActionListener() {
-        public void actionPerformed(ActionEvent evt) {
-          tfUsuarioActionPerformed(evt);
-        }
-      }
-    );
-
-    pfSenha.addActionListener(
-      new ActionListener() {
-        public void actionPerformed(ActionEvent evt) {
-          pfSenhaActionPerformed(evt);
-        }
-      }
-    );
-
     jLabel2.setText("Senha");
 
     butLogin.setText("Login");
@@ -84,9 +68,6 @@ public class TelaLogin extends javax.swing.JFrame {
       }
     );
 
-    //jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("imgLogin.png"))); // NOI18N
-    //jLabel3.setText("jLabel3");
-
     jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("imgLogin.png"))); // NOI18N
     //jLabel5.setSize(200, 100);
     jLabel5.setMaximumSize(new java.awt.Dimension(600, 400));
@@ -95,13 +76,6 @@ public class TelaLogin extends javax.swing.JFrame {
     jLabel6.setBackground(new java.awt.Color(242, 242, 2));
     jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 36)); // NOI18N
     jLabel6.setText("CineShow");
-    jLabel6.addFocusListener(
-      new FocusAdapter() {
-        public void focusGained(FocusEvent evt) {
-          jLabel6FocusGained(evt);
-        }
-      }
-    );
 
     jLabel7.setText("A magia que salta das telas");
 
@@ -160,7 +134,6 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-    // </editor-fold>    */
     getContentPane().add(jPanel1);
     jPanel1.setBounds(0, 10, 937, 508);
 
@@ -172,7 +145,7 @@ public class TelaLogin extends javax.swing.JFrame {
     pack();
   }
 
-  private void butLoginActionPerformed(ActionEvent evt) { //GEN-FIRST:event_butLoginActionPerformed
+  private void butLoginActionPerformed(ActionEvent evt) {
     String nome = this.tfUsuario.getText();
     String senha = new String(this.pfSenha.getPassword());
     System.out.println(senha);
@@ -227,18 +200,6 @@ public class TelaLogin extends javax.swing.JFrame {
     tela.setResizable(false);
     tela.setVisible(true);
   }
-
-  private void tfUsuarioActionPerformed(ActionEvent evt) { //GEN-FIRST:event_tfUsuarioActionPerformed
-    // TODO add your handling code here:
-  } //GEN-LAST:event_tfUsuarioActionPerformed
-
-  private void jLabel6FocusGained(FocusEvent evt) { //GEN-FIRST:event_jLabel6FocusGained
-    // TODO add your handling code here:
-  } //GEN-LAST:event_jLabel6FocusGained
-
-  private void pfSenhaActionPerformed(ActionEvent evt) { //GEN-FIRST:event_pfSenhaActionPerformed
-    // TODO add your handling code here:
-  } //GEN-LAST:event_pfSenhaActionPerformed
 
   /**
    * @param args the command line arguments

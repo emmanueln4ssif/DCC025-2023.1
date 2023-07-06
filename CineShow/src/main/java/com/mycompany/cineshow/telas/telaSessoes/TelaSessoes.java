@@ -502,6 +502,25 @@ public class TelaSessoes extends JFrame {
             
         }
     }
+
+    public static Sessao [] criaListaSessoes(){
+
+        ControlaSessao cs = new ControlaSessao();
+
+        List<Sessao> sessoesCadastradas = cs.retornarTodos();
+        int tam = sessoesCadastradas.size();
+
+        Sessao [] sessoesAB = new Sessao[tam];
+
+        int i = 0;
+
+        for(Sessao sessao : sessoesCadastradas){
+            sessoesAB[i] = sessao;
+            i++;
+        }
+
+        return sessoesAB;
+    }
         
         
 

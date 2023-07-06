@@ -4,8 +4,15 @@
  */
 package com.mycompany.cineshow.telas.telaIngresso;
 
+import com.mycompany.cineshow.Assento;
+import com.mycompany.cineshow.Cliente;
+import com.mycompany.cineshow.Sessao;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoardFuncionario;
+import com.mycompany.cineshow.telas.telaCadCliente.ControlaCliente;
+import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
+
+import java.util.List;
 
 /**
  *
@@ -75,6 +82,14 @@ public class TelaDeIngresso extends javax.swing.JFrame {
                 tfdtiposPagamentoActionPerformed(evt);
             }
         });
+
+        for(int i = 0; i < TelaDeIngresso.criaListaClientes().length; i++){
+            tfdClientes.setModel(new javax.swing.DefaultComboBoxModel<>(TelaDeIngresso.criaListaClientes()));
+        }
+
+        for(int i = 0; i < TelaSessoes.criaListaSessoes().length; i++){
+            tfdSessões.setModel(new javax.swing.DefaultComboBoxModel<>(TelaSessoes.criaListaSessoes()));
+        }
 
         tfdPrecoFinal.setEditable(false);
         tfdPrecoFinal.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,72 +207,88 @@ public class TelaDeIngresso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfdtiposPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdtiposPagamentoActionPerformed
-        // TODO add your handling code here:
+        if(tfdPreco.getText() != null) {
+            if (tfdtiposPagamento.getSelectedItem().equals("Inteira")) {
+                tfdPrecoFinal.setText(tfdPreco.getText());
+            } else {
+                double valor = Double.parseDouble(tfdPreco.getText());
+                tfdPrecoFinal.setText("" + valor/2);
+            }
+        }
+        else {
+                //TODO lançar exceção
+            }
+
+
+
     }//GEN-LAST:event_tfdtiposPagamentoActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        if(usuario.equals("admin"))
+            TelaDashBoard.desenha(usuario);
+        else
+            TelaDashBoardFuncionario.desenha(usuario);
+    }
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
+        /*this.dispose(); TODO verificar se os campos foram preenchidos corretamente
+        TelaDePagamento.desenha(usuario);*/
+    }
 
-    private void tfdClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfdClientesActionPerformed
+    private void tfdClientesActionPerformed(java.awt.event.ActionEvent evt) {
+        ControlaCliente cc = new ControlaCliente();
 
-    private void tfdSessõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdSessõesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfdSessõesActionPerformed
+        tfdClientes.getSelectedItem();
 
-    private void tfAssentosNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAssentosNumActionPerformed
+    }
+
+
+    private void tfdSessõesActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfAssentosNumActionPerformed
+    }
+
+    private void tfAssentosNumActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 
     public static void desenha (String user){
-        //usuario = user;
+        usuario = user;
         TelaDeIngresso TelaDeIngresso = new TelaDeIngresso();
         int width = 900;
         int height = 580;
         TelaDeIngresso.setSize(width, height);
-       TelaDeIngresso.setLocationRelativeTo(null);
+        TelaDeIngresso.setLocationRelativeTo(null);
         TelaDeIngresso.setResizable(false);
         TelaDeIngresso.setVisible(true);
+    }
+
+    public static Cliente [] criaListaClientes(){
+
+        ControlaCliente cc = new ControlaCliente();
+
+        List<Cliente> clientesCadastrados = cc.retornarTodos();
+        int tam = clientesCadastrados.size();
+
+        Cliente [] clienteAB = new Cliente[tam];
+
+        int i = 0;
+
+        for(Cliente cliente : clientesCadastrados){
+            clienteAB[i] = cliente;
+            i++;
+        }
+        return clienteAB;
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaDeIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaDeIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaDeIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaDeIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaDeIngresso.desenha(null);;
+                TelaDeIngresso.desenha(usuario);;
             }
         });
     }
@@ -276,10 +307,11 @@ public class TelaDeIngresso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBoleto;
     private javax.swing.JPanel jPanelCartao;
     private javax.swing.JComboBox<String> tfAssentosNum;
-    private javax.swing.JComboBox<String> tfdClientes;
+    private javax.swing.JComboBox<Cliente> tfdClientes;
     private javax.swing.JTextField tfdPreco;
     private javax.swing.JTextField tfdPrecoFinal;
-    private javax.swing.JComboBox<String> tfdSessões;
+    private javax.swing.JComboBox<Sessao> tfdSessões;
     private javax.swing.JComboBox<String> tfdtiposPagamento;
+    private static String usuario;
     // End of variables declaration//GEN-END:variables
 }

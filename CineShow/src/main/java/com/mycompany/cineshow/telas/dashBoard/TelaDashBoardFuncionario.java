@@ -6,6 +6,7 @@ package com.mycompany.cineshow.telas.dashBoard;
 
 import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
 import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
+import com.mycompany.cineshow.telas.telaIngresso.TelaDeIngresso;
 import com.mycompany.cineshow.telas.telaIngresso.TelaIngresso;
 import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
 
@@ -149,7 +150,7 @@ public class TelaDashBoardFuncionario extends JFrame {
 
     private void butIngressosActionPerformed (ActionEvent evt) {
         this.dispose();
-        TelaIngresso.desenha(usuario);
+        TelaDeIngresso.desenha(usuario);
     }
 
     public static void desenha(String user){
