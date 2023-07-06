@@ -4,7 +4,7 @@ Duas horas
 Jack e Rose...
 10
 Pantera Negra
-Ação
+Aventura
 3 horas
 Wakanda ...
 12
@@ -23,8 +23,3 @@ Sci-Fi
 2 horas
 Filme
 18
-Pantera Negra
-Ação
-3 horas
-Wakanda ...
-12

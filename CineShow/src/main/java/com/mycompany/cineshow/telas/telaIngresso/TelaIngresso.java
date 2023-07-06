@@ -185,8 +185,8 @@ public class TelaIngresso extends javax.swing.JFrame {
     }
 
     private void butConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
-        this.dispose();
-        TelaDePagamento.desenha(usuario);
+        /*this.dispose();
+        TelaDePagamento.desenha(usuario);*/
     }
 
     public static void desenha (String user){

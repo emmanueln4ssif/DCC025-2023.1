@@ -232,8 +232,8 @@ public class TelaDeIngresso extends javax.swing.JFrame {
     }
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
-        /*this.dispose(); TODO verificar se os campos foram preenchidos corretamente
-        TelaDePagamento.desenha(usuario);*/
+        this.dispose(); //TODO verificar se os campos foram preenchidos corretamente
+        TelaDePagamento.desenha(usuario, tfdPrecoFinal.getText());
     }
 
     private void tfdClientesActionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,5 +313,6 @@ public class TelaDeIngresso extends javax.swing.JFrame {
     private javax.swing.JComboBox<Sessao> tfdSessões;
     private javax.swing.JComboBox<String> tfdtiposPagamento;
     private static String usuario;
+
     // End of variables declaration//GEN-END:variables
 }

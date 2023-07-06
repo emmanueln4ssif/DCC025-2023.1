@@ -10,7 +10,7 @@ Rua A
 joao@cineshow.br
 (32) 00000-0000
 5000.0
-aa
+Pedro
 123456789-20
 R
 emm
