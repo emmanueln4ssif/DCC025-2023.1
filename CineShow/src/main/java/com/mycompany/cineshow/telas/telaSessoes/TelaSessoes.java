@@ -34,6 +34,8 @@ import com.mycompany.cineshow.Sessao;
 import com.mycompany.cineshow.exceptions.SessaoException;
 import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoardFuncionario;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -50,7 +52,6 @@ public class TelaSessoes extends JFrame {
         initComponents();
         exibeLista();
         exibeInformacoes();
-        
     }
 
     /**
@@ -305,7 +306,10 @@ public class TelaSessoes extends JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-        TelaDashBoard.desenha();
+        if(usuario.equals("admin"))
+            TelaDashBoard.desenha(usuario);
+        else
+            TelaDashBoardFuncionario.desenha(usuario);
     }
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt)throws SessaoException { 
@@ -401,7 +405,8 @@ public class TelaSessoes extends JFrame {
             throw new SessaoException("Selecione uma sessão para Editar");     
     }      
     
-    public static void desenha(){
+    public static void desenha(String user){
+        usuario = user;
         TelaSessoes telaSessoes = new TelaSessoes();
         int width = 920;
         int height = 550;
@@ -452,9 +457,7 @@ public class TelaSessoes extends JFrame {
         }
 
         EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaSessoes().setVisible(true);
-            }
+            public void run() {TelaSessoes.desenha(usuario);}
         });
         
     }
@@ -524,6 +527,7 @@ public class TelaSessoes extends JFrame {
     //private JTextField jComboBox1;
     private JTextField tfdEndereco;
     private JComboBox jComboBox1;
+    private static String usuario;
     // End of variables declaration//GEN-END:variables
 }
 

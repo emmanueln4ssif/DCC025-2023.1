@@ -140,36 +140,34 @@ public class TelaDashBoard extends JFrame {
 
         pack();
     }
-    private void jLabel6FocusGained(FocusEvent evt) {//GEN-FIRST:event_jLabel6FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel6FocusGained
 
   private void butCadClienteActionPerformed (ActionEvent evt) {
         this.dispose();
-        TelaCadCliente.desenha();
+        TelaCadCliente.desenha(usuario);
     }
 
   private void butCadFilmeActionPerformed (ActionEvent evt) {
         this.dispose();
-        dlgMostraFilmes.desenha();
+        dlgMostraFilmes.desenha(usuario);
     }
 
       private void butSessoesPerformed (ActionEvent evt) {
         this.dispose();
-        TelaSessoes.desenha();
+        TelaSessoes.desenha(usuario);
     }
 
     private void butCadFuncionarioActionPerformed (ActionEvent evt) {
         this.dispose();
-        dlgMostraFuncionarios.desenha();
+        dlgMostraFuncionarios.desenha(usuario);
     }
 
     private void butIngressosActionPerformed (ActionEvent evt) {
         this.dispose();
-        TelaIngresso.desenha();
+        TelaIngresso.desenha(usuario);
     }
 
-    public static void desenha(){
+    public static void desenha(String user){
+        usuario = user;
         TelaDashBoard telaDashBoard = new TelaDashBoard();
         int width = 900;
         int height = 550;
@@ -208,7 +206,7 @@ public class TelaDashBoard extends JFrame {
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaDashBoard.desenha();
+                TelaDashBoard.desenha(usuario);
             }
         });
     }
@@ -222,5 +220,6 @@ public class TelaDashBoard extends JFrame {
     private JLabel jLabel1;
     private JLabel jLabel6;
     private JPanel jPanel1;
+    private static String usuario;
     // End of variables declaration//GEN-END:variables
 }

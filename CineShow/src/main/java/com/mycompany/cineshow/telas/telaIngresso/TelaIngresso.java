@@ -5,6 +5,7 @@
 package com.mycompany.cineshow.telas.telaIngresso;
 
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoardFuncionario;
 
 import java.awt.*;
 
@@ -87,11 +88,6 @@ public class TelaIngresso extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(10, 80, 33, 16);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
         jPanel2.add(jTextField2);
         jTextField2.setBounds(50, 80, 300, 22);
 
@@ -129,11 +125,6 @@ public class TelaIngresso extends javax.swing.JFrame {
         jPanel3.add(jLabel9);
         jLabel9.setBounds(10, 80, 40, 16);
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
         jPanel3.add(jTextField7);
         jTextField7.setBounds(50, 80, 71, 22);
         jPanel3.add(jTextField8);
@@ -185,69 +176,31 @@ public class TelaIngresso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
     private void butVoltarActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        TelaDashBoard.desenha();
+        if(usuario.equals("admin"))
+            TelaDashBoard.desenha(usuario);
+        else
+            TelaDashBoardFuncionario.desenha(usuario);
     }
 
     private void butConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        TelaDePagamento.desenha();
+        TelaDePagamento.desenha(usuario);
     }
 
-    public static void desenha (){
+    public static void desenha (String user){
+        usuario = user;
         TelaIngresso telaIngresso = new TelaIngresso();
-
-        // Definir o tamanho da tela
         int width = 900;
         int height = 550;
         telaIngresso.setSize(width, height);
-
-        // Centralizar a tela na página
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
         telaIngresso.setLocationRelativeTo(null);
         telaIngresso.setResizable(false);
         telaIngresso.setVisible(true);
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
@@ -285,5 +238,6 @@ public class TelaIngresso extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private static String usuario;
     // End of variables declaration                   
 }

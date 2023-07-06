@@ -6,7 +6,6 @@ package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
 
 import com.mycompany.cineshow.Funcionario;
-import com.mycompany.cineshow.exceptions.ClienteException;
 import com.mycompany.cineshow.exceptions.FuncionarioException;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
 import javax.swing.*;
@@ -298,7 +297,7 @@ public class dlgMostraFuncionarios extends JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-        TelaDashBoard.desenha();
+        TelaDashBoard.desenha(usuario);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws FuncionarioException{//GEN-FIRST:event_btnRemoverActionPerformed
@@ -396,16 +395,13 @@ public class dlgMostraFuncionarios extends JFrame {
         tfdEmail.setText("");
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    public static void desenha(){
+    public static void desenha(String user){
+        usuario = user;
         dlgMostraFuncionarios cadFuncionarios = new dlgMostraFuncionarios();
-
-        // Definir o tamanho da tela
         int width = 900;
         int height = 550;
         cadFuncionarios.setSize(width, height);
-
         cadFuncionarios.setLocationRelativeTo(null);
-
         cadFuncionarios.setVisible(true);
     }
 
@@ -508,5 +504,6 @@ public class dlgMostraFuncionarios extends JFrame {
     private javax.swing.JTextField tfdNome;
     private javax.swing.JTextField tfdSalario;
     private javax.swing.JTextField tfdTelefone;
+    private static String usuario;
     // End of variables declaration//GEN-END:variables
 }

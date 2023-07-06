@@ -5,9 +5,10 @@
 package com.mycompany.cineshow.telas.cadastroFilme;
 
 import com.mycompany.cineshow.Filme;
-import com.mycompany.cineshow.exceptions.ClienteException;
 import com.mycompany.cineshow.exceptions.FilmeException;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoardFuncionario;
+
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -116,19 +117,7 @@ public class dlgMostraFilmes extends JFrame {
         });
 
         tfdTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfdTitulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdTituloActionPerformed(evt);
-            }
-        });
-
         tfdClassificacao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tfdClassificacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdClassificacaoActionPerformed(evt);
-            }
-        });
-
         btnRemover.setBackground(new java.awt.Color(240, 240, 240));
         btnRemover.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnRemover.setText("Remover");
@@ -382,26 +371,14 @@ public class dlgMostraFilmes extends JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        TelaDashBoard.desenha();
-    }                                         
-
-    private void tfdClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-
-    }                                                
-
-    private void tfdTituloActionPerformed(java.awt.event.ActionEvent evt) {                                          
-
-    }                                         
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
-        // TODO add your handling code here:
-    }                                  
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        // TODO add your handling code here:
+        if(usuario.equals("admin"))
+            TelaDashBoard.desenha(usuario);
+        else
+            TelaDashBoardFuncionario.desenha(usuario);
     }
 
-    public static void desenha(){
+    public static void desenha(String user){
+        usuario = user;
         dlgMostraFilmes cadFilmes = new dlgMostraFilmes();
         int width = 940;
         int height = 550;
@@ -409,10 +386,6 @@ public class dlgMostraFilmes extends JFrame {
         cadFilmes.setLocationRelativeTo(null);
         cadFilmes.setVisible(true);
     }
-
-    /**
-     * @param args the command line arguments
-     */
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -448,7 +421,7 @@ public class dlgMostraFilmes extends JFrame {
                         System.exit(0);
                     }
                 });
-                dlgMostraFilmes.desenha();
+                dlgMostraFilmes.desenha(usuario);
             }
         });
     }
@@ -508,5 +481,6 @@ public class dlgMostraFilmes extends JFrame {
     private javax.swing.JTextField tfdGenero;
     private javax.swing.JTextArea tfdSinopse;
     private javax.swing.JTextField tfdTitulo;
+    private static String usuario;
     // End of variables declaration                   
 }

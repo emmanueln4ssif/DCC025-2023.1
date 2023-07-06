@@ -268,7 +268,7 @@ public class TelaDePagamento extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.dispose();
-        TelaIngresso.desenha();
+        TelaIngresso.desenha(usuario);
     }                                         
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) throws CartaoException, DataException{                                             
@@ -310,7 +310,7 @@ public class TelaDePagamento extends javax.swing.JFrame {
             }
 
             this.dispose();
-            TelaIngresso.desenha();
+            TelaIngresso.desenha(usuario);
 
         } else if(item.equals("Boleto")){
 
@@ -322,18 +322,12 @@ public class TelaDePagamento extends javax.swing.JFrame {
     }
     
     
-    public static void desenha (){
+    public static void desenha (String user){
+        usuario = user;
         TelaDePagamento telaIngresso = new TelaDePagamento();
-
-        // Definir o tamanho da tela
         int width = 900;
         int height = 570;
         telaIngresso.setSize(width, height);
-
-        // Centralizar a tela na página
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
         telaIngresso.setLocationRelativeTo(null);
         telaIngresso.setResizable(false);
         telaIngresso.setVisible(true);
@@ -372,7 +366,7 @@ public class TelaDePagamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaDePagamento.desenha();
+                TelaDePagamento.desenha(usuario);
             }
         });
     }
@@ -401,5 +395,6 @@ public class TelaDePagamento extends javax.swing.JFrame {
     private javax.swing.JTextField tfdValidade;
     private javax.swing.JTextField tfdValor;
     private javax.swing.JComboBox<String> tiposPagamento;
+    private static String usuario;
     // End of variables declaration                   
 }

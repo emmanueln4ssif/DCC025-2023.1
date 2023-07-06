@@ -30,10 +30,8 @@ import javax.swing.event.ListSelectionListener;
 
 import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.exceptions.ClienteException;
-import com.mycompany.cineshow.Cliente;
-import com.mycompany.cineshow.Cliente;
-import com.mycompany.cineshow.Cliente;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoardFuncionario;
 
 /**
  *
@@ -316,7 +314,10 @@ public class TelaCadCliente extends JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-        TelaDashBoard.desenha();
+        if(usuario.equals("admin"))
+            TelaDashBoard.desenha(usuario);
+        else
+            TelaDashBoardFuncionario.desenha(usuario);
     }
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) throws ClienteException {//GEN-FIRST:event_btnRemoverActionPerformed
@@ -420,7 +421,6 @@ public class TelaCadCliente extends JFrame {
         for (Cliente cliente : clientes) {
             model.addElement(cliente.getCpf());
         }
-
         jListClientes.setModel(model);
     }
 
@@ -442,19 +442,15 @@ public class TelaCadCliente extends JFrame {
             tfdEndereco.setText("");
             tfdEmail.setText("");
             tfdTelefone.setText("");
-
         }
     }
 
-    public static void desenha(){
+    public static void desenha(String user){
+        usuario = user;
         TelaCadCliente telaCadCliente = new TelaCadCliente();
-
-        // Definir o tamanho da tela
         int width = 920;
         int height = 550;
         telaCadCliente.setSize(width, height);
-        // Centralizar a tela na página
-        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         telaCadCliente.setLocationRelativeTo(null);
         telaCadCliente.setVisible(true);
     }
@@ -482,7 +478,7 @@ public class TelaCadCliente extends JFrame {
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaCadCliente.desenha();
+                TelaCadCliente.desenha(usuario);
             }
         });
     }
@@ -508,5 +504,6 @@ public class TelaCadCliente extends JFrame {
     private JTextField tfCpf;
     private JTextField tfdNome;
     private JTextField tfdEndereco;
+    private static String usuario;
     // End of variables declaration//GEN-END:variables
 }

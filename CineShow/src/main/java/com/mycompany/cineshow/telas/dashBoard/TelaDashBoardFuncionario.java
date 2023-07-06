@@ -1,16 +1,28 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package com.mycompany.cineshow.telas.dashBoard;
 
 import com.mycompany.cineshow.telas.cadastroFilme.dlgMostraFilmes;
 import com.mycompany.cineshow.telas.telaCadCliente.TelaCadCliente;
+import com.mycompany.cineshow.telas.telaIngresso.TelaIngresso;
 import com.mycompany.cineshow.telas.telaSessoes.TelaSessoes;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
-
+import javax.swing.*;
+/**
+ *
+ * @author walac
+ */
 public class TelaDashBoardFuncionario extends JFrame {
+
+    /**
+     * Creates new form TelaDashBoard
+     */
     public TelaDashBoardFuncionario() {
         initComponents();
     }
@@ -32,7 +44,7 @@ public class TelaDashBoardFuncionario extends JFrame {
         butSessoes = new Button();
         butIngressos = new Button();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new Color(0, 0, 0));
@@ -44,30 +56,30 @@ public class TelaDashBoardFuncionario extends JFrame {
         jLabel6.setBackground(new Color(0, 0, 0));
         jLabel6.setFont(new Font("Segoe UI Emoji", 1, 48)); // NOI18N
         jLabel6.setForeground(new Color(0, 0, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel6.setText("Bem vindo ao CineShow!");
-        jLabel6.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jLabel6.setBorder(BorderFactory.createCompoundBorder());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(391, 391, 391)
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(16, 16, 16)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jLabel6, GroupLayout.PREFERRED_SIZE, 850, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 23, Short.MAX_VALUE))
         );
 
@@ -77,7 +89,7 @@ public class TelaDashBoardFuncionario extends JFrame {
         butCadCliente.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butCadCliente.setLabel("Clientes");
         getContentPane().add(butCadCliente);
-        butCadCliente.setBounds(20, 420, 160, 50);
+        butCadCliente.setBounds(35, 420, 160, 50);
         butCadCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butCadClienteActionPerformed(evt);
@@ -87,7 +99,7 @@ public class TelaDashBoardFuncionario extends JFrame {
         butCadFilme.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butCadFilme.setLabel("Filmes");
         getContentPane().add(butCadFilme);
-        butCadFilme.setBounds(190, 420, 160, 50);
+        butCadFilme.setBounds(250, 420, 160, 50);
         butCadFilme.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butCadFilmeActionPerformed(evt);
@@ -97,7 +109,7 @@ public class TelaDashBoardFuncionario extends JFrame {
         butSessoes.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butSessoes.setLabel("Sessões");
         getContentPane().add(butSessoes);
-        butSessoes.setBounds(530, 420, 160, 50);
+        butSessoes.setBounds(470, 420, 160, 50);
         butSessoes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 butSessoesPerformed(evt);
@@ -107,7 +119,12 @@ public class TelaDashBoardFuncionario extends JFrame {
         butIngressos.setFont(new Font("Dialog", 1, 12)); // NOI18N
         butIngressos.setLabel("Ingresso");
         getContentPane().add(butIngressos);
-        butIngressos.setBounds(700, 420, 160, 50);
+        butIngressos.setBounds(690, 420, 160, 50);
+        butIngressos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                butIngressosActionPerformed(evt);
+            }
+        });
 
         pack();
     }
@@ -115,42 +132,36 @@ public class TelaDashBoardFuncionario extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel6FocusGained
 
-    private void butCadClienteActionPerformed (java.awt.event.ActionEvent evt) {
-        TelaCadCliente telaCadCliente = new TelaCadCliente();
-        telaCadCliente.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+    private void butCadClienteActionPerformed (ActionEvent evt) {
         this.dispose();
-        telaCadCliente.setVisible(true);
+        TelaCadCliente.desenha(usuario);
     }
 
-    private void butCadFilmeActionPerformed (java.awt.event.ActionEvent evt) {
+    private void butCadFilmeActionPerformed (ActionEvent evt) {
         this.dispose();
-        dlgMostraFilmes.desenha();
+        dlgMostraFilmes.desenha(usuario);
     }
 
-    private void butSessoesPerformed (java.awt.event.ActionEvent evt) {
-        TelaSessoes cadastroFilme = new TelaSessoes();
-        cadastroFilme.setExtendedState(TelaDashBoard.MAXIMIZED_BOTH);
+    private void butSessoesPerformed (ActionEvent evt) {
         this.dispose();
-        cadastroFilme.setVisible(true);
+        TelaSessoes.desenha(usuario);
     }
 
-    public static void desenha (){
-        TelaDashBoardFuncionario telaIngresso = new TelaDashBoardFuncionario();
+    private void butIngressosActionPerformed (ActionEvent evt) {
+        this.dispose();
+        TelaIngresso.desenha(usuario);
+    }
 
-        // Definir o tamanho da tela
+    public static void desenha(String user){
+        usuario = user;
+        TelaDashBoardFuncionario telaDashBoardFuncionario = new TelaDashBoardFuncionario();
         int width = 900;
-        int height = 570;
-        telaIngresso.setSize(width, height);
-
-        // Centralizar a tela na página
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-        telaIngresso.setLocationRelativeTo(null);
-        telaIngresso.setResizable(false);
-        telaIngresso.setVisible(true);
+        int height = 550;
+        telaDashBoardFuncionario.setSize(width, height);
+        telaDashBoardFuncionario.setLocationRelativeTo(null);
+        telaDashBoardFuncionario.setResizable(false);
+        telaDashBoardFuncionario.setVisible(true);
     }
-
     /**
      * @param args the command line arguments
      */
@@ -161,9 +172,9 @@ public class TelaDashBoardFuncionario extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -173,7 +184,7 @@ public class TelaDashBoardFuncionario extends JFrame {
             java.util.logging.Logger.getLogger(TelaDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(TelaDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -181,9 +192,17 @@ public class TelaDashBoardFuncionario extends JFrame {
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaDashBoardFuncionario.desenha();
+                TelaDashBoardFuncionario.desenha(usuario);
             }
         });
+    }
+
+    public static String getUsuario() {
+        return usuario;
+    }
+
+    public static void setUsuario(String usuario) {
+        TelaDashBoardFuncionario.usuario = usuario;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,7 +210,9 @@ public class TelaDashBoardFuncionario extends JFrame {
     private Button butCadFilme;
     private Button butSessoes;
     private Button butIngressos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private JLabel jLabel1;
+    private JLabel jLabel6;
+    private JPanel jPanel1;
+    private static String usuario;
+    // End of variables declaration//GEN-END:variables
 }

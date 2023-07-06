@@ -8,6 +8,8 @@ import com.mycompany.cineshow.Funcionario;
 import com.mycompany.cineshow.exceptions.LoginException;
 import com.mycompany.cineshow.telas.cadastramentoFuncionario.ControlaFuncionario;
 import com.mycompany.cineshow.telas.dashBoard.TelaDashBoard;
+import com.mycompany.cineshow.telas.dashBoard.TelaDashBoardFuncionario;
+
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
@@ -30,6 +32,7 @@ public class TelaLogin extends javax.swing.JFrame {
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPasswordField pfSenha;
   private javax.swing.JTextField tfUsuario;
+  private static String usuario;
 
   public TelaLogin() {
     initComponents();
@@ -176,11 +179,13 @@ public class TelaLogin extends javax.swing.JFrame {
 
     try {
       if (nome.equals("admin@cineshow.br") && senha.equals("1234")) {
+        usuario = "admin";
         this.dispose();
-        TelaDashBoard.desenha();
+        TelaDashBoard.desenha(usuario);
       } else if (validaDadosDeLogin(nome, senha) == true) {
+        usuario = "funcionario";
         this.dispose();
-        TelaDashBoard.desenha();
+        TelaDashBoardFuncionario.desenha(usuario);
       } else if(nome.isEmpty() || senha.isEmpty()){
         throw new LoginException("Preencha todos os campos");
       } else {
