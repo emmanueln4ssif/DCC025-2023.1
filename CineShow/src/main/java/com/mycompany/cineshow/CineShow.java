@@ -20,6 +20,7 @@ public class CineShow {
 
         TelaLogin.desenha();
 
+
         //TESTE CARTÃO
         /*CartaoPagamento cartao = PagamentoCartao.SalvarNovoCartao();
 

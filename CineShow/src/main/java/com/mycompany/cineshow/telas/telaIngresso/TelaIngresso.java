@@ -199,7 +199,8 @@ public class TelaIngresso extends javax.swing.JFrame {
     }
 
     private void butConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        TelaDePagamento.desenha();
     }
 
     public static void desenha (){

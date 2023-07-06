@@ -134,6 +134,23 @@ public class TelaDashBoardFuncionario extends JFrame {
         cadastroFilme.setVisible(true);
     }
 
+    public static void desenha (){
+        TelaDashBoardFuncionario telaIngresso = new TelaDashBoardFuncionario();
+
+        // Definir o tamanho da tela
+        int width = 900;
+        int height = 570;
+        telaIngresso.setSize(width, height);
+
+        // Centralizar a tela na página
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        telaIngresso.setLocationRelativeTo(null);
+        telaIngresso.setResizable(false);
+        telaIngresso.setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -164,7 +181,7 @@ public class TelaDashBoardFuncionario extends JFrame {
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDashBoard().setVisible(true);
+                TelaDashBoardFuncionario.desenha();
             }
         });
     }

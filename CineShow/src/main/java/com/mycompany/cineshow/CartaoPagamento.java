@@ -42,22 +42,12 @@ public class CartaoPagamento {
     
     
 
-    public void validarCartao() {
-        Scanner teclado = new Scanner(System.in);
-        if(validarNumeroCartao(this.numeroCartao) && this.codigoSeguranca < 999){
-            try {
-                Data.parser(this.dataValidade);
-               
-            } catch(DataException err){
-                System.out.println(err.getMessage());
-                this.dataValidade = teclado.nextLine();
-                validarCartao();
-            } 
-        }else{
-            System.out.println("Numero de cartao invalida, informa um numero de Cartao valido");
-            this.numeroCartao = teclado.nextLine();
-            validarCartao();
-        }
+    public static boolean validarCartao(CartaoPagamento cartao) {
+        //Scanner teclado = new Scanner(System.in);
+        if(validarNumeroCartao(cartao.getNumeroCartao()) && cartao.getCodigoSeguranca() < 999)
+            return true;
+
+        return false;
     }
     
     public static boolean validarNumeroCartao(String numeroCartao) {

@@ -1,5 +1,4 @@
 package com.mycompany.cineshow;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -49,7 +48,37 @@ public class ListaCartoesPagamento {
             e.printStackTrace();
         }
     }
-
+    
+    public static int indiceDumCartao(List<CartaoPagamento> listaCartoes, CartaoPagamento cartaoAProcurar){
+        for (CartaoPagamento cartao : listaCartoes) {
+            if(cartao.getNumeroCartao().equals(cartaoAProcurar.getNumeroCartao())){
+                return listaCartoes.indexOf(cartao);
+            }
+        }
+        return -1;
+    }
+    
+    public static void deletarCartao(List<CartaoPagamento> listaCartoes, CartaoPagamento cartaoADeletar) {
+        int index = indiceDumCartao(listaCartoes, cartaoADeletar);
+        if (index != -1) {
+            listaCartoes.remove(index);
+            System.out.println("Cartão deletado com sucesso");
+        } else {
+            System.out.println("Erro ao deletar: Cartão nao encontrado");
+        }
+        salvarCartoes(listaCartoes);
+    }
+    
+    public static void editarCartao(List<CartaoPagamento> listaCartoes, CartaoPagamento cartaoAEditar, CartaoPagamento cartaoASalvar) {
+        int index = indiceDumCartao(listaCartoes, cartaoAEditar);
+        if(index != -1){
+            listaCartoes.set(index, cartaoASalvar);
+            System.out.println("Cartao editado com sucesso");
+        }else
+            System.out.println("Erro ao editar: Cartão nao encontrado");
+        salvarCartoes(listaCartoes);
+    }
+    
     public static void exibirCartoes(List<CartaoPagamento> listaCartoes) {
         System.out.println("Lista de Cartões de Pagamento:");
         for (CartaoPagamento cartao : listaCartoes) {
@@ -61,4 +90,3 @@ public class ListaCartoesPagamento {
         }
     }
 }
-
