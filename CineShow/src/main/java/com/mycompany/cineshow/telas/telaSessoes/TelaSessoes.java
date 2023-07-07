@@ -324,7 +324,7 @@ public class TelaSessoes extends JFrame {
             return;
         }
         String titulo = jComboBox1.getSelectedItem().toString();
-        Filme filme = cf.retornaFilmePorTitulo(titulo);
+        Filme filme = cf.retornaPorNome(titulo);
         Sessao sessao = new Sessao();
 
         String duracaoText = tfdDuracao.getText();
@@ -385,7 +385,7 @@ public class TelaSessoes extends JFrame {
                     String salaText = tfdSala.getText();
                     String horario = tfdHorario.getText();
                     int duracao, sala;
-                    Filme filme = cf.retornaFilmePorTitulo(titulo);
+                    Filme filme = cf.retornaPorNome(titulo);
                     try {
                         duracao = Integer.parseInt(duracaoText);
                         sala = Integer.parseInt(salaText);
@@ -394,7 +394,7 @@ public class TelaSessoes extends JFrame {
                         sessao.setDuracao(duracao);
                         sessao.setHorario(tfdHorario.getText());
                         sessao = new Sessao(filme, horario,duracao, sala);
-                        cs.salvaSessaoComIndice(sessao, indice); 
+                        cs.salvaObjetoComIndice(sessao, indice); 
                         exibeLista();
                     }catch(NumberFormatException e) {
                         JOptionPane.showMessageDialog(null,"Digite valores numéricos válidos para a sala","Erro",JOptionPane.ERROR_MESSAGE);

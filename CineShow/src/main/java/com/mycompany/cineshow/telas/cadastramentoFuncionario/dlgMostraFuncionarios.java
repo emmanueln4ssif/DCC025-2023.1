@@ -331,7 +331,7 @@ public class dlgMostraFuncionarios extends JFrame {
 
         if(indice != -1){
             String nomeSelecionado = jListFunc.getSelectedValue();
-            Funcionario funcionario = cf.retornaFuncPorNome(nomeSelecionado);
+            Funcionario funcionario = cf.retornaPorNome(nomeSelecionado);
 
             funcionario.setNome(tfdNome.getText());
             funcionario.setEndereco(tfdEndereco.getText());
@@ -348,7 +348,7 @@ public class dlgMostraFuncionarios extends JFrame {
                 throw new FuncionarioException("Preencha um valor válido para o campo de salário");
             }
 
-            if(cf.salvaFilmeComIndice(funcionario, indice)){
+            if(cf.salvaObjetoComIndice(funcionario, indice)){
                 exibeLista();
                 JOptionPane.showMessageDialog(null,"Funcionário editado com sucesso!","Confirmação",JOptionPane.INFORMATION_MESSAGE);
 
@@ -410,7 +410,7 @@ public class dlgMostraFuncionarios extends JFrame {
         List<Funcionario> lista = cf.getFuncionarioDao().ler();
         for (Funcionario funcionario : lista) {
             if (!cf.salvar(funcionario)) {
-                JOptionPane.showMessageDialog(null,"Erro ao salvar funcionário","Erro",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Erro ao salvar funcionario","Erro",JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -487,7 +487,7 @@ public class dlgMostraFuncionarios extends JFrame {
 
         if (index != -1) {
             String funcSelecionado = jListFunc.getSelectedValue();
-            Funcionario funcionario = cf.retornaFuncPorNome(funcSelecionado);
+            Funcionario funcionario = cf.retornaPorNome(funcSelecionado);
             tfdNome.setText(funcionario.getNome());
             tfdEndereco.setText(funcionario.getEndereco());
             tfdSalario.setText(String.valueOf(funcionario.getSalario()));

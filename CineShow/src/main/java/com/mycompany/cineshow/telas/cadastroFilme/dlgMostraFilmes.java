@@ -339,7 +339,7 @@ public class dlgMostraFilmes extends JFrame {
 
         if(indice != -1){
             String tituloSelecionado = jListFilmes.getSelectedValue();
-            Filme filme = cf.retornaFilmePorTitulo(tituloSelecionado);
+            Filme filme = cf.retornaPorNome(tituloSelecionado);
          
             filme.setTitulo(tfdTitulo.getText());
             filme.setGenero(tfdGenero.getText());
@@ -353,7 +353,7 @@ public class dlgMostraFilmes extends JFrame {
             if(filme.getClassificacaoIndicativa() > 18 || filme.getClassificacaoIndicativa() < 10)
                 throw new FilmeException("Classificação Indicativa inválida");
             
-            cf.salvaFilmeComIndice(filme, indice); 
+            cf.salvaObjetoComIndice(filme, indice); 
             exibeLista();
             
             exibeInformacoes();
@@ -448,7 +448,7 @@ public class dlgMostraFilmes extends JFrame {
 
         if (index != -1) {
             String tituloSelecionado = jListFilmes.getSelectedValue();
-            Filme filme = cf.retornaFilmePorTitulo(tituloSelecionado);
+            Filme filme = cf.retornaPorNome(tituloSelecionado);
 
             tfdTitulo.setText(filme.getTitulo());
             tfdSinopse.setText(filme.getSinopse());

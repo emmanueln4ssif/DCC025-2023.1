@@ -4,33 +4,57 @@
  */
 package com.mycompany.cineshow.telas.cadastramentoFuncionario;
 
+import Controller.Controla;
 import java.util.*;
 import com.mycompany.cineshow.Funcionario;
 import persistencia.FuncionarioDao;
-import persistencia.SessaoDao;
 
 /**
  *
  * @author dayane
  */
-public class ControlaFuncionario {
+public class ControlaFuncionario implements Controla<Funcionario> {
     private ArrayList<Funcionario> funcionarios;
     private FuncionarioDao funcionarioDao;
 
     public ControlaFuncionario() {
         this.funcionarios = new ArrayList<>();
         this.funcionarioDao = new FuncionarioDao();
-        atualizaFuncionarios();
+        atualizaObjetos();
     }
 
     public FuncionarioDao getFuncionarioDao(){
         return this.funcionarioDao;
     }
 
-    public boolean salvar(Funcionario funcionario){
-        boolean sucesso = this.funcionarioDao.salvar(funcionario); 
+
+    @Override
+    public ArrayList<Funcionario> retornarTodos(){
+        return this.funcionarios;
+    }
+
+
+    @Override
+    public void atualizaObjetos() {
+        this.funcionarios = this.funcionarioDao.ler();
+    }
+
+    @Override
+    public Funcionario retornaPorNome(String nome) {
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getNome().equals(nome)){
+                return funcionario;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public boolean salvar(Funcionario objeto) {
+        boolean sucesso = this.funcionarioDao.salvar((Funcionario)objeto); 
         if (sucesso) {
-            this.funcionarios.add(funcionario);
+            this.funcionarios.add(objeto);
             return true;
         } 
         else {
@@ -38,34 +62,14 @@ public class ControlaFuncionario {
         }
     }
 
-    public void atualizaFuncionarios(){
-        this.funcionarios = this.funcionarioDao.ler();
-
-    }
-
-
-    public ArrayList<Funcionario> retornarTodos(){
-        return this.funcionarios;
-    }
-
-    public Funcionario retornaFuncPorNome(String nome){
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getNome().equals(nome)) {
-                return funcionario;
-            }
-        }
-        return null;
-    }
-
-    public boolean salvaFilmeComIndice(Funcionario funcionario, int indice){
-        if (funcionario != null) {
-            this.funcionarios.add(indice, funcionario);
+    @Override
+    public boolean salvaObjetoComIndice(Funcionario objeto, int indice) {
+        if (objeto != null) {
+            this.funcionarios.add(indice, objeto);
             this.funcionarios.remove(indice + 1);
             return true;
         } 
         else 
             return false;
     }
-
-
 }

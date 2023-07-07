@@ -5,30 +5,31 @@ package com.mycompany.cineshow.telas.telaCadCliente;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import Controller.Controla;
 import java.util.*;
 import com.mycompany.cineshow.Cliente;
 import persistencia.ClienteDao;
-import persistencia.SessaoDao;
 
 /**
  *
  * @author dayane
  */
 
-public class ControlaCliente {
+public class ControlaCliente implements Controla<Cliente> {
     private ArrayList<Cliente> clientes;
     private ClienteDao clienteDao;
 
     public ControlaCliente() {
         this.clientes = new ArrayList<>();
         this.clienteDao = new ClienteDao();
-        atualizaClientes();
+        atualizaObjetos();
     }
 
     public ClienteDao getClienteDao(){
         return this.clienteDao;
     }
 
+    @Override
     public boolean salvar(Cliente cliente){
         boolean sucesso = this.clienteDao.salvar(cliente); 
         if (sucesso) {
@@ -40,28 +41,31 @@ public class ControlaCliente {
         }
     }
 
-    public void atualizaClientes(){
-        this.clientes = this.clienteDao.ler();
-
-    }
-
-
+    @Override
     public ArrayList<Cliente> retornarTodos(){
         return this.clientes;
     }
+    
 
-    public Cliente retornaClienteCPF(String cpf){
+    @Override
+    public void atualizaObjetos() {
+        this.clientes = this.clienteDao.ler();
+    }
+
+    @Override
+    public Cliente retornaPorNome(String nome) {
         for (Cliente cliente : clientes) {
-            if (cliente.getCpf().equals(cpf)) {
+            if (cliente.getCpf().equals(nome)) {
                 return cliente;
             }
         }
         return null;
     }
 
-    public boolean salvaClienteIndice(Cliente cliente, int indice){
-        if (cliente != null) {
-            this.clientes.add(indice, cliente);
+    @Override
+    public boolean salvaObjetoComIndice(Cliente objeto, int indice) {
+        if (objeto != null) {
+            this.clientes.add(indice, objeto);
             this.clientes.remove(indice + 1);
             return true;
         } 

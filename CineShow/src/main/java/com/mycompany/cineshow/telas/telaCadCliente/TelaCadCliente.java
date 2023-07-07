@@ -352,7 +352,7 @@ public class TelaCadCliente extends JFrame {
 
         if(indice != -1){
             String cpfSelecionado = jListClientes.getSelectedValue();
-            Cliente cliente = cc.retornaClienteCPF(cpfSelecionado);
+            Cliente cliente = cc.retornaPorNome(cpfSelecionado);
 
             cliente.setNome(tfdNome.getText());
             cliente.setEndereco(tfdEndereco.getText());
@@ -364,7 +364,7 @@ public class TelaCadCliente extends JFrame {
                 throw new ClienteException("Preencha todos os campos");
             }
 
-            cc.salvaClienteIndice(cliente, indice); 
+            cc.salvaObjetoComIndice(cliente, indice); 
             exibeLista();
 
             tfdNome.setText("");
@@ -435,7 +435,7 @@ public class TelaCadCliente extends JFrame {
 
         if (index != -1) {
             String funcSelecionado = jListClientes.getSelectedValue();
-            Cliente cliente = cc.retornaClienteCPF(funcSelecionado);
+            Cliente cliente = cc.retornaPorNome(funcSelecionado);
             tfdNome.setText(cliente.getNome());
             tfdEndereco.setText(cliente.getEndereco());
             tfdEmail.setText(cliente.getEmail());

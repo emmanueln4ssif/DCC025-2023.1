@@ -4,6 +4,7 @@
  */
 package com.mycompany.cineshow.telas.cadastroFilme;
 
+import Controller.Controla;
 import java.util.*;
 import com.mycompany.cineshow.Filme;
 import persistencia.FilmeDao;
@@ -13,20 +14,21 @@ import persistencia.SessaoDao;
  *
  * @author dayane
  */
-public class ControlaCadastroFilme {
+public class ControlaCadastroFilme implements Controla<Filme>{
     private ArrayList<Filme> filmes;
     private FilmeDao filmeDao;
 
     public ControlaCadastroFilme() {
         this.filmes = new ArrayList<>();
         this.filmeDao = new FilmeDao();
-        atualizaFilmes();
+        atualizaObjetos();
     }
 
     public FilmeDao getFilmeDao(){
         return this.filmeDao;
     }
 
+    @Override
     public boolean salvar(Filme filme){
         boolean sucesso = this.filmeDao.salvar(filme); 
         if (sucesso) {
@@ -38,32 +40,36 @@ public class ControlaCadastroFilme {
         }
     }
     
-    public void atualizaFilmes(){
-        this.filmes = this.filmeDao.ler();
-    }
-    
-   
+    @Override
     public ArrayList<Filme> retornarTodos(){
         return this.filmes;
     }
     
-    public Filme retornaFilmePorTitulo(String titulo){
+
+    @Override
+    public void atualizaObjetos() {
+        this.filmes = this.filmeDao.ler();
+    }
+
+    @Override
+    public Filme retornaPorNome(String nome) {
         for (Filme filme : filmes) {
-            if (filme.getTitulo().equals(titulo)) {
+            if (filme.getTitulo().equals(nome)) {
                 return filme;
             }
         }
         return null; 
     }
-    
-    public boolean salvaFilmeComIndice(Filme filme, int indice){
-        if (filme != null) {
-            this.filmes.add(indice, filme);
+
+    @Override
+    public boolean salvaObjetoComIndice(Filme objeto, int indice) {
+        if (objeto != null) {
+            this.filmes.add(indice, objeto);
             this.filmes.remove(indice + 1);
             return true;
         } 
         else 
-            return false;   
+            return false; 
     }
         
     

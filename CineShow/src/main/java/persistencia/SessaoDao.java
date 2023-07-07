@@ -26,7 +26,7 @@ public class SessaoDao extends PersistenciaDao<Sessao>{
                 int sala = Integer.parseInt(salaText);
                 int duracao = Integer.parseInt(duracaoText);
                 
-                Filme filme = cf.retornaFilmePorTitulo(titulo);
+                Filme filme = cf.retornaPorNome(titulo);
                 Sessao sessao = new Sessao(filme, horario, duracao, sala);
                 sessoes.add(sessao);
             }
