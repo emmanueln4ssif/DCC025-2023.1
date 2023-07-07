@@ -1,11 +1,11 @@
 Titanic
 Drama
-Duas horas
+2
 Jack e Rose...
 10
 Pantera Negra
 Aventura
-3 horas
+3
 Wakanda ...
 12
 Procurando Nemo
@@ -20,6 +20,6 @@ Barbie...
 12
 Matrix
 Sci-Fi
-2 horas
+2
 Filme
 18

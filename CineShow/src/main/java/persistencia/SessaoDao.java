@@ -2,7 +2,7 @@ package persistencia;
 
 import com.mycompany.cineshow.Filme;
 import com.mycompany.cineshow.Sessao;
-import com.mycompany.cineshow.telas.cadastroFilme.ControlaCadastroFilme;
+import Controller.ControlaCadastroFilme;
 
 import java.io.File;
 import java.util.ArrayList;
