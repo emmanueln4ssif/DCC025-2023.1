@@ -1,11 +1,13 @@
+/*Dayane Guimaraes Gomes Godoy - 2022265554C;
+        Emmanuel Gomes Nassif - 202265555C;
+        Habirou Mama - 202265563C;
+        Walace Alan de Paula - 202265560C*/
 package com.mycompany.cineshow;
 
-import com.mycompany.cineshow.telas.TelaDeIngresso;
 import com.mycompany.cineshow.telas.TelaLogin;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
+
 
 public class CineShow {
 
