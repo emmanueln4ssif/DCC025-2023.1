@@ -232,7 +232,8 @@ public class TelaDePagamento extends JFrame {
             tfdCodigoBarras.setText("");
             tfdCodigoBarras1.setText(codigoBarras);
             
-        } else if (item.equals("Pix")){
+        } 
+        else if (item.equals("Pix")){
 
             Random rand = new Random();
             int num = rand.nextInt(100000, 45000000);
@@ -248,7 +249,7 @@ public class TelaDePagamento extends JFrame {
     }                                              
 
     private void tfdNomeActionPerformed(ActionEvent evt) {                                        
-        // TODO add your handling code here:
+       
     }                                       
 
     private void btnVoltarActionPerformed(ActionEvent evt) {                                          
@@ -260,50 +261,56 @@ public class TelaDePagamento extends JFrame {
         String item = (String) tiposPagamento.getSelectedItem();
 
         if(item.equals("Cartão")){
+            if(tfdNome.getText().isEmpty() || tfdNumeroCartao.getText().isEmpty() || tfdCVV1.getText().isEmpty() || tfdValidade.getText().isEmpty() || tfdValor.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null,"Preencha todos os campos para realizar o pagamento","Erro",JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                int cvc;
+                try{
+                    cvc = Integer.parseInt(tfdCVV1.getText());   
+                }catch(NumberFormatException e){
+                    throw new CartaoException("Cartão com CVC inválido!");
+                }
+                String nomeTitular = tfdNome.getText();
+                String numeroCartao = tfdNumeroCartao.getText();
+                String validade = tfdValidade.getText();
+                double valor = Double.parseDouble(tfdValor.getText()); 
+
+                CartaoPagamento cartao = new CartaoPagamento(numeroCartao, nomeTitular, validade, cvc);
+                if(!CartaoPagamento.validarNumeroCartao(numeroCartao)){
+                    throw new CartaoException("Cartão com número inválido!");
+                }
+
+                if(tfdCVV1.getText().length() != 3 && cvc > 999){
+                    throw new CartaoException("Cartão com CVC inválido!");
+                }
+                try {
+                    Data.parser(validade);
+                } catch (DataException e) {
+                    throw new DataException();
+                }
+                if(CartaoPagamento.validarCartao(cartao) == true){
+                    PagamentoCartao pagarComCartao = new PagamentoCartao(valor, cartao);
+                    pagarComCartao.efetuarPagamento();
+                    JOptionPane.showMessageDialog(null,"Pagamento Confirmado no valor de " + tfdValor.getText() + " reais para " + tfdNome.getText() + ".","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Não foi possível efetuar a compra. Revise seus dados e tente novamente","Falha na solicitação",JOptionPane.ERROR_MESSAGE);
+                }
+                this.dispose();
+                TelaIngresso.desenha(usuario);
+            }
             
-            String nomeTitular = tfdNome.getText();
-            String numeroCartao = tfdNumeroCartao.getText();
-            int cvc = Integer.parseInt(tfdCVV1.getText());
-            String validade = tfdValidade.getText();
-            double valor = Double.parseDouble(tfdValor.getText());
-
-            CartaoPagamento cartao = new CartaoPagamento(numeroCartao, nomeTitular, validade, cvc);
-
-            if(!CartaoPagamento.validarNumeroCartao(numeroCartao)){
-                throw new CartaoException("Cartão com número inválido!");
-            }
-
-            if(tfdCVV1.getText().length() != 3 && cvc > 999){
-                throw new CartaoException("Cartão com CVC inválido!");
-            }
-
-            try {
-                Data.parser(validade);
-            } catch (DataException e) {
-                throw new DataException();
-            }
-
-            if(CartaoPagamento.validarCartao(cartao) == true){
-                
-                PagamentoCartao pagarComCartao = new PagamentoCartao(valor, cartao);
-
-                pagarComCartao.efetuarPagamento();
-                JOptionPane.showMessageDialog(null,"Pagamento Confirmado no valor de " + tfdValor.getText() + " reais para " + tfdNome.getText() + ".","Sucesso",JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                JOptionPane.showMessageDialog(null,"Não foi possível efetuar a compra. Revise seus dados e tente novamente","Falha na solicitação",JOptionPane.ERROR_MESSAGE);
-            }
-
-            this.dispose();
-            TelaIngresso.desenha(usuario);
-
-        } else if(item.equals("Boleto")){
-
+        } 
+        else if(item.equals("Boleto")){
             JOptionPane.showMessageDialog(null,"Boleto gerado!","Sucesso",JOptionPane.INFORMATION_MESSAGE);
-
-        } else {
+        } 
+        else if(item.equals("Pix")) {
             JOptionPane.showMessageDialog(null,"Pix Copia e Cola gerado!","Sucesso",JOptionPane.INFORMATION_MESSAGE);
         }
+        else
+            JOptionPane.showMessageDialog(null,"Selecione a forma de pagamento","Erro",JOptionPane.ERROR_MESSAGE);
+
     }
     
     
