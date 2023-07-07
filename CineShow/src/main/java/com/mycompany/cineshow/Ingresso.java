@@ -4,14 +4,12 @@ package com.mycompany.cineshow;
 public abstract class Ingresso {
 
     private Filme filme;
-    private Assento assento;
     private double preco;
     private String tipo;
     private Cliente cliente;
     
-    public Ingresso(Filme filme, Assento assento, double preco) {
+    public Ingresso(Filme filme, double preco) {
         this.filme = filme;
-        this.assento = assento;
         this.preco = preco;
     }
 
@@ -27,20 +25,12 @@ public abstract class Ingresso {
         return filme;
     }
 
-    public Assento getAssento() {
-        return assento;
-    }
-
     public double getPreco() {
         return preco;
     }
 
     public void setFilme(Filme filme) {
         this.filme = filme;
-    }
-
-    public void setAssento(Assento assento) {
-        this.assento = assento;
     }
 
     public void setPreco(double preco) {
@@ -62,7 +52,6 @@ public abstract class Ingresso {
     public String toString() {
         return "Ingresso{" +
                 "filme=" + filme +
-                ", assento=" + assento +
                 ", preco=" + preco +
                 ", tipo='" + tipo + '\'' +
                 '}';

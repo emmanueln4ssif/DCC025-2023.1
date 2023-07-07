@@ -97,10 +97,6 @@ public class Cinema {
     this.capacidadeAssentos = capacidadeAssentos;
   }
 
-  public int calculaPreco(Filme filme, Assento assento) {
-    return 0;
-  }
-
   @Override
   public String toString() {
     return (

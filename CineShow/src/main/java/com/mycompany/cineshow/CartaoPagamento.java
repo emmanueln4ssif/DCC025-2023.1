@@ -1,16 +1,5 @@
 package com.mycompany.cineshow;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
-
-import com.mycompany.cineshow.exceptions.DataException;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-
 public class CartaoPagamento {
     private String numeroCartao;
     private String nomeTitular;

@@ -2,8 +2,8 @@ package com.mycompany.cineshow;
 
 public class IngressoMeiaEntrada extends Ingresso {
 
-  public IngressoMeiaEntrada(Filme filme, Assento assento, double preco) {
-    super(filme, assento, preco);
+  public IngressoMeiaEntrada(Filme filme, double preco) {
+    super(filme, preco);
     setTipo("Meia-entrada");
   }
 

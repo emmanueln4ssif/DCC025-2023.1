@@ -1,7 +1,5 @@
 package com.mycompany.cineshow;
 
-import java.time.LocalDateTime;
-
 public class Sessao {
 
   private Filme filme;

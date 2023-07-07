@@ -1,6 +1,5 @@
 package com.mycompany.cineshow;
 
-import java.util.*;
 import com.mycompany.cineshow.exceptions.DataException;
 
 public class Data {
